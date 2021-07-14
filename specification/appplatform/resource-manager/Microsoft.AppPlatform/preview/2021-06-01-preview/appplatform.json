@@ -130,7 +130,7 @@
           "AppPlatform"
         ],
         "description": "Operation to delete a Service.",
-        "operationId": "Services_DeleteXBC",
+        "operationId": "Services_Delete",
         "parameters": [
           {
             "$ref": "#/parameters/ApiVersionParameter"
@@ -162,11 +162,6 @@
         "x-ms-long-running-operation": true,
         "x-ms-long-running-operation-options": {
           "final-state-via": "azure-async-operation"
-        },
-        "x-ms-examples": {
-          "Services_Delete": {
-            "$ref": "./examples/Services_Delete.json"
-          }
         }
       },
       "patch": {
