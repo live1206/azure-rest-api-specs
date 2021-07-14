@@ -130,7 +130,7 @@
           "AppPlatform"
         ],
         "description": "Operation to delete a Service.",
-        "operationId": "Services_Delete",
+        "operationId": "Services_DeleteXBC",
         "parameters": [
           {
             "$ref": "#/parameters/ApiVersionParameter"
