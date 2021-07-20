@@ -38,7 +38,7 @@
   "paths": {
     "/subscriptions/{subscriptionId}/providers/Microsoft.Network/locations/{location}/CheckDnsNameAvailability": {
       "get": {
-        "operationId": "CheckDnsNameAvailability",
+        "operationId": "ABC",
         "description": "Checks whether a domain name in the cloudapp.net zone is available for use.",
         "parameters": [
           {

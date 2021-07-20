@@ -41,7 +41,7 @@
         "tags": [
           "NetworkSecurityGroups"
         ],
-        "operationId": "NetworkSecurityGroups_Delete",
+        "operationId": "ABCd",
         "description": "Deletes the specified network security group.",
         "parameters": [
           {

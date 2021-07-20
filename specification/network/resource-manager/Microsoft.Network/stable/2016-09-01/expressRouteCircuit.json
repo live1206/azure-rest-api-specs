@@ -41,7 +41,7 @@
         "tags": [
           "ExpressRouteCircuitAuthorizations"
         ],
-        "operationId": "ExpressRouteCircuitAuthorizations_Delete",
+        "operationId": "ABC",
         "description": "Deletes the specified authorization from the specified express route circuit.",
         "parameters": [
           {

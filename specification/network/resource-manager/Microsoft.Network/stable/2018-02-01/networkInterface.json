@@ -41,7 +41,7 @@
         "tags": [
           "NetworkInterfaces"
         ],
-        "operationId": "NetworkInterfaces_Delete",
+        "operationId": "NetworkInterfaces_DeleteABCD",
         "description": "Deletes the specified network interface.",
         "parameters": [
           {
