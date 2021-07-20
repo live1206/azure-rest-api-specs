@@ -90,7 +90,7 @@
         "description": "Gets information about all public IP addresses in a role instance IP configuration in a cloud service.",
         "parameters": [
           {
-            "name": "resourceGroupName",
+            "name": "resourceGroupNameBC",
             "in": "path",
             "required": true,
             "type": "string",
@@ -143,11 +143,6 @@
             "schema": {
               "$ref": "./network.json#/definitions/CloudError"
             }
-          }
-        },
-        "x-ms-examples": {
-          "ListVMSSVMPublicIP": {
-            "$ref": "./examples/CloudServiceRoleInstancePublicIpList.json"
           }
         },
         "x-ms-pageable": {

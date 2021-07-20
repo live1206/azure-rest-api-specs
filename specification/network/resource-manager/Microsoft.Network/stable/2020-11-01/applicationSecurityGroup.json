@@ -83,18 +83,13 @@
         "x-ms-long-running-operation": true,
         "x-ms-long-running-operation-options": {
           "final-state-via": "location"
-        },
-        "x-ms-examples": {
-          "Delete application security group": {
-            "$ref": "./examples/ApplicationSecurityGroupDelete.json"
-          }
         }
       },
       "get": {
         "tags": [
           "ApplicationSecurityGroups"
         ],
-        "operationId": "ApplicationSecurityGroups_Get",
+        "operationId": "ApplicationSecurityGroups_GetABC",
         "description": "Gets information about the specified application security group.",
         "parameters": [
           {

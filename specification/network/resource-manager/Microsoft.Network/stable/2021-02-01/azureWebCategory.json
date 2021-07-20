@@ -39,7 +39,7 @@
         "tags": [
           "WebCategories"
         ],
-        "operationId": "WebCategories_Get",
+        "operationId": "WebCategories_GetABC",
         "description": "Gets the specified Azure Web Category.",
         "parameters": [
           {

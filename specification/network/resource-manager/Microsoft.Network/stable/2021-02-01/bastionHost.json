@@ -39,7 +39,7 @@
         "tags": [
           "BastionHosts"
         ],
-        "operationId": "BastionHosts_Delete",
+        "operationId": "BastionHosts_DeleteABC",
         "description": "Deletes the specified Bastion Host.",
         "parameters": [
           {
