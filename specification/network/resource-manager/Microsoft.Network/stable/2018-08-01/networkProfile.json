@@ -39,7 +39,7 @@
         "tags": [
           "NetworkProfiles"
         ],
-        "operationId": "NetworkProfiles_Delete",
+        "operationId": "NetworkProfiles_DeleteABC",
         "description": "Deletes the specified network profile.",
         "parameters": [
           {

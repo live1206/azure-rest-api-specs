@@ -39,7 +39,7 @@
         "tags": [
           "DdosProtectionPlans"
         ],
-        "operationId": "DdosProtectionPlans_Delete",
+        "operationId": "DdosProtectionPlans_DeleteABC",
         "description": "Deletes the specified DDoS protection plan.",
         "parameters": [
           {

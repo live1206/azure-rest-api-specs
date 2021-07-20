@@ -41,7 +41,7 @@
         "tags": [
           "NetworkInterfaces"
         ],
-        "operationId": "NetworkInterfaces_ListVirtualMachineScaleSetVMNetworkInterfaces",
+        "operationId": "NetworkInterfaces_ListVirtualMachineScaleSetVMNetworkInterfacesABC",
         "description": "Gets information about all network interfaces in a virtual machine in a virtual machine scale set.",
         "parameters": [
           {

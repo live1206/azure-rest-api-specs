@@ -41,7 +41,7 @@
         "tags": [
           "PublicIPAddresses"
         ],
-        "operationId": "PublicIPAddresses_Delete",
+        "operationId": "PublicIPAddresses_DeleteABC",
         "description": "Deletes the specified public IP address.",
         "parameters": [
           {

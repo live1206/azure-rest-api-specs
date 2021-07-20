@@ -39,7 +39,7 @@
         "tags": [
           "ApplicationSecurityGroups"
         ],
-        "operationId": "ApplicationSecurityGroups_Delete",
+        "operationId": "ApplicationSecurityGroups_DeleteABC",
         "description": "Deletes the specified application security group.",
         "parameters": [
           {

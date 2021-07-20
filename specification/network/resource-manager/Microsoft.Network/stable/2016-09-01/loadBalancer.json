@@ -41,7 +41,7 @@
         "tags": [
           "LoadBalancers"
         ],
-        "operationId": "LoadBalancers_Delete",
+        "operationId": "LoadBalancers_DeleteABC",
         "description": "Deletes the specified load balancer.",
         "parameters": [
           {

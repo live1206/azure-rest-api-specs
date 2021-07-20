@@ -41,7 +41,7 @@
         "tags": [
           "ApplicationGateways"
         ],
-        "operationId": "ApplicationGateways_Delete",
+        "operationId": "ApplicationGateways_DeleteABC",
         "description": "The delete ApplicationGateway operation deletes the specified application gateway.",
         "parameters": [
           {
