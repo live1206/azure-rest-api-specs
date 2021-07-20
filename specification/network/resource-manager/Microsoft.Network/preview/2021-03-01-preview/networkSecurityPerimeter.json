@@ -53,7 +53,7 @@
         "tags": [
           "NetworkSecurityPerimeters"
         ],
-        "operationId": "NetworkSecurityPerimeters_Get",
+        "operationId": "NetworkSecurityPerimeters_GetAB",
         "description": "Gets the specified network security perimeter by the name.",
         "responses": {
           "200": {
@@ -150,7 +150,7 @@
         "tags": [
           "NetworkSecurityPerimeters"
         ],
-        "operationId": "NetworkSecurityPerimeters_ListBySubscription",
+        "operationId": "NetworkSecurityPerimeters_ListBySubscriptionABC",
         "description": "List all network security perimeters in a subscription.",
         "parameters": [
           {
@@ -195,7 +195,7 @@
         "tags": [
           "NetworkSecurityPerimeters"
         ],
-        "operationId": "NetworkSecurityPerimeters_List",
+        "operationId": "NetworkSecurityPerimeters_ListABC",
         "description": "List network security perimeters in a resource group.",
         "x-ms-pageable": {
           "nextLinkName": "nextLink"
@@ -240,7 +240,7 @@
     },
     "/subscriptions/{subscriptionId}/providers/Microsoft.Network/locations/{location}/perimeterAssociableResourceTypes": {
       "get": {
-        "operationId": "PerimeterAssociableResourceTypes_Get",
+        "operationId": "PerimeterAssociableResourceTypes_GetABC",
         "description": "Gets the list of resources that are onboarded with NSP. These resources can be associated with a network security perimeter",
         "parameters": [
           {
@@ -269,11 +269,6 @@
             "schema": {
               "$ref": "./network.json#/definitions/CloudError"
             }
-          }
-        },
-        "x-ms-examples": {
-          "Check Dns Name Availability": {
-            "$ref": "./examples/PerimeterAssociableResourcesList.json"
           }
         }
       }
@@ -412,7 +407,7 @@
           "description": "Resource type/provider name."
         },
         "publicDnsZones": {
-          "readOnly": true,
+          "readOnly": false,
           "type": "array",
           "items": {
             "type": "string"
