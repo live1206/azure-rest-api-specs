@@ -407,7 +407,6 @@
           "description": "Resource type/provider name."
         },
         "publicDnsZones": {
-          "readOnly": false,
           "type": "array",
           "items": {
             "type": "string"
