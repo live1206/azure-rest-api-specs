@@ -115,13 +115,21 @@
         "x-ms-long-running-operation": true,
         "x-ms-long-running-operation-options": {
           "final-state-via": "azure-async-operation"
+        },
+        "x-ms-examples": {
+          "Services_CreateOrUpdate": {
+            "$ref": "./examples/Services_CreateOrUpdate.json"
+          },
+          "Services_CreateOrUpdate_VNetInjection": {
+            "$ref": "./examples/Services_CreateOrUpdate_VNetInjection.json"
+          }
         }
       },
       "delete": {
         "tags": [
           "AppPlatform"
         ],
-        "description": "Operation to delete a Service.",
+        "description": "Operation to delete a Service x.",
         "operationId": "Services_Delete",
         "parameters": [
           {
