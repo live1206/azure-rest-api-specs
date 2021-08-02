@@ -1,5 +1,5 @@
 ## Python
-
+ 
 These settings apply only when `--track2` is specified on the command line.
 
 ``` yaml $(track2)
@@ -7,6 +7,7 @@ azure-arm: true
 license-header: MICROSOFT_MIT_NO_VERSION
 package-name: azure-mgmt-network
 no-namespace-folders: true
+package-version: 1.0.0b1
 ```
 
 ### Python multi-api
