@@ -826,6 +826,10 @@
               "type": "string"
             }
           }
+
+        },
+        "taskName": {
+          "type": "string"
         }
       }
     },
