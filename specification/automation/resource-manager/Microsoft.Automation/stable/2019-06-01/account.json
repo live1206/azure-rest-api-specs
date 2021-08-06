@@ -42,7 +42,7 @@
           "AutomationAccount"
         ],
         "operationId": "AutomationAccount_Update",
-        "description": "Update an automation account.",
+        "description": "Update an automation account. abc",
         "externalDocs": {
           "url": "http://aka.ms/azureautomationsdk/automationaccountoperations"
         },
