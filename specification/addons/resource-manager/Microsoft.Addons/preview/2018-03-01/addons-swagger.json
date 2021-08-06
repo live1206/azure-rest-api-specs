@@ -200,7 +200,7 @@
     "/subscriptions/{subscriptionId}/providers/Microsoft.Addons/supportProviders/canonical/listSupportPlanInfo": {
       "post": {
         "tags": [
-          "AddonStatus"
+          "addonStatus"
         ],
         "operationId": "SupportPlanTypes_ListInfo",
         "description": "Returns the canonical support plan information for all types for the subscription.",
