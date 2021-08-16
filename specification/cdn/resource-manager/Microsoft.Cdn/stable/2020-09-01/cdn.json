@@ -165,12 +165,7 @@
           "Profiles"
         ],
         "description": "Creates a new CDN profile with a profile name under the specified subscription and resource group.",
-        "operationId": "Profiles_Create",
-        "x-ms-examples": {
-          "Profiles_Create": {
-            "$ref": "./examples/Profiles_Create.json"
-          }
-        },
+        "operationId": "Profiles_CreateABC
         "parameters": [
           {
             "$ref": "#/parameters/resourceGroupNameParameter"
