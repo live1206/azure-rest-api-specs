@@ -22,7 +22,7 @@
           "Metadata"
         ],
         "summary": "Gets the metadata entity.",
-        "operationId": "RecommendationMetadata_Get",
+        "operationId": "RecommendationMetadata_GetABC",
         "parameters": [
           {
             "name": "name",
@@ -54,11 +54,6 @@
             "schema": {
               "$ref": "#/definitions/ArmErrorResponse"
             }
-          }
-        },
-        "x-ms-examples": {
-          "GetMetadata": {
-            "$ref": "./examples/GetRecommendationMetadataEntity.json"
           }
         }
       }
