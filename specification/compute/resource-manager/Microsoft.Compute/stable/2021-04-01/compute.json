@@ -64,7 +64,7 @@
         "tags": [
           "AvailabilitySets"
         ],
-        "operationId": "AvailabilitySets_CreateOrUpdate",
+        "operationId": "AvailabilitySets_CreateOrUpdateA",
         "description": "Create or update an availability set.",
         "parameters": [
           {
@@ -103,11 +103,6 @@
             "schema": {
               "$ref": "#/definitions/AvailabilitySet"
             }
-          }
-        },
-        "x-ms-examples": {
-          "Create an availability set.": {
-            "$ref": "./examples/CreateAnAvailabilitySet.json"
           }
         }
       },
