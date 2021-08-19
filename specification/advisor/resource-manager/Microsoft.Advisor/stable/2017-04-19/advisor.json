@@ -16,7 +16,7 @@
     "application/json"
   ],
   "paths": {
-    "/providers/Microsoft.Advisor/metadata/{name}": {
+    "/providers/Microsoft.advisor/metadata/{name}": {
       "get": {
         "tags": [
           "Metadata"
@@ -40,12 +40,6 @@
             "description": "OK. Successfully retrieved metadata entities",
             "schema": {
               "$ref": "#/definitions/MetadataEntity"
-            }
-          },
-          "404": {
-            "description": "Client sent unknown metadata name",
-            "schema": {
-              "$ref": "#/definitions/ARMErrorResponseBody"
             }
           }
         },
