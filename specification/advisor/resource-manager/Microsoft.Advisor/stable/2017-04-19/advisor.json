@@ -987,7 +987,6 @@
     },
     "OperationEntity": {
       "description": "The operation supported by Advisor.",
-      "type": "object",
       "properties": {
         "name": {
           "description": "Operation name: {provider}/{resource}/{operation}.",
@@ -1001,7 +1000,6 @@
     },
     "OperationDisplayInfo": {
       "description": "The operation supported by Advisor.",
-      "type": "object",
       "properties": {
         "description": {
           "description": "The description of the operation.",
@@ -1023,7 +1021,6 @@
     },
     "SuppressionContract": {
       "description": "The details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with the rule.",
-      "type": "object",
       "allOf": [
         {
           "$ref": "#/definitions/Resource"
@@ -1053,7 +1050,6 @@
     },
     "SuppressionContractListResult": {
       "description": "The list of Advisor suppressions.",
-      "type": "object",
       "properties": {
         "nextLink": {
           "description": "The link used to get the next page of suppressions.",
