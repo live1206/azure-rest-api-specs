@@ -39,7 +39,7 @@
         "tags": [
           "Profiles"
         ],
-        "description": "Lists all of the CDN profiles within an Azure subscription.",
+        "description": "Lists all of the CDN profiles within an Azure subscription x.",
         "operationId": "Profiles_ListABCD",
         "x-ms-examples": {
           "Profiles_List": {
