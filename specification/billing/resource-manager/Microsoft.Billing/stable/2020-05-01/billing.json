@@ -3,7 +3,7 @@
   "info": {
     "version": "2020-05-01",
     "title": "BillingManagementClient",
-    "description": "Billing client provides access to billing resources for Azure subscriptions."
+    "description": "Billing client provides access to billing resources for Azure subscriptions x x."
   },
   "host": "management.azure.com",
   "schemes": [
