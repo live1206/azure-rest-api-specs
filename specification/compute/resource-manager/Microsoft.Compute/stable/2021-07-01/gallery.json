@@ -221,54 +221,6 @@
             "$ref": "./examples/gallery/GetAGalleryWithSelectPermissions.json"
           }
         }
-      },
-      "delete": {
-        "tags": [
-          "Galleries"
-        ],
-        "operationId": "Galleries_Delete",
-        "description": "Delete a Shared Image Gallery.",
-        "parameters": [
-          {
-            "$ref": "#/parameters/SubscriptionIdParameter"
-          },
-          {
-            "$ref": "#/parameters/ResourceGroupNameParameter"
-          },
-          {
-            "name": "galleryName",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "The name of the Shared Image Gallery to be deleted."
-          },
-          {
-            "$ref": "#/parameters/ApiVersionParameter"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "202": {
-            "description": "Accepted"
-          },
-          "204": {
-            "description": "No Content"
-          },
-          "default": {
-            "description": "Error response describing why the operation failed.",
-            "schema": {
-              "$ref": "#/definitions/CloudError"
-            }
-          }
-        },
-        "x-ms-long-running-operation": true,
-        "x-ms-examples": {
-          "Delete a gallery.": {
-            "$ref": "./examples/gallery/DeleteAGallery.json"
-          }
-        }
       }
     },
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/images/{galleryImageName}": {
