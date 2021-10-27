@@ -52,7 +52,7 @@
           }
         },
         "x-ms-examples": {
-          "Services_Get": {
+          "Service_Get": {
             "$ref": "./examples/Services_Get.json"
           }
         }
