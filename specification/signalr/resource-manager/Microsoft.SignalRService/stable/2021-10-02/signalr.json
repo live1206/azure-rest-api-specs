@@ -110,7 +110,7 @@
           "SignalR"
         ],
         "description": "List resource usage quotas by location.",
-        "operationId": "Usages_List",
+        "operationId": "Usage_List",
         "parameters": [
           {
             "name": "location",
