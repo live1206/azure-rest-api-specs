@@ -79,7 +79,7 @@
         "tags": [
           "LiveToken"
         ],
-        "operationId": "LiveToken_Get",
+        "operationId": "LiveTokens_Get",
         "description": "**Gets an access token for live metrics stream data.**",
         "parameters": [
           {
