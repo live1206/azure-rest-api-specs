@@ -71,6 +71,15 @@ input-file:
 - Microsoft.SignalRService/preview/2021-09-01-preview/signalr.json
 ```
 
+### Tag: package-2021-10-02
+
+These settings apply only when `--tag=package-2021-10-02` is specified on the command line.
+
+``` yaml $(tag) == 'package-2021-10-02'
+input-file:
+- Microsoft.SignalRService/stable/2021-10-02/signalr.json
+```
+
 ### Tag: package-2021-10-01
 
 These settings apply only when `--tag=package-2021-10-01` is specified on the command line.
