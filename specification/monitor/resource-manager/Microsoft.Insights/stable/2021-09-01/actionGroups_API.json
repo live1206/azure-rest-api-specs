@@ -712,13 +712,6 @@
           },
           "description": "The list of email receivers that are part of this action group."
         },
-        "smsReceivers": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/SmsReceiver"
-          },
-          "description": "The list of SMS receivers that are part of this action group."
-        },
         "webhookReceivers": {
           "type": "array",
           "items": {
