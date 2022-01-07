@@ -2,7 +2,7 @@
 
 > see https://aka.ms/autorest
 
-This is the AutoRest configuration file for SearchServiceClient and SearchIndexClient.
+This is the AutoRest configuration file for SearchServiceClient and SearchIndexClient. test .net track2
 
 
 ---
