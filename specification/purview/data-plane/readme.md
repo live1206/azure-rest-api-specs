@@ -26,6 +26,7 @@ These are the global settings for the Azure Purview Catalog API.
 ``` yaml
 openapi-type: data-plane
 credential-scopes: "https://purview.azure.net/.default"
+clear-output-folder: true
 ```
 
 ``` yaml $(package-administration-account)
