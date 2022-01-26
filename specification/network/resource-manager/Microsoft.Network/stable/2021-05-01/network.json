@@ -72,11 +72,8 @@
             "$ref": "#/definitions/ErrorDetails"
           },
           "description": "Error details."
-        },
-        "innerError": {
-          "type": "string",
-          "description": "Inner error message."
         }
+       
       },
       "description": "Common error representation."
     },
