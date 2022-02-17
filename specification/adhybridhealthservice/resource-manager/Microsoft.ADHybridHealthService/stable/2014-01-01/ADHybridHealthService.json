@@ -21,7 +21,7 @@
         "tags": [
           "Adds"
         ],
-        "description": "Gets the details of Active Directory Domain Service, for a tenant, that are onboarded to Azure Active Directory Connect Health.",
+        "description": "Gets the details of Active Directory Domain Service, for a tenant, that are onboarded to Azure Active Directory Connect Health.test",
         "operationId": "addsServices_list",
         "x-ms-examples": {
           "addsServices_list": {
