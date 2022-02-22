@@ -114,47 +114,6 @@
       }
     },
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}": {
-      "get": {
-        "tags": [
-          "Account"
-        ],
-        "summary": "Gets the account resource.",
-        "description": "Get an account",
-        "operationId": "Accounts_Get",
-        "parameters": [
-          {
-            "$ref": "#/parameters/subscriptionId"
-          },
-          {
-            "$ref": "#/parameters/resourceGroupName"
-          },
-          {
-            "$ref": "#/parameters/accountName"
-          },
-          {
-            "$ref": "#/parameters/api-version"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "schema": {
-              "$ref": "#/definitions/Account"
-            }
-          },
-          "default": {
-            "description": "An error response received from the provider.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponseModel"
-            }
-          }
-        },
-        "x-ms-examples": {
-          "Accounts_Get": {
-            "$ref": "./examples/Accounts_Get.json"
-          }
-        }
-      },
       "put": {
         "tags": [
           "Account"
