@@ -26,7 +26,8 @@ These are the global settings for the BareMetalInfrastructure API.
 
 ```yaml
 openapi-type: arm
-tag: package-2021-08-09
+tag: package-2021-08-10
+openapi-subtype: providerhub
 ```
 
 ### Tag: package-2021-08-09
