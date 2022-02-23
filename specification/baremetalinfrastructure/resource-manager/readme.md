@@ -30,6 +30,15 @@ tag: package-2021-08-10
 openapi-subtype: providerHub
 ```
 
+### Tag: package-2021-08-10
+
+These settings apply only when `--tag=package-2021-08-10` is specified on the command line.
+
+```yaml $(tag) == 'package-2021-08-10'
+input-file:
+  - Microsoft.BareMetalInfrastructure/stable/2021-08-10/baremetalinfrastructure.json
+```
+
 ### Tag: package-2021-08-09
 
 These settings apply only when `--tag=package-2021-08-09` is specified on the command line.
