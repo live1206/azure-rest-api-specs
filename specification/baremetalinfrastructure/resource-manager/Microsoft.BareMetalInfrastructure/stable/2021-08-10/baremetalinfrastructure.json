@@ -75,7 +75,7 @@
       }
     },
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BareMetalInfrastructure/bareMetalInstances": {
-      "get": {
+      "put": {
         "operationId": "AzureBareMetalInstances_ListByResourceGroup",
         "summary": "Gets a list of Azure BareMetal instances in the specified subscription and resource group.",
         "description": "Gets a list of AzureBareMetal instances in the specified subscription and resource group. The operations returns various properties of each Azure BareMetal instance.",
@@ -96,7 +96,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "202": {
             "description": "OK",
             "schema": {
               "$ref": "#/definitions/AzureBareMetalInstancesListResult"
@@ -138,7 +138,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "OK",
             "schema": {
               "$ref": "#/definitions/OperationList"
@@ -231,7 +231,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "OK",
             "schema": {
               "$ref": "#/definitions/AzureBareMetalInstance"
