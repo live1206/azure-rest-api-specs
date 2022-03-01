@@ -13,6 +13,7 @@ typescript:
   add-credentials: true
   license-header: MICROSOFT_MIT_NO_VERSION
   generate-metadata: true
+  generate-test: true
   clear-output-folder: true
   credential-scopes: https://api.adu.microsoft.com/.default
 ```
