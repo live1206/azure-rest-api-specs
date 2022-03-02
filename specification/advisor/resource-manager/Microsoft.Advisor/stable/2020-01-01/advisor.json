@@ -99,7 +99,7 @@
         }
       }
     },
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Advisor/configurations": {
+    "/subscriptions/{subscriptionId}/providers/Microsoft.Advisor/configurations_fake": {
       "get": {
         "tags": [
           "Configurations"
