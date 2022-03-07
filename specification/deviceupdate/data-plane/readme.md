@@ -69,4 +69,13 @@ See configuration in [readme.typescript.md](./readme.typescript.md)
 
 ## CSharp
 
-See configuration in [readme.csharp.md](./readme.csharp.md)
+<!-- See configuration in [readme.csharp.md](./readme.csharp.md) -->
+```yaml $(csharp)
+public-clients: true
+title: DeviceUpdate
+namespace: Azure.IoT.DeviceUpdate
+data-plane: true
+security: AADToken
+security-scopes:  https://api.adu.microsoft.com/.default
+output-folder: $(csharp-sdks-folder)/sdk/deviceupdate/$(namespace)/src/Generated
+```
