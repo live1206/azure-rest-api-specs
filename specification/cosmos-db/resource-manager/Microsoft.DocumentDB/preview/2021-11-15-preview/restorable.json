@@ -1652,6 +1652,11 @@
               "readOnly": true,
               "description": "A system generated property. A unique identifier."
             },
+            "displayName":{
+              "type": "string",
+              "readOnly": true,
+              "description": "The display name of the Table."
+            },
             "operationType": {
               "type": "string",
               "readOnly": true,
