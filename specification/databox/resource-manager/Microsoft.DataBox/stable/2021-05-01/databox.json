@@ -1158,7 +1158,7 @@
       "description": "The filters for showing the available skus.",
       "required": [
         "transferType",
-        "country",]
+        "country"
       ],
       "type": "object",
       "properties": {
