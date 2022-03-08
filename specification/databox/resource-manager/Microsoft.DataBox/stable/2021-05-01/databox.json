@@ -1158,8 +1158,7 @@
       "description": "The filters for showing the available skus.",
       "required": [
         "transferType",
-        "country",
-        "location"
+        "country",]
       ],
       "type": "object",
       "properties": {
@@ -1192,6 +1191,10 @@
         "location": {
           "description": "Location for data transfer. For locations check: https://management.azure.com/subscriptions/SUBSCRIPTIONID/locations?api-version=2018-01-01",
           "type": "string"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "display name"
         },
         "skuNames": {
           "description": "Sku Names to filter for available skus",
