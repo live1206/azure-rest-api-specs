@@ -440,7 +440,7 @@
         }
       }
     },
-    "/deviceupdate/{instanceId}/updates/providers/{provider}/names/{name}/versions/{version}/files/{fileId}": {
+    "/deviceupdate/{instanceId}/updates/providers/{provider}/names/{name}/versions/{version}/files/{fileIdDemo}": {
       "get": {
         "tags": [
           "Update management"
@@ -466,7 +466,7 @@
             "$ref": "#/parameters/UpdateVersionParameter"
           },
           {
-            "$ref": "#/parameters/FileIdParameter"
+            "$ref": "#/parameters/FileIdDemoParameter"
           },
           {
             "$ref": "#/parameters/ApiVersionParameter"
@@ -1209,7 +1209,7 @@
         }
       }
     },
-    "/deviceupdate/{instanceId}/management/groups/{groupIdDemo}/bestUpdates": {
+    "/deviceupdate/{instanceId}/management/groups/{groupId}/bestUpdates": {
       "get": {
         "tags": [
           "Device and deployment management"
@@ -1226,7 +1226,7 @@
             "$ref": "#/parameters/InstanceIdParameter"
           },
           {
-            "$ref": "#/parameters/GroupIdDemoParameter"
+            "$ref": "#/parameters/GroupIdParameter"
           },
           {
             "name": "$filter",
@@ -3584,8 +3584,8 @@
       "description": "Update version.",
       "x-ms-parameter-location": "method"
     },
-    "FileIdParameter": {
-      "name": "fileId",
+    "FileIdDemoParameter": {
+      "name": "fileIdDemo",
       "in": "path",
       "required": true,
       "type": "string",
@@ -3669,14 +3669,6 @@
     },
     "GroupIdParameter": {
       "name": "groupId",
-      "in": "path",
-      "description": "Group identity.",
-      "required": true,
-      "type": "string",
-      "x-ms-parameter-location": "method"
-    },
-    "GroupIdDemoParameter": {
-      "name": "groupIdDemo",
       "in": "path",
       "description": "Group identity.",
       "required": true,
