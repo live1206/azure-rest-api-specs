@@ -1209,7 +1209,7 @@
         }
       }
     },
-    "/deviceupdate/{instanceId}/management/groups/{groupId}/bestUpdates": {
+    "/deviceupdate/{instanceId}/management/groups/{groupIdDemo}/bestUpdates": {
       "get": {
         "tags": [
           "Device and deployment management"
@@ -1226,7 +1226,7 @@
             "$ref": "#/parameters/InstanceIdParameter"
           },
           {
-            "$ref": "#/parameters/GroupIdParameter"
+            "$ref": "#/parameters/GroupIdDemoParameter"
           },
           {
             "name": "$filter",
@@ -3669,6 +3669,14 @@
     },
     "GroupIdParameter": {
       "name": "groupId",
+      "in": "path",
+      "description": "Group identity.",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    },
+    "GroupIdDemoParameter": {
+      "name": "groupIdDemo",
       "in": "path",
       "description": "Group identity.",
       "required": true,
