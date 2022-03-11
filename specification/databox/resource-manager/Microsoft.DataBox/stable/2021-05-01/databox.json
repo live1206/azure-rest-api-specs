@@ -15,7 +15,7 @@
     "application/json"
   ],
   "paths": {
-    "/providers/Microsoft.DataBox/operations": {
+    "/providers/Microsoft.DataBox/operationsList": {
       "get": {
         "tags": [
           "Operations"
