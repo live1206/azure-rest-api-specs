@@ -58,7 +58,7 @@
         "tags": [
           "Update management"
         ],
-        "operationId": "DeviceUpdate_ImportUpdateDemo",
+        "operationId": "DeviceUpdateDemo_ImportUpdate",
         "x-ms-long-running-operation": true,
         "x-ms-examples": {
           "DeviceUpdate_ImportUpdate": {
