@@ -440,7 +440,7 @@
         }
       }
     },
-    "/deviceupdate/{instanceId}/updates/providers/{provider}/names/{name}/versions/{version}/files/{fileId}": {
+    "/deviceupdate/{instanceId}/updates/providers/{provider}/names/{name}/versions/{version}/files/{fileIdAAA}": {
       "get": {
         "tags": [
           "Update management"
@@ -466,7 +466,7 @@
             "$ref": "#/parameters/UpdateVersionParameter"
           },
           {
-            "$ref": "#/parameters/FileIdParameter"
+            "$ref": "#/parameters/FileIdAAAParameter"
           },
           {
             "$ref": "#/parameters/ApiVersionParameter"
@@ -3584,8 +3584,8 @@
       "description": "Update version.",
       "x-ms-parameter-location": "method"
     },
-    "FileIdParameter": {
-      "name": "fileId",
+    "FileIdAAAParameter": {
+      "name": "fileIdAAA",
       "in": "path",
       "required": true,
       "type": "string",
