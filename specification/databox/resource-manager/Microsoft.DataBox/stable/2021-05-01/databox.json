@@ -15,13 +15,13 @@
     "application/json"
   ],
   "paths": {
-    "/providers/Microsoft.DataBox/operationsList": {
+    "/providers/Microsoft.DataBox/operations": {
       "get": {
         "tags": [
           "Operations"
         ],
         "description": "This method gets all the operations.",
-        "operationId": "Operations_List",
+        "operationId": "Operations_Get",
         "consumes": [
           "application/json"
         ],
