@@ -770,7 +770,7 @@
         "tags": [
           "Device and deployment management"
         ],
-        "operationId": "DeviceManagementDemo_ImportDevicesDemo",
+        "operationId": "DeviceManagement_ImportDevices",
         "x-ms-long-running-operation": true,
         "x-ms-examples": {
           "DeviceManagement_ImportDevices": {
