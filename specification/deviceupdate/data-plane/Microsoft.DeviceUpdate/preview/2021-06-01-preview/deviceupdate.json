@@ -77,7 +77,7 @@
             "$ref": "#/parameters/ApiVersionParameter"
           },
           {
-            "name": "updateToImport",
+            "name": "updateToImportRequest",
             "in": "body",
             "required": true,
             "schema": {
