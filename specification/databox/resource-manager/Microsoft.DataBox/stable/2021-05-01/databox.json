@@ -21,7 +21,7 @@
           "Operations"
         ],
         "description": "This method gets all the operations.",
-        "operationId": "Operations_List",
+        "operationId": "Operations_ListAA",
         "consumes": [
           "application/json"
         ],
