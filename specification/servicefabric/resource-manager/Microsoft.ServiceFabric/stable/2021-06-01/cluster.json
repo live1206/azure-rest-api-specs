@@ -237,46 +237,6 @@
         }
       }
     },
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/clusters": {
-      "get": {
-        "operationId": "Clusters_ListByResourceGroup",
-        "summary": "Gets the list of Service Fabric cluster resources created in the specified resource group.",
-        "description": "Gets all Service Fabric cluster resources created or in the process of being created in the resource group.",
-        "parameters": [
-          {
-            "$ref": "#/parameters/resourceGroupNameParameter"
-          },
-          {
-            "$ref": "#/parameters/api-version"
-          },
-          {
-            "$ref": "#/parameters/subscriptionId"
-          }
-        ],
-        "tags": [
-          "Cluster"
-        ],
-        "x-ms-examples": {
-          "List cluster by resource group": {
-            "$ref": "./examples/ClusterListByResourceGroupOperation_example.json"
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The operation completed successfully.",
-            "schema": {
-              "$ref": "#/definitions/ClusterListResult"
-            }
-          },
-          "default": {
-            "description": "The detailed error response.",
-            "schema": {
-              "$ref": "#/definitions/ErrorModel"
-            }
-          }
-        }
-      }
-    },
     "/subscriptions/{subscriptionId}/providers/Microsoft.ServiceFabric/clusters": {
       "get": {
         "operationId": "Clusters_List",
