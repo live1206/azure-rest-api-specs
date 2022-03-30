@@ -10,7 +10,7 @@
         "tags": [
           "MetadataRoles"
         ],
-        "description": "Lists roles for Purview Account ",
+        "description": "DESC: Lists roles for Purview Account",
         "operationId": "MetadataRoles_List",
         "produces": [
           "application/json"
