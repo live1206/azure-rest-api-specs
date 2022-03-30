@@ -24,7 +24,7 @@ These are the global settings for the Azure Purview Catalog API.
 
 ``` yaml
 openapi-type: data-plane
-tag: package-2021-10-01-preview
+tag: package-2021-05-01-preview
 ```
 
 
@@ -106,7 +106,23 @@ csharp:
 
 ## Java
 
-See configuration in [readme.java.md](./readme.java.md)
+These settings apply only when `--java` is specified on the command line.
+Please also specify `--azure-libraries-for-java-folder=<path to the root directory of your azure-libraries-for-java clone>`.
+
+``` yaml $(java)
+java:
+  license-header: MICROSOFT_MIT_NO_VERSION
+  namespace: Microsoft.Azure.Purview.CatalogClient
+  add-credentials: true
+  output-folder: $(azure-libraries-for-java-folder)/purview/Microsoft.Azure.Analytics.Purview.Catalog/src/Generated
+  clear-output-folder: true
+output-folder: $(csharp-sdks-folder)/Purview/ScanningClient/Generated
+add-credentials: true
+sync-methods: all
+license-header: MICROSOFT_MIT_NO_VERSION
+namespace: Azure.Analytics.Purview.Scanning
+clear-output-folder: true
+```
 
 ## Python
 
@@ -149,5 +165,4 @@ This is not used by Autorest itself.
 ``` yaml $(swagger-to-sdk)
 swagger-to-sdk:
   - repo: azure-sdk-for-net-track2
-  - repo: azure-sdk-for-java
 ```
