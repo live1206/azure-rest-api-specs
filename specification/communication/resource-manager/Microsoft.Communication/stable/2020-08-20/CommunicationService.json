@@ -796,6 +796,10 @@
           "description": "The primary access key.",
           "type": "string"
         },
+        "testKey": {
+          "description": "The test access key.",
+          "type": "string"
+        },
         "secondaryKey": {
           "description": "The secondary access key.",
           "type": "string"
