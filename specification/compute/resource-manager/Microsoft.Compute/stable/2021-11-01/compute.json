@@ -12608,6 +12608,10 @@
           "type": "string",
           "description": "The disk name."
         },
+        "testApiViewProperty": {
+          "type": "string",
+          "description": "The test apiview property."
+        }
         "vhd": {
           "$ref": "#/definitions/VirtualHardDisk",
           "description": "The virtual hard disk."
