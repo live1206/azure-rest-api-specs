@@ -2,6 +2,8 @@
 
 ``` yaml $(java)
 output-folder: $(java-sdks-folder)/sdk/deviceupdate/azure-iot-deviceupdate
+low-level-client: true
+data-plane: true
 namespace: com.azure.iot.deviceupdate
 service-name: DeviceUpdate
 service-versions:
