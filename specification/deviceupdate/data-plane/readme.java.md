@@ -9,5 +9,4 @@ service-name: DeviceUpdate
 service-versions:
   - 2021-06-01-preview
 generate-samples: true
-clear-output-folder: true
 ```
