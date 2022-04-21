@@ -259,60 +259,6 @@
             "$ref": "./examples/ConfidentialLedger_Create.json"
           }
         }
-      },
-      "patch": {
-        "tags": [
-          "Confidential Ledger"
-        ],
-        "summary": "Update Confidential Ledger properties",
-        "description": "Updates properties of Confidential Ledger",
-        "operationId": "Ledger_Update",
-        "x-ms-long-running-operation": true,
-        "parameters": [
-          {
-            "$ref": "#/parameters/ApiVersionParameter"
-          },
-          {
-            "$ref": "#/parameters/SubscriptionIdParameter"
-          },
-          {
-            "$ref": "#/parameters/ResourceGroupNameParameter"
-          },
-          {
-            "$ref": "#/parameters/LedgerNameParameter"
-          },
-          {
-            "name": "confidentialLedger",
-            "in": "body",
-            "description": "Confidential Ledger request body for Updating Ledger",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/ConfidentialLedger"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The request was successful and ledger was recovered; response contains the Confidential Ledger",
-            "schema": {
-              "$ref": "#/definitions/ConfidentialLedger"
-            }
-          },
-          "201": {
-            "description": "The Confidential Ledger resource will be updated asynchronously"
-          },
-          "default": {
-            "description": "Error response describing the reason for operation failure. 404 - NotFound (Confidential Ledger could not be created/updated)",
-            "schema": {
-              "$ref": "../../../../../common-types/resource-management/v2/types.json#/definitions/ErrorResponse"
-            }
-          }
-        },
-        "x-ms-examples": {
-          "ConfidentialLedgerUpdate": {
-            "$ref": "./examples/ConfidentialLedger_Update.json"
-          }
-        }
       }
     },
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConfidentialLedger/ledgers": {
