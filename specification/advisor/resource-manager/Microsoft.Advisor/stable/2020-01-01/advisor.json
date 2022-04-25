@@ -22,7 +22,7 @@
           "Metadata"
         ],
         "summary": "Gets the metadata entity.",
-        "operationId": "RecommendationMetadata_Get",
+        "operationId": "Recommendation_Get",
         "parameters": [
           {
             "name": "name",
