@@ -40,7 +40,6 @@
           "ComputeOperations"
         ],
         "operationId": "Operations_List",
-        "description": "Gets a list of compute operations.",
         "parameters": [
           {
             "$ref": "#/parameters/ApiVersionParameter"
