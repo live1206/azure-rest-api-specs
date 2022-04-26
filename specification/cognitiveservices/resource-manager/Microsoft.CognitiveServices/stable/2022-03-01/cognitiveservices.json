@@ -32,7 +32,6 @@
         "tags": [
           "CognitiveServicesAccounts"
         ],
-        "description": "Create Cognitive Services Account. Accounts is a resource group wide resource type. It holds the keys for developer to access intelligent APIs. It's also the resource type for billing.",
         "operationId": "Accounts_Create",
         "x-ms-examples": {
           "Create Account": {
