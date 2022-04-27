@@ -146,9 +146,6 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "Successfully deleted the SqlPool."
-          },
           "202": {
             "description": "Deleting the SqlPool is in progress."
           },
