@@ -1576,10 +1576,6 @@
         "identity": {
           "$ref": "#/definitions/Identity"
         },
-        "systemData": {
-          "$ref": "../../../../../common-types/resource-management/v2/types.json#/definitions/systemData",
-          "readOnly": true
-        },
         "tags": {
           "type": "object",
           "additionalProperties": {
