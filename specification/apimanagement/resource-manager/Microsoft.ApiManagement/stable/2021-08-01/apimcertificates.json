@@ -105,7 +105,7 @@
         "tags": [
           "Certificate"
         ],
-        "operationId": "Certificate_GetEntityTag",
+        "operationId": "Certificate_EntityTag",
         "description": "Gets the entity state (Etag) version of the certificate specified by its identifier.",
         "x-ms-examples": {
           "ApiManagementHeadCertificate": {
