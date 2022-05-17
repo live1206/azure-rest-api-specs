@@ -10,6 +10,8 @@ package-name: azure-mgmt-cosmosdb
 namespace: azure.mgmt.cosmosdb
 package-version: 6.0.0
 clear-output-folder: true
+modelerfour:
+  lenient-model-deduplication: true
 ```
 
 ``` yaml $(python)
