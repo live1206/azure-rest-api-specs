@@ -4,7 +4,7 @@ These settings apply only when `--python` is specified on the command line.
 Please also specify `--python-sdks-folder=<path to the root directory of your azure-sdk-for-python clone>`.
 Use `--python-mode=update` if you already have a setup.py and just want to update the code itself.
 
-``` yaml $(python) && $(track2)
+``` yaml $(python)
 azure-arm: true
 license-header: MICROSOFT_MIT_NO_VERSION
 namespace: azure.mgmt.iothub
@@ -12,25 +12,15 @@ package-name: azure-mgmt-iothub
 package-version: 1.0.0b1
 clear-output-folder: true
 no-namespace-folders: true
+multiapi: true
 ```
 
 ### Python multi-api
 
 Generate all API versions currently shipped for this package
 
-```yaml $(python) && $(multiapi) && $(track2)
+```yaml $(python)
 batch:
-  - tag: package-2021-07-02
-  - tag: package-2021-07
-  - tag: package-2021-03
-  - tag: package-preview-2021-03
-  - tag: package-2020-03
-  - tag: package-2019-11
-  - tag: package-preview-2019-07
-  - tag: package-2019-03
-  - tag: package-2018-04
-  - tag: package-2018-01
-  - tag: package-2017-07
   - tag: package-2017-01
   - tag: package-2016-02
   - multiapiscript: true
@@ -38,7 +28,6 @@ batch:
 
 ``` yaml $(multiapiscript)
 output-folder: $(python-sdks-folder)/iothub/azure-mgmt-iothub/azure/mgmt/iothub/
-clear-output-folder: false
 perform-load: false
 
 ```
