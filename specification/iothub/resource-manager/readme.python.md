@@ -12,7 +12,6 @@ package-name: azure-mgmt-iothub
 package-version: 1.0.0b1
 clear-output-folder: true
 no-namespace-folders: true
-multiapi: true
 ```
 
 ### Python multi-api
@@ -20,6 +19,7 @@ multiapi: true
 Generate all API versions currently shipped for this package
 
 ```yaml $(python)
+multiapi: true
 batch:
   - tag: package-2017-01
   - tag: package-2016-02
