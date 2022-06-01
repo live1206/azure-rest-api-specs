@@ -1,0 +1,52 @@
+import "@cadl-lang/rest";
+import "@cadl-lang/openapi";
+import "@azure-tools/cadl-providerhub";
+import "@azure-tools/cadl-azure-core";
+import "@azure-tools/cadl-azure-resource-manager";
+
+@armNamespace
+@serviceTitle("Microsoft.Contoso")
+@serviceVersion("2021-08-01-preview")
+namespace Microsoft.Contoso;
+
+using Cadl.Http;
+using Cadl.Rest;
+using OpenAPI;
+using Azure.ResourceManager;
+
+@doc("A ContosoProviderHub resource")
+model Employee is TrackedResource<EmployeeProperties> {
+  @format("^[a-zA-Z0-9-]{3,24}$")
+  @key("EmployeeName")
+  @segment("Employees")
+  name: string;
+}
+
+@doc("The status of the current operation.")
+@knownValues(ProvisioningStateKV)
+model ProvisioningState is string {}
+enum ProvisioningStateKV {
+  Succeeded,
+  Failed,
+  Canceled,
+  Provisioning,
+  Updating,
+  Deleting,
+  Accepted,
+}
+
+@doc("Details of the Contoso Employee.")
+model EmployeeProperties {
+  @visibility("read")
+  @doc("The status of the last operation.")
+  provisioningState?: ProvisioningState;
+  @extension("x-ms-identifiers",["name"])
+  details:Box[]
+}
+
+model Box {
+  name:string
+}
+
+@armResourceOperations
+interface Employees extends ResourceOperations<Employee, EmployeeProperties> {}
