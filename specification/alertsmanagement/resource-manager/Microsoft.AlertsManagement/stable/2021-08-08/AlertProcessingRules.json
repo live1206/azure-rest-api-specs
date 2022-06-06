@@ -29,7 +29,7 @@
   "paths": {
     "/subscriptions/{subscriptionId}/providers/Microsoft.AlertsManagement/actionRules": {
       "get": {
-        "description": "List all alert processing rules in a subscription.",
+        "description": "List all alert processing rules in a subcription.",
         "operationId": "AlertProcessingRules_ListBySubscription",
         "parameters": [
           {
