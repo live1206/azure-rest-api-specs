@@ -3,39 +3,38 @@
   "pipelineName": "automation - sdk - test",
     "sdkRepositoryMappings": {
     "azure-sdk-for-go": {
-      "integrationRepository": "AzureSDKAutomation/azure-sdk-for-go",
+      "integrationRepository": "azure-sdk/azure-sdk-for-go",
       "mainRepository": "Azure/azure-sdk-for-go"
     },
     "azure-sdk-for-go-track2": {
-      "integrationRepository": "AzureSDKAutomation/azure-sdk-for-go",
+      "integrationRepository": "azure-sdk/azure-sdk-for-go",
       "mainRepository": "Azure/azure-sdk-for-go",
       "configFilePath": "eng/swagger_to_sdk_config.json"
     },
     "azure-sdk-for-java": {
-      "integrationRepository": "AzureSDKAutomation/azure-sdk-for-java",
+      "integrationRepository": "azure-sdk/azure-sdk-for-java",
       "mainRepository": "Azure/azure-sdk-for-java",
       "configFilePath": "eng/mgmt/automation/swagger_to_sdk_config.json"
     },
     "azure-sdk-for-net": {
-      "integrationRepository": "AzureSDKAutomation/azure-sdk-for-net",
+      "integrationRepository": "azure-sdk/azure-sdk-for-net",
       "mainRepository": "Azure/azure-sdk-for-net"
     },
     "azure-sdk-for-net-track2": {
-      "integrationRepository": "AzureSDKAutomation/azure-sdk-for-net",
+      "integrationRepository": "azure-sdk/azure-sdk-for-net",
       "mainRepository": "Azure/azure-sdk-for-net",
       "configFilePath": "eng/swagger_to_sdk_config.json"
     },
     "azure-sdk-for-python": {
-      "integrationRepository": "AzureSDKAutomation/azure-sdk-for-python",
-      "mainRepository": "Azure/azure-sdk-for-python",
-      "mainBranch": "release/v3"
+      "integrationRepository": "azure-sdk/azure-sdk-for-python",
+      "mainRepository": "Azure/azure-sdk-for-python"
     },
     "azure-sdk-for-python-track2": {
-      "integrationRepository": "AzureSDKAutomation/azure-sdk-for-python",
+      "integrationRepository": "azure-sdk/azure-sdk-for-python",
       "mainRepository": "Azure/azure-sdk-for-python"
     },
     "azure-resource-manager-schemas": {
-      "integrationRepository": "AzureSDKAutomation/azure-resource-manager-schemas",
+      "integrationRepository": "azure-sdk/azure-resource-manager-schemas",
       "mainRepository": "Azure/azure-resource-manager-schemas"
     }
   },
@@ -63,6 +62,7 @@
         },
         "azure-sdk-for-net-track2": {
           "mainRepository": "openapi-env-test/azure-sdk-for-net",
+          "mainBranch": "yc/dpg-readme",
           "configFilePath": "eng/swagger_to_sdk_config.json"
         },
         "azure-sdk-for-net": {
@@ -70,15 +70,15 @@
         },
         "azure-sdk-for-python": {	
           "mainRepository": "openapi-env-test/azure-sdk-for-python",	
-          "mainBranch": "python-track1-test"	
+          "mainBranch": "dpg-readme"	
         },
         "azure-sdk-for-js": {
           "mainRepository": "openapi-env-test/azure-sdk-for-js",
-          "mainBranch": "dw/move-llc-config-to-swagger"
+          "mainBranch": "js-dpg"
         },
         "azure-sdk-for-java": {
           "mainRepository": "openapi-env-test/azure-sdk-for-java",
-          "mainBranch": "java-dpg",
+          "mainBranch": "feature/java-dpg",
           "configFilePath": "eng/mgmt/automation/swagger_to_sdk_config.json"
         },
         "azure-cli-extensions": {
