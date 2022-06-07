@@ -31,16 +31,6 @@ tag: package-2020-12-21
 
 ### Tag: package-2020-12-21
 
-These settings apply only when `--tag=package-2020-12-22` is specified on the command line.
-
-```yaml $(tag) == 'package-2020-12-22'
-input-file:
-  - Microsoft.Contoso/preview/2020-12-22/contoso.json
-```
-
----
-
-### Tag: package-2020-12-21
 
 These settings apply only when `--tag=package-2020-12-21` is specified on the command line.
 
