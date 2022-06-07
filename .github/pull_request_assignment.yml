@@ -4,6 +4,7 @@
     reviewers:
       - ruowan
       - raych1
+      - xiaoxuqi-ms
       
 - rule:
     paths: "specification/@(security|edgeorder|synapse)/**"
