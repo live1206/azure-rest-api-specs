@@ -32,10 +32,12 @@ security-scopes:  https://purview.azure.net/.default
 ```
 
 ```yaml $(purview-account)
+title: PurviewAccountClient
 purview-account-tag: package-preview-2019-11-01
 ```
 
 ```yaml $(purview-metadata)
+title: PurviewMetadataPoliciesClient
 purview-metadata-tag: package-preview-2021-07-01
 ```
 
@@ -86,8 +88,5 @@ This is not used by Autorest itself.
 
 ``` yaml $(swagger-to-sdk)
 swagger-to-sdk:
-  - repo: azure-sdk-for-js
   - repo: azure-sdk-for-python
-  - repo: azure-sdk-for-java
-  - repo: azure-sdk-for-net-track2
 ```
