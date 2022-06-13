@@ -58,6 +58,7 @@ input-file:
 These settings apply only when `--purview-account-tag=package-preview-2019-11-01` is specified on the command line.
 
 ```yaml $(purview-account-tag) == 'package-preview-2019-11-01'
+title: PurviewAccountClient
 input-file:
   - Azure.Analytics.Purview.Account/preview/2019-11-01-preview/account.json
 ```
@@ -67,6 +68,7 @@ input-file:
 These settings apply only when `--purview-metadata-tag=package-preview-2021-07-01` is specified on the command line.
 
 ```yaml $(purview-metadata-tag) == 'package-preview-2021-07-01'
+title: PurviewMetadataClient
 input-file:
   - Azure.Analytics.Purview.MetadataPolicies/preview/2021-07-01-preview/purviewMetadataPolicy.json
 ```
