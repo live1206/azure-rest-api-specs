@@ -504,6 +504,9 @@
           "items": {
             "$ref": "#/definitions/CloudErrorBody"
           },
+          "x-ms-identifiers": [
+            "code"
+          ],
           "description": "A list of additional details about the error."
         }
       },
@@ -561,6 +564,9 @@
           "items": {
             "$ref": "#/definitions/Operation"
           },
+          "x-ms-identifiers": [
+            "name"
+          ],
           "title": "Operations List.",
           "description": "A list of operations supported by Microsoft.ManagedIdentity Resource Provider."
         },

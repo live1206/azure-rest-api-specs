@@ -75,6 +75,7 @@ swagger-to-sdk:
   - repo: azure-sdk-for-node
   - repo: azure-sdk-for-trenton
   - repo: azure-resource-manager-schemas
+  - repo: azure-powershell
 ```
 
 ## CSharp Settings
