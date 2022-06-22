@@ -1135,7 +1135,7 @@
           ],
           "x-ms-enum": {
             "name": "ProvisioningState",
-            "modelAsString": true
+            "modelAsString": false
           },
           "readOnly": true,
           "description": "The current deployment state of Analysis Services resource. The provisioningState is to indicate states for resource provisioning."
