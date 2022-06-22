@@ -3770,7 +3770,7 @@
       ],
       "x-ms-enum": {
         "name": "addressValidationStatus",
-        "modelAsString": true
+        "modelAsString": false
       }
     },
     "TransferProductRequestProperties": {
