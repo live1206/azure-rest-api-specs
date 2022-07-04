@@ -50,9 +50,6 @@
           },
           {
             "$ref": "./types/experiments.json#/parameters/runningFilter"
-          },
-          {
-            "$ref": "./types/common.json#/parameters/continuationToken"
           }
         ],
         "responses": {
