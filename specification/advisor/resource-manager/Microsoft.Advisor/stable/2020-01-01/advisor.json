@@ -21,7 +21,7 @@
         "tags": [
           "Metadata"
         ],
-        "summary": "Gets the metadata entity.",
+        "summary": "Gets the entity.",
         "operationId": "RecommendationMetadata_Get",
         "parameters": [
           {
