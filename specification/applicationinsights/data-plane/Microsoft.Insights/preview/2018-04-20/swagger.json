@@ -77,13 +77,8 @@
             "schema": {
               "$ref": "#/definitions/queryResults"
             }
-          },
-          "default": {
-            "description": "An error response object.",
-            "schema": {
-              "$ref": "#/definitions/errorResponse"
-            }
           }
+         
         }
       },
       "get": {
