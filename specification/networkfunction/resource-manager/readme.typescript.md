@@ -6,7 +6,7 @@ Please also specify `--typescript-sdks-folder=<path to root folder of your azure
 ```yaml $(typescript)
 typescript:
   azure-arm: true
-  package-name: "networkfunction"
+  package-name: "@azure/arm-networkfunction"
   output-folder: "$(typescript-sdks-folder)/packages/networkfunction"
   payload-flattening-threshold: 1
   generate-metadata: true
