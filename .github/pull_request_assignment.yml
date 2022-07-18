@@ -5,6 +5,13 @@
       - ruowan
       - raych1
       - xiaoxuqi-ms
+
+- rule:
+    paths:
+      - "specification/@(applicationinsights|operationalinsights|eventgrid)/**"
+    reviewers:
+      - akning-ms
+      
       
 - rule:
     paths: "specification/@(security|edgeorder|synapse)/**"
