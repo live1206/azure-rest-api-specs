@@ -2,12 +2,17 @@
   "swagger": "2.0",
   "info": {
     "title": "Microsoft.Contoso",
-    "version": "2021-08-01-preview"
+    "version": "2021-08-01-preview",
+    "x-cadl-generated": [
+      {
+        "emitter": "@azure-tools/cadl-autorest"
+      }
+    ]
   },
-  "host": "management.azure.com",
   "schemes": [
     "https"
   ],
+  "host": "management.azure.com",
   "produces": [
     "application/json"
   ],
@@ -177,11 +182,6 @@
               "$ref": "../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse"
             }
           }
-        },
-        "x-ms-examples": {
-          "GetEmployee": {
-            "$ref": "./examples/Employees_Get.json"
-          }
         }
       },
       "put": {
@@ -222,6 +222,13 @@
           },
           "201": {
             "description": "ARM create operation completed successfully.",
+            "headers": {
+              "Retry-After": {
+                "description": "The Retry-After header can indicate how long the client should wait before polling the operation status.",
+                "type": "integer",
+                "format": "int32"
+              }
+            },
             "schema": {
               "$ref": "#/definitions/Employee"
             }
@@ -231,11 +238,6 @@
             "schema": {
               "$ref": "../../../../../common-types/resource-management/v3/types.json#/definitions/ErrorResponse"
             }
-          }
-        },
-        "x-ms-examples": {
-          "CreateEmployee": {
-            "$ref": "./examples/Employees_CreateOrUpdate.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -312,7 +314,14 @@
             "description": "Resource deleted successfully."
           },
           "202": {
-            "description": "Resource deletion accepted."
+            "description": "Resource deletion accepted.",
+            "headers": {
+              "Retry-After": {
+                "description": "The Retry-After header can indicate how long the client should wait before polling the operation status.",
+                "type": "integer",
+                "format": "int32"
+              }
+            }
           },
           "204": {
             "description": "Resource deleted successfully."
@@ -333,6 +342,7 @@
   },
   "definitions": {
     "Box": {
+      "type": "object",
       "properties": {
         "name": {
           "type": "string"
@@ -353,11 +363,6 @@
             "create"
           ],
           "x-ms-client-flatten": true
-        },
-        "systemData": {
-          "$ref": "../../../../../common-types/resource-management/v3/types.json#/definitions/systemData",
-          "description": "System metadata for this resource.",
-          "readOnly": true
         },
         "name": {
           "type": "string",
@@ -385,7 +390,7 @@
             "$ref": "#/definitions/Employee"
           },
           "x-cadl-name": "Employee[]",
-          "description": "The items on this page"
+          "description": "The Employee items on this page"
         },
         "nextLink": {
           "type": "string",
