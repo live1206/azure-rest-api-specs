@@ -72,7 +72,6 @@
           "mainRepository": "openapi-env-test/azure-sdk-for-js",
           "mainBranch": "js-dpg"
         },
-
         "azure-sdk-for-java": {
           "mainRepository": "openapi-env-test/azure-sdk-for-java",
           "mainBranch": "feature/java-dpg",
