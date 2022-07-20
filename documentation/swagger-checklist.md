@@ -2,7 +2,7 @@
 
 ## Introduction ##
 
-This checklist is a current snapshot of requirements for developing Swagger specifications. The checklist will be continuously updated to reflect issues uncovered during Swagger specification reviews.
+This checklist is a current snapshost of requirements for developing Swagger specifications. The checklist will be continuously updated to reflect issues uncovered during Swagger specification reviews.
 
 ## Checklist ##
 - [Automated Rules of Checklist](openapi-authoring-automated-guidelines.md) - Azure developer experience team is continuously working on automating as many rules as possible. Running the [validation tools](#validation-tools-for-swagger-checklist) will give you these validation errors.
