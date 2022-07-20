@@ -4,7 +4,7 @@ This document lists the set of manual guidelines that need to be followed while 
 
 [OpenAPI (Swagger) validation tools](https://github.com/Azure/adx-documentation-pr/blob/master/tools/tools.md) validate a large set of rules. These are listed in [Automated rules document](openapi-authoring-automated-guidelines.md).
 
-Manual guidelines are the rules that could not be automated and would have to be verified manually by OpenAPI(swagger) spec authors before sending a pull request. 
+Manual guidelines are the rules that could not be automated and woulds have to be verified manually by OpenAPI(swagger) spec authors before sending a pull request. 
 
 It is a requirement to conform to all manual and automated rules with severity "Error" before sending a pull request for review.
 
