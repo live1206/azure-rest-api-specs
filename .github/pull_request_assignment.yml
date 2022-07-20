@@ -57,5 +57,8 @@
 
 - rule:
     paths: "**"
+    branches:
+      - main
+      - RPaaSMaster
     reviewers:
       - ruowan
