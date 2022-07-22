@@ -1,6 +1,8 @@
 ---
 - rule:
     paths: "documentation/**"
+    branches:
+      - main
     reviewers:
       - ruowan
       - raych1
@@ -54,5 +56,8 @@
 
 - rule:
     paths: "**"
+    branches:
+      - main
+      - RPaaSMaster
     reviewers:
       - ruowan

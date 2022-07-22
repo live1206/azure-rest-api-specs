@@ -76,11 +76,6 @@
           "mainRepository": "openapi-env-test/azure-sdk-for-java",
           "mainBranch": "feature/java-dpg",
           "configFilePath": "eng/mgmt/automation/swagger_to_sdk_config.json"
-        },
-        "azure-sdk-for-java-dataplane": {
-          "mainRepository": "openapi-env-test/azure-sdk-for-java",
-          "mainBranch": "feature/java-dpg",
-          "configFilePath": "eng/mgmt/automation/swagger_to_sdk_config.json"
 
         },
         "azure-cli-extensions": {

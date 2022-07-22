@@ -398,6 +398,8 @@ Cmdkey
 cmdlet
 cmdlets
 CMEK
+CMKDW
+CMKHS
 CMMI
 CNAME
 cntk
@@ -405,6 +407,7 @@ CODEGEN
 codegeneration
 codemirror
 codepackage
+Coffeelake
 cognitiveservices
 colls
 colocation
@@ -944,6 +947,7 @@ IANA
 iata
 ICANN
 icao
+Icelake
 ICMP
 Idempotence
 idempotency
@@ -1385,6 +1389,7 @@ newrelapp
 newssearch
 Newtonsoft
 nextlink
+NFSauto
 Ngfw
 NICs
 nillable
@@ -2425,6 +2430,9 @@ westindia
 Westlake
 westus
 WGXM
+whitelisted
+Whitelisting
+Whitelistings
 whitespaces
 Whois
 Widevine
@@ -2626,6 +2634,9 @@ SIMIDs
 ICCID
 unversioned
 RANs
+azuresqldbkeyrotation
+DBCMK
+DTCs
 Angika
 Awadhi
 Bagheli
