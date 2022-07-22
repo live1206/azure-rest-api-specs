@@ -29,6 +29,8 @@ openapi-type: data-plane
 tag: package-composite-1
 security: AADToken
 security-scopes:  https://purview.azure.net/.default
+modelerfour:
+  lenient-model-deduplication: true
 ```
 
 ```yaml $(purview-account)
