@@ -48,7 +48,7 @@
         "tags": [
           "Servers"
         ],
-        "operationId": "Servers_GetDetails",
+        "operationId": "Servers_GetDetail",
         "parameters": [
           {
             "$ref": "#/parameters/ResourceGroupNameParameter"
