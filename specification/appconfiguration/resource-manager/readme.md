@@ -186,6 +186,9 @@ directive:
     from: appconfiguration.json
     where: $.definitions.OperationDefinition.properties.isDataAction
     reason: This is a standardized ARM API.
+  - suppress: EnumInsteadOfBoolean
+    from: appconfiguration.json
+    reason: This is a standardized ARM API.
 ```
 
 
