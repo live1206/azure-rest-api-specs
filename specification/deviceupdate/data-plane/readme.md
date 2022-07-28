@@ -26,7 +26,7 @@ These are the global settings for the deviceupdate.
 
 ```yaml
 openapi-type: data-plane
-tag: package-2022-07-01-preview
+tag: package-2020-09-01
 title: DeviceUpdateClient
 security: AADToken
 security-scopes:  https://api.adu.microsoft.com/.default
