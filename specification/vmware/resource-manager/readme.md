@@ -32,7 +32,7 @@ These settings apply only when `--tag=package-2021-12-01` is specified on the co
 input-file:
 - Microsoft.AVS/stable/2021-12-01/vmware.json
 directive:
-  - suppress: R3020
+  - suppress: PathResourceProviderNamePascalCase
     from: Microsoft.AVS/stable/2021-12-01/vmware.json
     reason: Microsoft.AVS was chosen over Microsoft.AzureVMwareSolution
   - suppress: R3010
