@@ -43,7 +43,7 @@
   "paths": {
     "/:query-knowledgebases": {
       "post": {
-        "summary": "Answers the specified question using your base.",
+        "summary": "Answers the specified question using your knowledge base.",
         "operationId": "QuestionAnswering_GetAnswers",
         "parameters": [
           {
