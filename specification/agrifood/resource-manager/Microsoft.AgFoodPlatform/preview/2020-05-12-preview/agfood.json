@@ -676,7 +676,7 @@
         "tags": [
           "FarmBeatsModels"
         ],
-        "description": "Lists the FarmBeats instances for a resource group.",
+        "description": "Lists the FarmBeats instance for a resource group.",
         "operationId": "FarmBeatsModels_ListByResourceGroup",
         "produces": [
           "application/json"
