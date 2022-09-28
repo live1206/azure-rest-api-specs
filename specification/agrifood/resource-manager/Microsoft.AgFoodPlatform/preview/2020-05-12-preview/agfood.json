@@ -6,7 +6,7 @@
     "version": "2020-05-12-preview"
   },
   "paths": {
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{farmBeatsResourceName}/extensions/{extensionId}": {
+    "/subscriptions/{subscriptionId}/resourcesGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{farmBeatsResourceName}/extensions/{extensionId}": {
       "put": {
         "tags": [
           "Extensions"
