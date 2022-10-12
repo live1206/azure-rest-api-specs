@@ -42,7 +42,7 @@
             "$ref": "./examples/GetMarketplaceTerms.json"
           }
         },
-        "description": "Get marketplace terms.",
+        "description": "Get the marketplace terms.",
         "parameters": [
           {
             "$ref": "#/parameters/ApiVersionParameter"
