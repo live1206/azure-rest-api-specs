@@ -1181,11 +1181,7 @@
             "Warning",
             "None"
           ],
-          "type": "string",
-          "x-ms-enum": {
-            "name": "risk",
-            "modelAsString": true
-          }
+          "type": "file"
         },
         "shortDescription": {
           "$ref": "#/definitions/ShortDescription",
