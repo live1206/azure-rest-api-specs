@@ -20,7 +20,7 @@
         "tags": [
           "ConfigurationStores"
         ],
-        "description": "Lists thes configsuration sstores for a given subscription.",
+        "description": "Lists thes configsuration ssstores for a given subscription.",
         "operationId": "ConfigurationStores_List",
         "parameters": [
           {
