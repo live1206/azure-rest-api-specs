@@ -1,6 +1,7 @@
 {
   "overrides": [
     {
+      
       "files": [
         "specification/**/*.json",
         "documentation/swagger-bootstrap.json",
