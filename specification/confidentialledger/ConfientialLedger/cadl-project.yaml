@@ -11,6 +11,7 @@ emitters:
     generateMetadata: true
     generateTest: true
     includeShortcuts: true
+    azureSdkForJs: true
     packageDetails:
       name: "@azure-rest/confidentialledger-test"
       description: "Cadl Test Service"
