@@ -3,7 +3,7 @@
   "dependencies": {
     "@azure-tools/cadl-autorest": "^0.20.0",
     "@azure-tools/cadl-azure-core": "^0.7.0",
-    "@azure-tools/cadl-csharp": "^0.1.4",
+    "@azure-tools/cadl-csharp": "^0.1.6-dev.2",
     "@azure-tools/cadl-java": "0.1.0-dev.10",
     "@azure-tools/cadl-python": "0.2.5",
     "@autorest/python": "6.1.11",
