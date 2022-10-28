@@ -1,6 +1,6 @@
 emitters:
   "@azure-tools/cadl-csharp":
-    "sdk-folder": sdk/confidentialledger/Azure.Security.ConfidentialLedger/src
+    "sdk-folder": sdk/confidentialledger/Azure.Security.ConfidentialLedgerDemo/src
   "@azure-tools/cadl-typescript":
     "sdk-folder": sdk/confidentialledger/azure-confidentialledger-rest
     generateMetadata: true
