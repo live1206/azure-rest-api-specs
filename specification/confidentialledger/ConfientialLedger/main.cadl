@@ -54,7 +54,7 @@ model CollectionIdParameter {
 
 @resource("collections")
 @doc("Identifier for collections.")
-model Collection {
+model CollectionModel {
   @key
   collectionId: string;
 }
@@ -156,7 +156,7 @@ model PagedLedgerEntries {
 namespace ConfidentialLedger {
   @summary("Retrieves a list of collection ids present in the Confidential Ledger")
   @doc("Collection ids are user-created collections of ledger entries")
-  op listCollections is Azure.Core.NonPagedResourceList<Collection>;
+  op listCollections is Azure.Core.NonPagedResourceList<CollectionModel>;
 
   // TODO: add return model
   #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "This is an existing service, we have a non-conforming operation."
