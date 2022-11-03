@@ -16,7 +16,7 @@ using OpenAPI;
 
 // TODO: Use `Uri` type when available: https://github.com/microsoft/cadl/issues/654
 @serviceTitle("Confidential Ledger Service")
-@serviceVersion("2022-05-13")
+@serviceVersion("2022-08-13")
 @useAuth(OAuth2Auth<[MyFlow]>)
 @versionedDependency(Azure.Core.Versions.v1_0_Preview_1)
 @server(
