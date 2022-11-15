@@ -1,0 +1,290 @@
+using Cadl.Http;
+using Cadl.Rest;
+using Azure.Core;
+
+enum Clients {
+  MeasurementClient,
+  MeasurementMetadataClient,
+  MeasurementProcessingResultsClient,
+  MeasurementMetadataFileInfoClient,
+  MeasurementMetadataSchemaFileInfoClient,
+}
+
+@doc("A measurement resource")
+@friendlyName("Measurement")
+@resource("measurements")
+model Measurement {
+  @doc("The measurement identifier.")
+  @key
+  measurementId: string;
+
+  @doc("The measurement state")
+  @visibility("update")
+  state?: MeasurementState;
+
+  @doc("The measurement current status")
+  @visibility("update")
+  executionStatus?: MeasurementStateExecutionStatus;
+
+  @doc("The storage account location which contains the measurement")
+  location: string;
+
+  @doc("The UTC time the measurement was ingested at")
+  ingestTimestampUtc?: zonedDateTime;
+  ...CommonResourceEndpoint;
+
+  @doc(" The ID of the external package (for example, the disk which contained data) as specified by the customer upon data ingestion")
+  externalPackageId?: string;
+
+  @doc("ID of the upload process which caused the creation of this measurement")
+  uploadId?: string;
+
+  @doc("ID of the discovery process which caused the creation of this measurement")
+  discoveryId?: string;
+
+  @doc("The UTC time the measurement was recorded at")
+  recordTimestampUtc?: zonedDateTime;
+}
+
+@doc("Measurement processing result.")
+@friendlyName("MeasurementProcessingResults")
+@resource("processingResults")
+@parentResource(Measurement)
+model MeasurementProcessingResults {
+  @doc(
+    """
+  The {name} identifier.
+  Not in use as this is a singleton resource.
+  TODO: check with CADL team how to define a singleton child resource without key.
+  """,
+    MeasurementProcessingResults
+  )
+  @key
+  id: string;
+  ...MeasurementProcessingResultsBase;
+}
+
+@doc("Measurement metadata without resource identifier.")
+@friendlyName("MeasurementMetadataBase")
+model MeasurementMetadataBase {
+  @doc("The measurement metadata dictionary")
+  metadata: Record<string>;
+}
+
+@doc("Measurement metadata.")
+@friendlyName("MeasurementMetadata")
+@resource("metadata")
+@parentResource(Measurement)
+model MeasurementMetadata {
+  @doc(
+    """
+  The {name} identifier.
+  Not in use as this is a singleton resource.
+  TODO: check with CADL team how to define a singleton child resource without key.
+  """,
+    MeasurementMetadata
+  )
+  @key
+  id: string;
+  ...MeasurementMetadataBase;
+}
+
+@doc("Measurement metadata file information model.")
+@friendlyName("MeasurementMetadataFileInfoBase")
+model MeasurementMetadataFileInfoBase {
+  @doc("The measurement's metadata file name")
+  metadataFileName: string;
+
+  @doc("""
+  SAS signed URI to a temporary file if intent is 'write' or uri to existing file if intent is 'read' and ETag of the existing file in response header.
+  This URI expires in 24 hours.
+  """)
+  @format("uri")
+  metadataFileUri: string;
+  ...EtagResponseEnvelope;
+}
+
+@doc("Measurement metadata file information resource.")
+@friendlyName("MeasurementMetadataFileInfo")
+@resource("metadataFileInfo")
+@parentResource(Measurement)
+model MeasurementMetadataFileInfo {
+  @doc(
+    """
+  The {name} identifier.
+  Not in use as this is a singleton resource.
+  TODO: check with CADL team how to define a singleton child resource without key.
+  """,
+    MeasurementMetadataFileInfo
+  )
+  @key
+  id: string;
+  ...MeasurementMetadataFileInfoBase;
+}
+
+@doc("Measurement metadata schema file information model.")
+@friendlyName("MeasurementMetadataSchemaFileInfoBase")
+model MeasurementMetadataSchemaFileInfoBase {
+  @doc("Measurement schema file name.")
+  schemaFileName?: string;
+
+  @doc("""
+  SAS signed URI for downloading the measurement metadata schema file from Azure Storage.
+  This URI expires in 24 hours.
+  """)
+  @format("uri")
+  schemaFileUri: string;
+}
+
+@doc("Measurement metadata schema file information resource.")
+@friendlyName("MeasurementMetadataSchemaFileInfo")
+@resource("metadataSchemaFileInfo")
+@parentResource(Measurement)
+model MeasurementMetadataSchemaFileInfo {
+  @doc(
+    """
+  The {name} identifier.
+  Not in use as this is a singleton resource.
+  TODO: check with CADL team how to define a singleton child resource without key.
+  """,
+    MeasurementMetadataSchemaFileInfo
+  )
+  @key
+  id: string;
+  ...MeasurementMetadataSchemaFileInfoBase;
+}
+
+@doc("Change measurement state request parameter")
+@friendlyName("ChangeMeasurementStateRequestParameters")
+model ChangeMeasurementStateRequestParameters {
+  @doc("Desired measurement state.")
+  state: MeasurementState;
+}
+
+@doc("Request parameters for the complete upload metadata file API")
+@friendlyName("CompleteUploadMetadataFileRequest")
+@withOptionalProperties
+model CompleteUploadMetadataFileRequest {
+  @doc("The ETag of the uploaded metadata file")
+  @visibility("read", "write")
+  pendingFileETag: string;
+}
+
+@doc("A wrapper for the List of measurements IDs")
+@friendlyName("MeasurementListRequestParameters")
+model MeasurementListRequestParameters {
+  @doc("The measurement IDs list")
+  @deprecated("use filter expression instead.")
+  measurementIds: string[];
+}
+
+@doc("Internal - the model for internal use")
+@friendlyName("CommonMeasurementParameters")
+model CommonMeasurementParameters {
+  @doc("ID of the measurement")
+  measurementId: string;
+}
+
+@doc("Represents possible measurement states")
+@knownValues(MeasurementStateKV)
+model MeasurementState is string;
+enum MeasurementStateKV {
+  New: "New",
+  Operational: "Operational",
+}
+
+@doc("A wrapper for the List of measurements IDs")
+model MeasurementIdList {
+  @doc("The measurement IDs list")
+  measurementIds: string[];
+}
+
+@doc("Measurement metadata - new entries descriptor")
+model MeasurementMetadataNewEntries {
+  @doc("The entries to be updated")
+  entries: MeasurementMetadataNewEntry[];
+}
+
+@doc("Measurement metadata new entry information")
+model MeasurementMetadataNewEntry {
+  ...CommonKeyValuePair;
+}
+
+@doc("Measurement metadata update entries")
+model MeasurementMetadataUpdateEntries {
+  @doc("The entries to be updated")
+  entries: MeasurementMetadataUpdateEntry[];
+}
+
+@doc("Measurement metadata entry update information")
+model MeasurementMetadataUpdateEntry {
+  @doc("The key")
+  @visibility("read")
+  key: string;
+
+  @doc("The old value")
+  @visibility("read")
+  oldValue: string;
+
+  @doc("The new value")
+  @visibility("read")
+  newValue: string;
+}
+
+@doc("The result of evaluation of measurement validation rule")
+@withOptionalProperties
+model MeasurementRuleValidationResult {
+  @doc("Measurement validation rule category")
+  @visibility("read")
+  ruleCategory: string;
+
+  @doc("Measurement validation rule name")
+  @visibility("read")
+  ruleName: string;
+
+  @doc("Measurement validation rule metadata")
+  @visibility("read")
+  details: Record<string>;
+
+  @doc("Measurement validation rule evaluation result")
+  @visibility("read")
+  validationPassed: boolean;
+
+  @doc("Measurement validation error message")
+  @visibility("read")
+  validationError?: string;
+}
+
+@doc("An error that occurred while trying to fetch a measurement's schema file")
+@knownValues(MeasurementSchemaErrorCodeKV)
+model MeasurementSchemaErrorCode is string;
+enum MeasurementSchemaErrorCodeKV {
+  SchemaUriExtractionFailed: "SchemaUriExtractionFailed",
+  CustomerDefaultSchemaUriCouldNotBeResolved: "CustomerDefaultSchemaUriCouldNotBeResolved",
+  SchemaFetchingFailed: "SchemaFetchingFailed",
+  SavingSchemaToStorageFailed: "SavingSchemaToStorageFailed",
+  SchemaUriNotAllowedByTenant: "SchemaUriNotAllowedByTenant",
+  Unknown: "Unknown",
+}
+
+@doc("The measurement's execution status")
+@knownValues(MeasurementStateExecutionStatusKV)
+model MeasurementStateExecutionStatus is string;
+enum MeasurementStateExecutionStatusKV {
+  Running: "Running",
+  Succeeded: "Succeeded",
+  Failed: "Failed",
+  Deleting: "Deleting",
+}
+
+@doc("The measurement's validation result")
+@withOptionalProperties
+model MeasurementProcessingResultsBase {
+  @doc("The measurement's validity")
+  @visibility("read")
+  validationPassed: boolean;
+
+  @doc("The measurement's rule validation results")
+  @visibility("read")
+  results: MeasurementRuleValidationResult[];
+}

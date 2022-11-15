@@ -1,0 +1,56 @@
+{
+  "name": "@cadl-api-spec/adp-data-management",
+  "version": "1.0",
+  "description": "ADP Data Management API",
+  "main": "index.js",
+  "config": {
+    "verbose": " -Verbose",
+    "DataManagementPublicOutputFile": "preview/2022-11-30-preview/adp-data-management-api.json",
+    "DataManagementInternalOutputFile": "internal/2022-11-30-internal/adp-data-management-api.json",
+    "ComputeOutputFile": "preview/2022-11-30-preview/adp-compute-api.json",
+    "PublicClientPath": "../../../../../clients/DataManagement/Clients.DataManagement.vDraftCompliant",
+    "InternalClientPath": "../../../../../clients/DataManagement/Clients.DataManagement.vDraftCompliant_Internal",
+    "PublicClientNamespace": "Microsoft.Azure.Adp.DataManagement.Clients.vDraftCompliant",
+    "InternalClientNamespace": "Microsoft.Azure.Adp.DataManagement.Clients.vDraftCompliant_Internal",
+    "PublishDataManagementPublicOutputFileName": "../../../../draftcompliant/apispec.core.datamanagement.2022-11-30-draftcompliant.json",
+    "PublishDataManagementInternalOutputFileName": "../../../../internal/apispec.core.datamanagement.2022-11-30-internal.json",
+    "PathToAzureApiReviewRepository": "C:/Users/igmakhli/source/repos/imakhlin/azure-rest-api-specs-pr/specification/adp/data-plane/data-management/preview",
+    "AutorestManifestFile": "../src/scripts/autorest.md"
+  },
+  "scripts": {
+    "build": "npm run format && npm run buildDataManagementPublicApi && npm run validateSpecDataManagementPublic",
+    "build-internal": "npm run format && npm run buildDataManagementInternalApi && npm run validateSpecDataManagementInternal",
+    "buildDataManagementPublicApi": "pwsh ../src/scripts/compile.ps1 -IsPublicApi -InputCadl . -OutputPath ./generated/cadl-autorest/public/DataManagement -OutputFile %npm_package_config_DataManagementPublicOutputFile%",
+    "buildDataManagementInternalApi": "pwsh ../src/scripts/compile.ps1 -InputCadl ./main-internal.cadl -OutputPath ./generated/cadl-autorest/internal/DataManagement -OutputFile %npm_package_config_DataManagementInternalOutputFile%",
+    "publishDataManagementPublic": "pwsh ../src/scripts/publish.ps1 %npm_package_config_verbose% -SourcePath ./generated/cadl-autorest/public/DataManagement/%npm_package_config_DataManagementPublicOutputFile% -OutputPath %npm_package_config_PublishDataManagementPublicOutputFileName% -PathToAzureApiReviewRepository %npm_package_config_PathToAzureApiReviewRepository%",
+    "publishDataManagementInternal": "pwsh ../src/scripts/publish-internal.ps1 %npm_package_config_verbose% -SourcePath ./generated/cadl-autorest/internal/DataManagement/%npm_package_config_DataManagementInternalOutputFile% -OutputPath %npm_package_config_PublishDataManagementInternalOutputFileName%",
+    "generateDataManagementPublicClient": "pwsh ../src/scripts/generate-autorest-client.ps1 -InputOpenApiSpecFile ./generated/cadl-autorest/public/DataManagement/%npm_package_config_DataManagementPublicOutputFile% -OutputPath %npm_package_config_PublicClientPath%/generated -Namespace %npm_package_config_PublicClientNamespace% -AutorestManifestFile %npm_package_config_AutorestManifestFile%",
+    "generateDataManagementInternalClient": "pwsh ../src/scripts/generate-autorest-client.ps1 -InputOpenApiSpecFile ./generated/cadl-autorest/internal/DataManagement/%npm_package_config_DataManagementInternalOutputFile% -OutputPath %npm_package_config_InternalClientPath%/generated -Namespace %npm_package_config_InternalClientNamespace% -AutorestManifestFile %npm_package_config_AutorestManifestFile%",
+    "validateSpecDataManagementPublic": "pwsh ../src/scripts/validate-spec.ps1 -OpenApiSpecFile ./generated/cadl-autorest/public/DataManagement/%npm_package_config_DataManagementPublicOutputFile% && pwsh ../src/scripts/validate-examples.ps1 -OpenApiSpecFile ./generated/cadl-autorest/public/DataManagement/%npm_package_config_DataManagementPublicOutputFile%",
+    "validateSpecDataManagementInternal": "pwsh ../src/scripts/validate-spec.ps1 -OpenApiSpecFile ./generated/cadl-autorest/internal/DataManagement/%npm_package_config_DataManagementInternalOutputFile% && pwsh ../src/scripts/validate-examples.ps1 -OpenApiSpecFile ./generated/cadl-autorest/internal/DataManagement/%npm_package_config_DataManagementInternalOutputFile%",
+    "generateExamplesDataManagementPublic": "pwsh ../src/scripts/generate-examples.ps1 -OpenApiSpecFile ./generated/cadl-autorest/public/DataManagement/%npm_package_config_DataManagementPublicOutputFile%",
+    "generateExamplesDataManagementInternal": "pwsh ../src/scripts/generate-examples.ps1 -OpenApiSpecFile ./generated/cadl-autorest/internal/DataManagement/%npm_package_config_DataManagementInternalOutputFile%",
+    "format": "npx cadl format --pretty ./**/*.cadl",
+    "refreshVSToken": "vsts-npm-auth -config .npmrc"
+  },
+  "keywords": [],
+  "author": "igmakhli@microsoft.com",
+  "license": "MIT",
+  "dependencies": {
+    "@azure-tools/cadl-autorest": "latest",
+    "@azure-tools/cadl-azure-core": "latest",
+    "@cadl-lang/openapi": "latest",
+    "@cadl-lang/openapi3": "latest",
+    "@cadl-lang/rest": "latest",
+    "@cadl-lang/versioning": "latest"
+  },
+  "peerDependencies": {
+    "@cadl-api-spec/adp-shared": "file:../Adp.Shared"
+  },
+  "devDependencies": {
+    "@cadl-lang/compiler": "latest",
+    "avocado": "^1.0.0",
+    "prettier": "^2.7.1",
+    "@microsoft.azure/openapi-validator": "^2.0.0"
+  }
+}

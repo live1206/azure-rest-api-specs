@@ -1,0 +1,44 @@
+{
+  "operationId": "ILongRunningOperationInternal_Create",
+  "title": "Creates a new LRO or replaces an existing one.",
+  "parameters": {
+    "operationId": "00000000-0000-0000-0000-000000000123",
+    "api-version": "2022-11-30-internal",
+    "body": {
+      "operationType": "Sample LRO operation type",
+      "resultLocation": "https://workspace-name-hash.workspaces.region.adp.azure.com/path-to-the-resource/resource-id?api-version=2022-11-30-preview"
+
+    }
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "status": "Created",
+        "operationType": "Sample LRO operation type",
+        "error": {
+          "code": "001",
+          "message": "some error message",
+          "target": "some target",
+          "details": []
+        },
+        "operationId": "00000000-0000-0000-0000-000000000123"
+      }
+    },
+    "201": {
+      "body": {
+        "status": "Created",
+        "operationType": "blah-blah",
+        "error": {
+          "code": "sdtzkuzxk",
+          "message": "hawsdietiweukn",
+          "target": "szaopvljtpuongvhbquybdzqqc",
+          "details": [],
+          "innererror": {
+            "code": "hemqlwqffo"
+          }
+        },
+        "operationId": "00000000-0000-0000-0000-000000000123"
+      }
+    }
+  }
+}

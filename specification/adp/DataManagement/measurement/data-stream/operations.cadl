@@ -1,0 +1,110 @@
+using Cadl.Http;
+using Cadl.Rest;
+using Azure.Core;
+using Azure.Core.Foundations.Extensions;
+using OpenAPI;
+using Autorest;
+
+namespace Adp;
+
+@client(DataStreamClients.DataStreamClient)
+@tag("Data Stream")
+interface IDataStream {
+  @doc("Get data-stream by identifier.")
+  get is ResourceRead<DataStream>;
+
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom operation."
+  @doc("Creates new data-stream resource.")
+  @extension("x-ms-long-running-operation", true)
+  @asyncOperationOptions("location")
+  @pollingOperation(LongRunningOperationStatusLocation)
+  create is CustomLongRunningResourceCreateWithServiceProvidedName<
+    DataStream,
+    CustomBodyWrapper<DataStreamCreationParameters>
+  >;
+
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom operation."
+  @doc("Clear the data-stream content.")
+  @extension("x-ms-long-running-operation", true)
+  @asyncOperationOptions("location")
+  @pollingOperation(LongRunningOperationStatusLocation)
+  clearContent is CustomLongRunningResourceAction<DataStream>;
+
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom operation."
+  @doc("""
+  Lists the existing data-streams.
+  Supports the following filter expressions:
+  - filter="type=[System | Raw | Derived]"
+  """)
+  list is CustomResourceList<
+    DataStream,
+    {
+      parameters: FilterQueryParameter;
+    }
+  >;
+
+  @doc("""
+  Shards files to be uploaded to the data-stream and returns SAS-signed upload URIs for each of them.
+  This URI expires in 24 hours.
+  """)
+  stageFiles is ResourceAction<
+    DataStream,
+    CustomBodyWrapper<UploadDerivedDataStreamFilesRequest>,
+    UploadDerivedDataStreamFilesResponse
+  >;
+
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom operation."
+  @doc("Marks a data stream as completed")
+  @extension("x-ms-long-running-operation", true)
+  @asyncOperationOptions("location")
+  @pollingOperation(LongRunningOperationStatusLocation)
+  complete is CustomLongRunningResourceAction<DataStream>;
+
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom operation."
+  @doc("Marks a data stream as failed")
+  @extension("x-ms-long-running-operation", true)
+  @asyncOperationOptions("location")
+  @pollingOperation(LongRunningOperationStatusLocation)
+  fail is CustomLongRunningResourceAction<DataStream>;
+
+  @doc("Lists the data-streams by tags.")
+  @deprecated("Use list data-streams API with filter instead.")
+  findByTags is ResourceCollectionAction<
+    DataStream,
+    CustomBodyWrapper<FindDataStreamByTagsRequestParameters>,
+    Page<DataStream>
+  >;
+
+  @doc("Lists the data-streams by lineage.")
+  @deprecated("Use list data-streams API with filter instead.")
+  findByLineage is ResourceCollectionAction<
+    DataStream,
+    CustomBodyWrapper<FindDataStreamByLineageRequestParameters>,
+    Page<DataStream>
+  >;
+
+  @doc("Lists the data-streams by lineage graph.")
+  getLineageGraphsByLineage is ResourceCollectionAction<
+    DataStream,
+    CustomBodyWrapper<FindDataStreamByLineageGraphRequestParameters>,
+    Page<DataStreamsGraphListResponse>
+  >;
+}
+
+@client(DataStreamClients.DataStreamStorageClient)
+@tag("Data Stream")
+interface IDataStreamsStorage {
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom operation."
+  @doc("Returns the data-stream storage resource.")
+  @segment("storage")
+  get is CustomSingletonResourceRead<Storage, {}, StorageBase>;
+
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom operation."
+  @doc("Create or replace storage information of the data-stream.")
+  @segment("storage")
+  create is CustomSingletonResourceCreateOrReplace<
+    Storage,
+    CustomBodyWrapper<StorageCreationParameters>,
+    StorageBase
+  >;
+}

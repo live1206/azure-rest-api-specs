@@ -1,0 +1,14 @@
+using Cadl.Http;
+using Cadl.Rest;
+using Azure.Core;
+using Autorest;
+
+namespace Adp;
+
+@client(SharedClients.LongRunningOperationsClient)
+@tag("Long Running Operation")
+interface ILongRunningOperation {
+  @doc("Get the details of an LRO.")
+  @pollingOperation
+  get is ResourceRead<LongRunningOperationWithResponseHeaders>;
+}

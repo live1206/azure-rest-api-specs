@@ -1,0 +1,231 @@
+using Cadl.Http;
+using Cadl.Rest;
+using Azure.Core;
+using Azure.Core.Foundations;
+using Adp;
+
+namespace Azure.Core.Foundations.Extensions;
+
+/*
+ This CADL file was created to customize the existing implementation from the foundations library.
+ In this file we have addressed the following issues:
+ 1. Avoid inlining of the models - required by ADP backend and also by the AutoRest. All models must be references and have schema definitions in the OpenApi spec.
+ 2. In ADP we are using slightly different model for LRO. It has additional state [Created] and the operation type property.
+ 3. The `CustomBodyWrapper` just adds the `@doc` to the body element to suppress warnings during the spec validation.
+ 4. The `CustomResourceOkResponse` wraps the <T> with `@body`.
+ 5. The `CustomErrorResponse` adds missing header `x-ms-error-code` to the default error response
+ 6. For all LRO operations - add operation status location header and OK response where necessary to align with AutoRest code generator.
+ 7. The `CustomSingletonResource` has been introduced to allow operations on singleton child resources that have no identifier.
+*/
+
+@friendlyName("DefaultLroResponse")
+model DefaultLroResponse {
+  ...LongRunningOperationResponse<DefaultLroType>;
+}
+
+@doc("for internal use")
+@knownValues(DefaultLroTypesKV)
+model DefaultLroType is string;
+enum DefaultLroTypesKV {
+  Default: "default",
+}
+
+@doc("Exposes all updatable properties of the resource including the resource 'key'.")
+model CustomResourceCreateOrReplaceModelWithResourceKey<TResource>
+  is UpdateableProperties<DefaultKeyVisibility<TResource, "read">>;
+
+@doc("List {name} resources", TResource)
+op CustomResourceList<
+  TResource,
+  TCustom extends Foundations.CustomizationFields = {}
+> is Foundations.ResourceList<
+  TResource,
+  Foundations.CustomParameters<TCustom>,
+  Page<TResource>
+>;
+
+@doc("Creates or replaces a {name}", TResource)
+@createsOrReplacesResource(TResource)
+op CustomResourceCreateOrReplace<
+  TResource,
+  TResourceCreateParams
+> is Foundations.ResourceOperation<
+  TResource,
+  TResourceCreateParams,
+  CustomResourceCreatedOrOkResponse<TResource>
+>;
+
+@doc("A wrapper for optional parameter in the body. The intent of model is to add description to 'body'")
+model CustomBodyWrapper<T> {
+  @doc("Parameter of type '{name}' in the body.", T)
+  @body
+  body?: T;
+}
+
+@doc("A {name} resource was successfully created.", T)
+model CustomResourceCreatedResponse<T> {
+  ...Cadl.Http.Response<201>;
+  @body body: T;
+}
+
+model CustomResourceOkResponse<T> {
+  ...Cadl.Http.Response<200>;
+  @body body: T;
+}
+
+alias CustomResourceCreatedOrOkResponse<T> = CustomResourceCreatedResponse<T> | CustomResourceOkResponse<T>;
+
+#suppress "@azure-tools/cadl-providerhub/no-inline-model" "This operation signature is not used in Azure Resource Manager operations (yet)"
+@autoRoute
+@doc("Creates a {name}", TResource)
+@createsResource(TResource)
+op CustomResourceCreateWithServiceProvidedName<
+  TResource,
+  TCustom extends Foundations.CustomizationFields = {}
+>(
+  ...Foundations.CollectionKeysOf<TResource>,
+  ...CustomResourceCreateOrReplaceModelWithResourceKey<TResource>,
+  ...Foundations.CustomParameters<TCustom>,
+  ...Foundations.ApiVersionParameter
+): (Foundations.LocationOfCreatedResourceResponse<TResource> &
+  Foundations.CustomResponseFields<TCustom>) | CustomErrorResponse;
+
+@autoRoute
+@doc("Creates a {name}.", TResource)
+@createsResource(TResource)
+op CustomLongRunningResourceCreateUsingHttpPost<
+  TResource,
+  TResourceCreateParams = {},
+  TCustom extends Foundations.CustomizationFields = {},
+  TLROResponse = DefaultLroResponse,
+  TLROResponseHeaders = LongRunningOperationStatusLocation
+>(
+  ...Foundations.CollectionKeysOf<TResource>,
+  ...CustomResourceCreateOrReplaceModelWithResourceKey<TResource>,
+  ...TResourceCreateParams,
+  ...Foundations.CustomParameters<TCustom>,
+  ...Foundations.ApiVersionParameter,
+  ...LongRunningOperationIdHeader
+): (AcceptedResponse<CustomBodyWrapper<TLROResponse>> &
+  TLROResponseHeaders) | CustomResourceOkResponse<TResource> | CustomErrorResponse;
+
+@autoRoute
+@doc("Creates a {name}", TResource)
+@createsResource(TResource)
+op CustomLongRunningResourceCreateWithServiceProvidedName<
+  TResource,
+  TResourceCreateParams = {},
+  TCustom extends Foundations.CustomizationFields = {},
+  TLROResponse = DefaultLroResponse
+>(
+  ...Foundations.CollectionKeysOf<TResource>,
+  ...TResourceCreateParams,
+  ...Foundations.CustomParameters<TCustom>,
+  ...Foundations.ApiVersionParameter,
+  ...LongRunningOperationIdHeader
+): (AcceptedResponse<CustomBodyWrapper<TLROResponse>> &
+  LongRunningOperationStatusLocation &
+  Foundations.CustomResponseFields<TCustom>) | CustomResourceOkResponse<TResource> | CustomErrorResponse;
+
+@action
+@autoRoute
+@segmentSeparator(":")
+@doc(
+  "Runs a custom action on {name} as long-running operation (LRO)",
+  TResource
+)
+op CustomLongRunningResourceAction<
+  TResource,
+  TRequestParameters = {},
+  TCustom extends Foundations.CustomizationFields = {},
+  TLROResponse = DefaultLroResponse
+>(
+  ...Foundations.ItemKeysOf<TResource>,
+  ...TRequestParameters,
+  ...Foundations.CustomParameters<TCustom>,
+  ...Foundations.ApiVersionParameter,
+  ...LongRunningOperationIdHeader
+): (AcceptedResponse<CustomBodyWrapper<TLROResponse>> &
+  LongRunningOperationStatusLocation &
+  Foundations.CustomResponseFields<TCustom>) | CustomResourceOkResponse<TResource> | CustomErrorResponse;
+
+@action
+@autoRoute
+@segmentSeparator(":")
+@doc(
+  "Runs a custom action on {name} as long-running operation (LRO)",
+  TResource
+)
+op CustomLongRunningResourceActionWithParameters<
+  TResource,
+  TParams = {},
+  TLROResponse = DefaultLroResponse
+>(
+  ...Foundations.ItemKeysOf<TResource>,
+  ...TParams,
+  ...Foundations.ApiVersionParameter,
+  ...LongRunningOperationIdHeader
+): (AcceptedResponse<CustomBodyWrapper<TLROResponse>> &
+  LongRunningOperationStatusLocation) | CustomResourceOkResponse<TResource> | CustomErrorResponse;
+
+#suppress "@azure-tools/cadl-azure-resource-manager/no-response-body" "This operation must return a status monitor in its response."
+@autoRoute
+@collectionAction(TResource)
+@segmentSeparator(":")
+op CustomLongRunningResourceCollectionAction<
+  TResource,
+  TParams = {},
+  TResponse = TResource,
+  TLROResponse = DefaultLroResponse
+> is Foundations.ResourceCollectionOperation<
+  TResource,
+  TParams & LongRunningOperationIdHeader,
+  (AcceptedResponse<CustomBodyWrapper<TLROResponse>> &
+    LongRunningOperationStatusLocation) | CustomResourceOkResponse<TResponse>
+>;
+
+#suppress "@azure-tools/cadl-azure-resource-manager/no-response-body" "We do support bodies in data plane service APIs..."
+@delete
+@autoRoute
+@doc("Delete a {name} asynchronously.", TResource)
+@deletesResource(TResource)
+op CustomLongRunningResourceDelete<
+  TResource,
+  TLROResponse = DefaultLroResponse
+>(
+  ...Foundations.ItemKeysOf<TResource>,
+  ...Foundations.ApiVersionParameter,
+  ...LongRunningOperationIdHeader
+): (AcceptedResponse<CustomBodyWrapper<TLROResponse>> &
+  LongRunningOperationStatusLocation) | NoContentResponse | CustomErrorResponse;
+
+@doc("Error response with 'x-ms-error-code' header.")
+@friendlyName("CustomErrorResponse")
+model CustomErrorResponse is Foundations.ErrorResponse {
+  ...XMsErrorCodeHeader;
+}
+
+@autoRoute
+@get
+op CustomSingletonResourceRead<
+  TResource,
+  TParams = {},
+  TResponse = TResource
+> is Foundations.ResourceCollectionOperation<
+  TResource,
+  TParams,
+  CustomResourceOkResponse<TResponse>
+>;
+
+@doc("Creates or replaces a {name}", TResource)
+@createsOrReplacesResource(TResource)
+@autoRoute
+op CustomSingletonResourceCreateOrReplace<
+  TResource,
+  TParams,
+  TResponse = TResource
+> is Foundations.ResourceCollectionOperation<
+  TResource,
+  TParams,
+  CustomResourceCreatedOrOkResponse<TResponse>
+>;

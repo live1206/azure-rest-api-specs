@@ -1,0 +1,173 @@
+using Cadl.Http;
+using Cadl.Rest;
+using Azure.Core;
+using Azure.Core.Foundations;
+
+enum SharedClients {
+  LongRunningOperationsClient,
+}
+
+@doc("Internal - generic Key/Value model for internal use")
+model CommonKeyValuePair {
+  @doc("The key")
+  @key
+  key: string;
+
+  @doc("The value")
+  value: string;
+}
+
+@doc("Supported intents to be used as query parameters to obtain storage URI signed with appropriate SAS token.")
+@knownValues(IntentKV)
+model Intent is string;
+enum IntentKV {
+  Read: "read",
+  Write: "write",
+}
+
+@doc("Query intent")
+model IntentQueryParam {
+  @doc("""
+  Intent query parameter might have an impact on a storage URIs returned by the query.
+  Client should use `intent=write` to retreive storage URIs with SAS signed token that allows write operations.
+  Default value for the intent is `Read`.
+  Client must have Write RBAC permissions on the resource, otherwise 403-NoAccess response should be expected.
+  """)
+  @query
+  intent?: Intent;
+}
+
+@doc("Internal - the model for internal use")
+model CommonResourceEndpoint {
+  @doc("The endpoint uri of the owning resource")
+  @format("uri")
+  @visibility("read")
+  resourceEndpoint?: string;
+}
+
+@doc("File upload information")
+model FileUploadInformation {
+  @doc("File name specified by the client")
+  @key
+  clientFileName: string;
+
+  @doc("""
+  SAS signed URI for uploading (write) file to Azure Storage.
+  This URI expires in 24 hours.
+  """)
+  @format("uri")
+  fileUploadUri: string;
+}
+
+@doc("Error code header.")
+model XMsErrorCodeHeader {
+  @doc("Error code for specific error that occurred.")
+  @header
+  "x-ms-error-code": string;
+}
+
+@doc("Azure Active Directory OAuth2 Flow")
+model ImplicitAuthorizationFlow {
+  @doc("Use implicit authorization flow type")
+  type: OAuth2FlowType.implicit;
+
+  @doc("Authorization URL")
+  authorizationUrl: "https://login.microsoftonline.com/common/oauth2/authorize";
+
+  @doc("ADP Scope: impersonate user account")
+  scopes: ["https://adp.azure.com/.default"];
+}
+
+@doc("A long running operation resource.")
+@resource("operations")
+model LongRunningOperation {
+  @doc("The operation Id.")
+  @key
+  @minLength(1)
+  @maxLength(36)
+  operationId: string;
+  ...LongRunningOperationBase;
+}
+
+@doc("Standard Azure LRO response headers.")
+model LongRunningOperationWithResponseHeaders {
+  ...LongRunningOperation;
+  ...Foundations.RetryAfterHeader;
+  ...LongRunningOperationResultLocation;
+}
+
+@doc("Metadata for long running operation status monitor locations")
+model LongRunningOperationStatusLocation {
+  @pollingLocation
+  @doc("The location for monitoring the operation state.")
+  @header("Operation-Location")
+  operationLocation: ResourceLocation<LongRunningOperationStatus>;
+}
+
+@doc("Final location of the operation result.")
+model LongRunningOperationResultLocation {
+  @doc("Final location of the operation result.")
+  @finalLocation
+  @header("Location")
+  @format("uri")
+  location?: string;
+}
+
+@doc("""
+Client specific long running operation identifier.
+This identifier will serve as idempotence key to ensure idempotensy of the long running operation.
+""")
+model LongRunningOperationIdHeader {
+  @doc("The long running operation identifier. Operation-Id should be valid UUID string.")
+  @format("uuid")
+  @header
+  "operation-id"?: string;
+}
+
+@doc("The long running operation model without the key.")
+model LongRunningOperationBase<TOperationType = string> {
+  @doc("The operation status.")
+  @visibility("update")
+  status: LongRunningOperationStatus;
+
+  @doc("The operation type.")
+  @visibility("create")
+  operationType?: TOperationType;
+
+  @doc("The operation error.")
+  @visibility("update")
+  error?: Azure.Core.Foundations.Error;
+}
+
+@doc("The long running operation response")
+model LongRunningOperationResponse<TOperationType = string> {
+  @doc("The operation Id.")
+  @minLength(1)
+  @maxLength(36)
+  operationId: string;
+  ...LongRunningOperationBase<TOperationType>;
+}
+
+@doc("The async operation status")
+@knownValues(LongRunningOperationStatusKV)
+model LongRunningOperationStatus is string;
+enum LongRunningOperationStatusKV {
+  Created,
+  InProgress,
+  Succeeded,
+  Failed,
+  Canceled,
+}
+
+@doc("The supported status codes.")
+@knownValues(SupportedHttpStatusCodesKV)
+model SupportedHttpStatusCode is string;
+enum SupportedHttpStatusCodesKV {
+  OK,
+  Accepted,
+  NoContent,
+  PartialContent,
+  BadRequest,
+  NotFound,
+  Conflict,
+}

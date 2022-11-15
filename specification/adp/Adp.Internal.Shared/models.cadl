@@ -1,0 +1,38 @@
+//using Azure.Core.Foundations;
+
+enum SharedInternalClients {
+  LongRunningOperationsClient,
+}
+
+@doc("LRO creation parameters.")
+@withVisibility("create")
+model LongRunningOperationCreateParams {
+  ...LongRunningOperationBase;
+
+  ...ResultLocation;
+}
+
+@doc("The OperationCompletionRequest.")
+model CompleteLongRunningOperationRequestParams {
+  @doc("""
+  The operation HTTP status code. 
+  The status code will be returned to the client after the completion action will finish.
+  """)
+  httpStatusCode?: SupportedHttpStatusCode;
+
+  ...ResultLocation;
+}
+
+@doc("Result location.")
+model ResultLocation {
+  @doc("The result resource location (URL).")
+  @format("uri")
+  resultLocation?: string;
+}
+
+
+@doc("The long running operation failure request parameters.")
+model FailLongRunningOperationRequestParams {
+  @doc("Error details.")
+  error: Azure.Core.Foundations.Error;
+}

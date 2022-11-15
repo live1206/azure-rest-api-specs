@@ -1,0 +1,4768 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Autonomous Development Platform",
+    "version": "2022-11-30-preview",
+    "x-cadl-generated": [
+      {
+        "emitter": "@azure-tools/cadl-autorest"
+      }
+    ]
+  },
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "security": [
+    {
+      "OAuth2Auth": [
+        "https://adp.azure.com/.default"
+      ]
+    }
+  ],
+  "securityDefinitions": {
+    "OAuth2Auth": {
+      "type": "oauth2",
+      "flow": "implicit",
+      "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/authorize",
+      "scopes": {
+        "https://adp.azure.com/.default": ""
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Long Running Operation"
+    },
+    {
+      "name": "Discovery"
+    },
+    {
+      "name": "Upload"
+    },
+    {
+      "name": "Classification Schema"
+    },
+    {
+      "name": "Measurement"
+    },
+    {
+      "name": "Measurement Classification"
+    },
+    {
+      "name": "Data Stream"
+    },
+    {
+      "name": "Data Stream Classification"
+    }
+  ],
+  "paths": {
+    "/classificationSchemas": {
+      "post": {
+        "tags": [
+          "Classification Schema"
+        ],
+        "operationId": "IClassificationSchema_Create",
+        "description": "Creates new classification schema.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/LongRunningOperationIdHeader"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "description": "Parameter of type 'ClassificationSchemaCreationParameters' in the body.",
+            "schema": {
+              "$ref": "#/definitions/ClassificationSchemaCreationParameters"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "headers": {
+              "ETag": {
+                "description": "The entity tag for the response.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/ClassificationSchema"
+            }
+          },
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of LongRunningOperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/DefaultLroResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/CustomErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "location"
+        },
+        "x-ms-long-running-operation": true
+      },
+      "get": {
+        "tags": [
+          "Classification Schema"
+        ],
+        "operationId": "IClassificationSchema_List",
+        "description": "List all classification schemas.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PagedClassificationSchema"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/classificationSchemas/{name}": {
+      "get": {
+        "tags": [
+          "Classification Schema"
+        ],
+        "operationId": "IClassificationSchema_Get",
+        "description": "Get classification schema by name.",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "Classification schema identifier.",
+            "minLength": 1,
+            "maxLength": 256,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "headers": {
+              "ETag": {
+                "description": "The entity tag for the response.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/ClassificationSchema"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Classification Schema"
+        ],
+        "operationId": "IClassificationSchema_Delete",
+        "description": "Deletes the classification schema and all related classification assignments (instances).",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "Classification schema identifier.",
+            "minLength": 1,
+            "maxLength": 256,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/LongRunningOperationIdHeader"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of LongRunningOperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/DefaultLroResponse"
+            }
+          },
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. "
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/CustomErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "location"
+        },
+        "x-ms-long-running-operation": true
+      }
+    },
+    "/discoveries/{discoveryId}": {
+      "put": {
+        "tags": [
+          "Discovery"
+        ],
+        "operationId": "IDiscovery_CreateOrReplace",
+        "description": "Creates a new ingestion discovery instance.",
+        "parameters": [
+          {
+            "name": "discoveryId",
+            "in": "path",
+            "required": true,
+            "description": "The discovery identifier.",
+            "minLength": 1,
+            "maxLength": 36,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "description": "Parameter of type 'DiscoveryCreationParameters' in the body.",
+            "schema": {
+              "$ref": "#/definitions/DiscoveryCreationParameters"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/Discovery"
+            }
+          },
+          "201": {
+            "description": "A Discovery resource was successfully created.",
+            "schema": {
+              "$ref": "#/definitions/Discovery"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Discovery"
+        ],
+        "operationId": "IDiscovery_Get",
+        "description": "Get discovery by ID.",
+        "parameters": [
+          {
+            "name": "discoveryId",
+            "in": "path",
+            "required": true,
+            "description": "The discovery identifier.",
+            "minLength": 1,
+            "maxLength": 36,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/IntentQueryParam"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/Discovery"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/discoveries/{discoveryId}:complete": {
+      "post": {
+        "tags": [
+          "Discovery"
+        ],
+        "operationId": "IDiscovery_Complete",
+        "description": "Initiates the process of completing the discovery and creating the upload file grouping manifest files.",
+        "parameters": [
+          {
+            "name": "discoveryId",
+            "in": "path",
+            "required": true,
+            "description": "The discovery identifier.",
+            "minLength": 1,
+            "maxLength": 36,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/LongRunningOperationIdHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/Discovery"
+            }
+          },
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of LongRunningOperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/DiscoveryLroResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/CustomErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "location"
+        },
+        "x-ms-long-running-operation": true
+      }
+    },
+    "/discoveries/{discoveryId}:cancel": {
+      "post": {
+        "tags": [
+          "Discovery"
+        ],
+        "operationId": "IDiscovery_Cancel",
+        "description": "Initiates the process of cancelling the discovery.",
+        "parameters": [
+          {
+            "name": "discoveryId",
+            "in": "path",
+            "required": true,
+            "description": "The discovery identifier.",
+            "minLength": 1,
+            "maxLength": 36,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/LongRunningOperationIdHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/Discovery"
+            }
+          },
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of LongRunningOperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/DiscoveryLroResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/CustomErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "location"
+        },
+        "x-ms-long-running-operation": true
+      }
+    },
+    "/discoveries/{discoveryId}/specialFilesUploadInfo": {
+      "get": {
+        "tags": [
+          "Discovery"
+        ],
+        "operationId": "IDiscoverySpecialFile_List",
+        "description": "List special files details for the discovery resource.",
+        "parameters": [
+          {
+            "name": "discoveryId",
+            "in": "path",
+            "required": true,
+            "description": "The discovery identifier.",
+            "minLength": 1,
+            "maxLength": 36,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/IntentQueryParam"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PagedDiscoverySpecialFile"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/discoveries/{discoveryId}/specialFilesUploadInfo:generate": {
+      "post": {
+        "tags": [
+          "Discovery"
+        ],
+        "operationId": "IDiscoverySpecialFile_Generate",
+        "description": "Initiates the process of generating SAS signed URIs for uploading special files for the discovery.",
+        "parameters": [
+          {
+            "name": "discoveryId",
+            "in": "path",
+            "required": true,
+            "description": "The discovery identifier.",
+            "minLength": 1,
+            "maxLength": 36,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/LongRunningOperationIdHeader"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/DiscoverySpecialFile"
+            }
+          },
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of LongRunningOperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/DiscoveryLroResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "location"
+        },
+        "x-ms-long-running-operation": true
+      }
+    },
+    "/discoveries/{discoveryId}/uploads": {
+      "get": {
+        "tags": [
+          "Discovery"
+        ],
+        "operationId": "IDiscoveryResultUpload_List",
+        "description": "List upload detail for the discovery resource.",
+        "parameters": [
+          {
+            "name": "discoveryId",
+            "in": "path",
+            "required": true,
+            "description": "The discovery identifier.",
+            "minLength": 1,
+            "maxLength": 36,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PagedDiscoveryUpload"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/measurements": {
+      "get": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "IMeasurement_List",
+        "description": "Lists the measurements in a workspace.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/Paged"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/measurements/{measurementId}": {
+      "get": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "IMeasurement_Get",
+        "description": "Get measurement by ID.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/Measurement"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "IMeasurement_Delete",
+        "description": "Deletes the measurement.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/LongRunningOperationIdHeader"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of LongRunningOperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/DefaultLroResponse"
+            }
+          },
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. "
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/CustomErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "location"
+        },
+        "x-ms-long-running-operation": true
+      }
+    },
+    "/measurements/{measurementId}:changeState": {
+      "post": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "IMeasurement_ChangeState",
+        "description": "Changes measurement state.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/LongRunningOperationIdHeader"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "description": "Parameter of type 'ChangeMeasurementStateRequestParameters' in the body.",
+            "schema": {
+              "$ref": "#/definitions/ChangeMeasurementStateRequestParameters"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/Measurement"
+            }
+          },
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of LongRunningOperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/DefaultLroResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/CustomErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "location"
+        },
+        "x-ms-long-running-operation": true
+      }
+    },
+    "/measurements/{measurementId}:process": {
+      "post": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "IMeasurement_Process",
+        "description": "Initiates process of processing the measurement.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/LongRunningOperationIdHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/Measurement"
+            }
+          },
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of LongRunningOperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/DefaultLroResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/CustomErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "location"
+        },
+        "x-ms-long-running-operation": true
+      }
+    },
+    "/measurements/{measurementId}/classifications": {
+      "post": {
+        "tags": [
+          "Measurement Classification"
+        ],
+        "operationId": "IMeasurementClassification_Create",
+        "description": "Assigns classification to the measurement.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/LongRunningOperationIdHeader"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "description": "Parameter of type 'MeasurementClassificationCreationParameters' in the body.",
+            "schema": {
+              "$ref": "#/definitions/MeasurementClassificationCreationParameters"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "headers": {
+              "ETag": {
+                "description": "The entity tag for the response.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/MeasurementClassification"
+            }
+          },
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of LongRunningOperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/DefaultLroResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/CustomErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "location"
+        },
+        "x-ms-long-running-operation": true
+      },
+      "get": {
+        "tags": [
+          "Measurement Classification"
+        ],
+        "operationId": "IMeasurementClassification_List",
+        "description": "Lists the classifications assigned to the measurement.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PagedMeasurementClassification"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/measurements/{measurementId}/classifications/{schemaName}": {
+      "get": {
+        "tags": [
+          "Measurement Classification"
+        ],
+        "operationId": "IMeasurementClassification_Get",
+        "description": "Get measurement classification by schema name.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "name": "schemaName",
+            "in": "path",
+            "required": true,
+            "description": "Classification schema name.",
+            "minLength": 1,
+            "maxLength": 256,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "headers": {
+              "ETag": {
+                "description": "The entity tag for the response.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/MeasurementClassification"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Measurement Classification"
+        ],
+        "operationId": "IMeasurementClassification_Delete",
+        "description": "Unassign the classification from the measurement.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "name": "schemaName",
+            "in": "path",
+            "required": true,
+            "description": "Classification schema name.",
+            "minLength": 1,
+            "maxLength": 256,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/LongRunningOperationIdHeader"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of LongRunningOperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/DefaultLroResponse"
+            }
+          },
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. "
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/CustomErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "location"
+        },
+        "x-ms-long-running-operation": true
+      }
+    },
+    "/measurements/{measurementId}/dataStreams": {
+      "post": {
+        "tags": [
+          "Data Stream"
+        ],
+        "operationId": "IDataStream_Create",
+        "description": "Creates new data-stream resource.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/LongRunningOperationIdHeader"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "description": "Parameter of type 'DataStreamCreationParameters' in the body.",
+            "schema": {
+              "$ref": "#/definitions/DataStreamCreationParameters"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/DataStream"
+            }
+          },
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of LongRunningOperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/DefaultLroResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/CustomErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "location"
+        },
+        "x-ms-long-running-operation": true
+      },
+      "get": {
+        "tags": [
+          "Data Stream"
+        ],
+        "operationId": "IDataStream_List",
+        "description": "Lists the existing data-streams.\nSupports the following filter expressions:\n- filter=\"type=[System | Raw | Derived]\"",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.FilterQueryParameter"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PagedDataStream"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/measurements/{measurementId}/dataStreams/{dataStreamId}": {
+      "get": {
+        "tags": [
+          "Data Stream"
+        ],
+        "operationId": "IDataStream_Get",
+        "description": "Get data-stream by identifier.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "name": "dataStreamId",
+            "in": "path",
+            "required": true,
+            "description": "The data stream identifier",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/DataStream"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/measurements/{measurementId}/dataStreams/{dataStreamId}:clearContent": {
+      "post": {
+        "tags": [
+          "Data Stream"
+        ],
+        "operationId": "IDataStream_ClearContent",
+        "description": "Clear the data-stream content.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "name": "dataStreamId",
+            "in": "path",
+            "required": true,
+            "description": "The data stream identifier",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/LongRunningOperationIdHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/DataStream"
+            }
+          },
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of LongRunningOperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/DefaultLroResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/CustomErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "location"
+        },
+        "x-ms-long-running-operation": true
+      }
+    },
+    "/measurements/{measurementId}/dataStreams/{dataStreamId}:stageFiles": {
+      "post": {
+        "tags": [
+          "Data Stream"
+        ],
+        "operationId": "IDataStream_StageFiles",
+        "description": "Shards files to be uploaded to the data-stream and returns SAS-signed upload URIs for each of them.\nThis URI expires in 24 hours.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "name": "dataStreamId",
+            "in": "path",
+            "required": true,
+            "description": "The data stream identifier",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "description": "Parameter of type 'UploadDerivedDataStreamFilesRequest' in the body.",
+            "schema": {
+              "$ref": "#/definitions/UploadDerivedDataStreamFilesRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/UploadDerivedDataStreamFilesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/measurements/{measurementId}/dataStreams/{dataStreamId}:complete": {
+      "post": {
+        "tags": [
+          "Data Stream"
+        ],
+        "operationId": "IDataStream_Complete",
+        "description": "Marks a data stream as completed",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "name": "dataStreamId",
+            "in": "path",
+            "required": true,
+            "description": "The data stream identifier",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/LongRunningOperationIdHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/DataStream"
+            }
+          },
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of LongRunningOperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/DefaultLroResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/CustomErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "location"
+        },
+        "x-ms-long-running-operation": true
+      }
+    },
+    "/measurements/{measurementId}/dataStreams/{dataStreamId}:fail": {
+      "post": {
+        "tags": [
+          "Data Stream"
+        ],
+        "operationId": "IDataStream_Fail",
+        "description": "Marks a data stream as failed",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "name": "dataStreamId",
+            "in": "path",
+            "required": true,
+            "description": "The data stream identifier",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/LongRunningOperationIdHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/DataStream"
+            }
+          },
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of LongRunningOperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/DefaultLroResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/CustomErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "location"
+        },
+        "x-ms-long-running-operation": true
+      }
+    },
+    "/measurements/{measurementId}/dataStreams/{dataStreamId}/classifications": {
+      "post": {
+        "tags": [
+          "Data Stream Classification"
+        ],
+        "operationId": "IDataStreamClassification_Create",
+        "description": "Assigns the classification to the data-stream.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "name": "dataStreamId",
+            "in": "path",
+            "required": true,
+            "description": "The data stream identifier",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/LongRunningOperationIdHeader"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "description": "Parameter of type 'DataStreamClassificationCreationParameters' in the body.",
+            "schema": {
+              "$ref": "#/definitions/DataStreamClassificationCreationParameters"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "headers": {
+              "ETag": {
+                "description": "The entity tag for the response.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/DataStreamClassification"
+            }
+          },
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of LongRunningOperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/DefaultLroResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/CustomErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "location"
+        },
+        "x-ms-long-running-operation": true
+      },
+      "get": {
+        "tags": [
+          "Data Stream Classification"
+        ],
+        "operationId": "IDataStreamClassification_List",
+        "description": "Lists the classifications assigned to the data-stream.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "name": "dataStreamId",
+            "in": "path",
+            "required": true,
+            "description": "The data stream identifier",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PagedDataStreamClassification"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/measurements/{measurementId}/dataStreams/{dataStreamId}/classifications/{schemaName}": {
+      "get": {
+        "tags": [
+          "Data Stream Classification"
+        ],
+        "operationId": "IDataStreamClassification_Get",
+        "description": "Get classification by schema name.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "name": "dataStreamId",
+            "in": "path",
+            "required": true,
+            "description": "The data stream identifier",
+            "type": "string"
+          },
+          {
+            "name": "schemaName",
+            "in": "path",
+            "required": true,
+            "description": "Classification schema name.",
+            "minLength": 1,
+            "maxLength": 256,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "headers": {
+              "ETag": {
+                "description": "The entity tag for the response.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/DataStreamClassification"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Data Stream Classification"
+        ],
+        "operationId": "IDataStreamClassification_Delete",
+        "description": "Unassign the classification from the data-stream.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "name": "dataStreamId",
+            "in": "path",
+            "required": true,
+            "description": "The data stream identifier",
+            "type": "string"
+          },
+          {
+            "name": "schemaName",
+            "in": "path",
+            "required": true,
+            "description": "Classification schema name.",
+            "minLength": 1,
+            "maxLength": 256,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/LongRunningOperationIdHeader"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of LongRunningOperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/DefaultLroResponse"
+            }
+          },
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. "
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/CustomErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "location"
+        },
+        "x-ms-long-running-operation": true
+      }
+    },
+    "/measurements/{measurementId}/dataStreams/{dataStreamId}/storage": {
+      "get": {
+        "tags": [
+          "Data Stream"
+        ],
+        "operationId": "IDataStreamsStorage_Get",
+        "description": "Returns the data-stream storage resource.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "name": "dataStreamId",
+            "in": "path",
+            "required": true,
+            "description": "The data stream identifier",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/StorageBase"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Data Stream"
+        ],
+        "operationId": "IDataStreamsStorage_Create",
+        "description": "Create or replace storage information of the data-stream.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "name": "dataStreamId",
+            "in": "path",
+            "required": true,
+            "description": "The data stream identifier",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "description": "Parameter of type 'StorageCreationParameters' in the body.",
+            "schema": {
+              "$ref": "#/definitions/StorageCreationParameters"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/StorageBase"
+            }
+          },
+          "201": {
+            "description": "A StorageBase resource was successfully created.",
+            "schema": {
+              "$ref": "#/definitions/StorageBase"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/measurements/{measurementId}/dataStreams:findByLineage": {
+      "post": {
+        "tags": [
+          "Data Stream"
+        ],
+        "operationId": "IDataStream_FindByLineage",
+        "description": "Lists the data-streams by lineage.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "description": "Parameter of type 'FindDataStreamByLineageRequestParameters' in the body.",
+            "schema": {
+              "$ref": "#/definitions/FindDataStreamByLineageRequestParameters"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PagedDataStream"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/measurements/{measurementId}/dataStreams:findByTags": {
+      "post": {
+        "tags": [
+          "Data Stream"
+        ],
+        "operationId": "IDataStream_FindByTags",
+        "description": "Lists the data-streams by tags.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "description": "Parameter of type 'FindDataStreamByTagsRequestParameters' in the body.",
+            "schema": {
+              "$ref": "#/definitions/FindDataStreamByTagsRequestParameters"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PagedDataStream"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/measurements/{measurementId}/dataStreams:getLineageGraphsByLineage": {
+      "post": {
+        "tags": [
+          "Data Stream"
+        ],
+        "operationId": "IDataStream_GetLineageGraphsByLineage",
+        "description": "Lists the data-streams by lineage graph.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "description": "Parameter of type 'FindDataStreamByLineageGraphRequestParameters' in the body.",
+            "schema": {
+              "$ref": "#/definitions/FindDataStreamByLineageGraphRequestParameters"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PagedDataStreamsGraphListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/measurements/{measurementId}/metadata": {
+      "get": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "IMeasurementMetadata_Get",
+        "description": "Returns the measurement metadata.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/MeasurementMetadataBase"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/measurements/{measurementId}/metadataFileInfo": {
+      "get": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "IMeasurementMetadataFileInfo_Get",
+        "description": "Returns the measurement metadata file information.\nIf intent is `write` returns SAS signed URI to a temporary file with `write` permissions.\nOtherwise returns SAS signed URI to an existing metadata file with `read` permissions and the eTag of that file in response header.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/IntentQueryParam"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "headers": {
+              "ETag": {
+                "description": "The entity tag for the response.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/MeasurementMetadataFileInfoBase"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/measurements/{measurementId}/metadataFileInfo:complete": {
+      "post": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "IMeasurementMetadataFileInfo_Complete",
+        "description": "Initiates a process that replaces the measurement's metadata file",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/LongRunningOperationIdHeader"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "description": "Parameter of type 'CompleteUploadMetadataFileRequest' in the body.",
+            "schema": {
+              "$ref": "#/definitions/CompleteUploadMetadataFileRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "headers": {
+              "ETag": {
+                "description": "The entity tag for the response.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/MeasurementMetadataFileInfoBase"
+            }
+          },
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of LongRunningOperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/DefaultLroResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "location"
+        },
+        "x-ms-long-running-operation": true
+      }
+    },
+    "/measurements/{measurementId}/metadataSchemaFileInfo": {
+      "get": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "IMeasurementMetadataSchemaFileInfo_Get",
+        "description": "Returns the measurement metadata schema file information and schema validation results.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/MeasurementMetadataSchemaFileInfoBase"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/measurements/{measurementId}/processingResults": {
+      "get": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "IMeasurementProcessingResults_Get",
+        "description": "Returns the measurement processing result.",
+        "parameters": [
+          {
+            "name": "measurementId",
+            "in": "path",
+            "required": true,
+            "description": "The measurement identifier.",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/MeasurementProcessingResultsBase"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/measurements:findByIds": {
+      "post": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "IMeasurement_FindByIds",
+        "description": "Lists the measurements in a workspace that are in the given measurement IDs list.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "description": "Parameter of type 'MeasurementListRequestParameters' in the body.",
+            "schema": {
+              "$ref": "#/definitions/MeasurementListRequestParameters"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PagedMeasurement"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/operations/{operationId}": {
+      "get": {
+        "tags": [
+          "Long Running Operation"
+        ],
+        "operationId": "ILongRunningOperation_Get",
+        "description": "Get the details of an LRO.",
+        "parameters": [
+          {
+            "name": "operationId",
+            "in": "path",
+            "required": true,
+            "description": "The operation Id.",
+            "minLength": 1,
+            "maxLength": 36,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "headers": {
+              "Retry-After": {
+                "description": "The Retry-After header can indicate how long the client should wait before polling the operation status.",
+                "type": "integer",
+                "format": "int32"
+              },
+              "Location": {
+                "description": "Final location of the operation result.",
+                "format": "uri",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/LongRunningOperation"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/uploads/{uploadId}": {
+      "put": {
+        "tags": [
+          "Upload"
+        ],
+        "operationId": "IUpload_CreateOrReplace",
+        "description": "Creates a new ingestion upload instance.",
+        "parameters": [
+          {
+            "name": "uploadId",
+            "in": "path",
+            "required": true,
+            "description": "The upload resource identifier.",
+            "minLength": 1,
+            "maxLength": 36,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "description": "Parameter of type 'UploadCreationParameters' in the body.",
+            "schema": {
+              "$ref": "#/definitions/UploadCreationParameters"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/Upload"
+            }
+          },
+          "201": {
+            "description": "A Upload resource was successfully created.",
+            "schema": {
+              "$ref": "#/definitions/Upload"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Upload"
+        ],
+        "operationId": "IUpload_Get",
+        "description": "Get discovery by ID.",
+        "parameters": [
+          {
+            "name": "uploadId",
+            "in": "path",
+            "required": true,
+            "description": "The upload resource identifier.",
+            "minLength": 1,
+            "maxLength": 36,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/IntentQueryParam"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/Upload"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/uploads/{uploadId}:complete": {
+      "post": {
+        "tags": [
+          "Upload"
+        ],
+        "operationId": "IUpload_Complete",
+        "description": "Initiates the process of completing the upload and creating the measurements.",
+        "parameters": [
+          {
+            "name": "uploadId",
+            "in": "path",
+            "required": true,
+            "description": "The upload resource identifier.",
+            "minLength": 1,
+            "maxLength": 36,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/LongRunningOperationIdHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/Upload"
+            }
+          },
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of LongRunningOperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/UploadLroResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/CustomErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "location"
+        },
+        "x-ms-long-running-operation": true
+      }
+    },
+    "/uploads/{uploadId}:cancel": {
+      "post": {
+        "tags": [
+          "Upload"
+        ],
+        "operationId": "IUpload_Cancel",
+        "description": "Initiates the process of cancelling the upload.",
+        "parameters": [
+          {
+            "name": "uploadId",
+            "in": "path",
+            "required": true,
+            "description": "The upload resource identifier.",
+            "minLength": 1,
+            "maxLength": 36,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/LongRunningOperationIdHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/Upload"
+            }
+          },
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of LongRunningOperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/UploadLroResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code for specific error that occurred.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/CustomErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "location"
+        },
+        "x-ms-long-running-operation": true
+      }
+    },
+    "/uploads/{uploadId}/dataFilesUploadInfo": {
+      "get": {
+        "tags": [
+          "Upload"
+        ],
+        "operationId": "IUploadDataFile_List",
+        "description": "List data files for the upload.",
+        "parameters": [
+          {
+            "name": "uploadId",
+            "in": "path",
+            "required": true,
+            "description": "The upload resource identifier.",
+            "minLength": 1,
+            "maxLength": 36,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/IntentQueryParam"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PagedUploadDataFile"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/uploads/{uploadId}/dataFilesUploadInfo:generate": {
+      "post": {
+        "tags": [
+          "Upload"
+        ],
+        "operationId": "IUploadDataFile_Generate",
+        "description": "Initiates the process of sharding the data files.",
+        "parameters": [
+          {
+            "name": "uploadId",
+            "in": "path",
+            "required": true,
+            "description": "The upload resource identifier.",
+            "minLength": 1,
+            "maxLength": 36,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/LongRunningOperationIdHeader"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/UploadDataFile"
+            }
+          },
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of LongRunningOperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/UploadLroResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "location"
+        },
+        "x-ms-long-running-operation": true
+      }
+    },
+    "/uploads/{uploadId}/measurements": {
+      "get": {
+        "tags": [
+          "Upload"
+        ],
+        "operationId": "IUploadResultMeasurement_List",
+        "description": "List of the measurement identifiers that have been created by the upload.",
+        "parameters": [
+          {
+            "name": "uploadId",
+            "in": "path",
+            "required": true,
+            "description": "The upload resource identifier.",
+            "minLength": 1,
+            "maxLength": 36,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PagedUploadResultMeasurement"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/uploads/{uploadId}/specialFilesUploadInfo": {
+      "get": {
+        "tags": [
+          "Upload"
+        ],
+        "operationId": "IUploadSpecialFile_List",
+        "description": "List special files for the upload.",
+        "parameters": [
+          {
+            "name": "uploadId",
+            "in": "path",
+            "required": true,
+            "description": "The upload resource identifier.",
+            "minLength": 1,
+            "maxLength": 36,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/IntentQueryParam"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PagedUploadSpecialFile"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/uploads/{uploadId}/specialFilesUploadInfo:generate": {
+      "post": {
+        "tags": [
+          "Upload"
+        ],
+        "operationId": "IUploadSpecialFile_Generate",
+        "description": "Initiates the process of generating SAS signed URIs for uploading special files for the upload.",
+        "parameters": [
+          {
+            "name": "uploadId",
+            "in": "path",
+            "required": true,
+            "description": "The upload resource identifier.",
+            "minLength": 1,
+            "maxLength": 36,
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/LongRunningOperationIdHeader"
+          },
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/UploadSpecialFile"
+            }
+          },
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location of an instance of LongRunningOperationStatus",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/UploadLroResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "location"
+        },
+        "x-ms-long-running-operation": true
+      }
+    }
+  },
+  "definitions": {
+    "Azure.Core.Foundations.Error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "One of a server-defined set of error codes."
+        },
+        "message": {
+          "type": "string",
+          "description": "A human-readable representation of the error."
+        },
+        "target": {
+          "type": "string",
+          "description": "The target of the error."
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Azure.Core.Foundations.Error"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "Azure.Core.Foundations.Error[]",
+          "description": "An array of details about specific errors that led to this reported error."
+        },
+        "innererror": {
+          "$ref": "#/definitions/Azure.Core.Foundations.InnerError",
+          "description": "An object containing more specific information than the current object about the error."
+        }
+      },
+      "description": "The error object.",
+      "required": [
+        "code",
+        "message",
+        "details"
+      ]
+    },
+    "Azure.Core.Foundations.ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/Azure.Core.Foundations.Error",
+          "description": "The error object."
+        }
+      },
+      "description": "A response containing error details.",
+      "required": [
+        "error"
+      ]
+    },
+    "Azure.Core.Foundations.Extensions.DefaultLroType": {
+      "type": "string",
+      "description": "for internal use",
+      "enum": [
+        "default"
+      ],
+      "x-ms-enum": {
+        "name": "DefaultLroType",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "Default",
+            "value": "default"
+          }
+        ]
+      }
+    },
+    "Azure.Core.Foundations.InnerError": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "One of a server-defined set of error codes."
+        },
+        "innererror": {
+          "$ref": "#/definitions/Azure.Core.Foundations.InnerError",
+          "description": "Inner error."
+        }
+      },
+      "description": "An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses.",
+      "required": [
+        "code"
+      ]
+    },
+    "ChangeMeasurementStateRequestParameters": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "$ref": "#/definitions/MeasurementState",
+          "description": "Desired measurement state."
+        }
+      },
+      "description": "Change measurement state request parameter",
+      "required": [
+        "state"
+      ]
+    },
+    "ClassificationSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Classification schema identifier.",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "schemaDefinition": {
+          "type": "string",
+          "description": "Classification schema definition (JSON schema as string).",
+          "minLength": 2
+        }
+      },
+      "description": "Classification schema resource model.",
+      "required": [
+        "name",
+        "schemaDefinition"
+      ]
+    },
+    "ClassificationSchemaCreationParameters": {
+      "type": "object",
+      "properties": {
+        "schemaDefinition": {
+          "type": "string",
+          "description": "Classification schema definition (JSON schema as string).",
+          "minLength": 2
+        }
+      },
+      "description": "ClassificationSchema resource creation parameters.",
+      "required": [
+        "schemaDefinition"
+      ]
+    },
+    "CompleteUploadMetadataFileRequest": {
+      "type": "object",
+      "properties": {
+        "pendingFileETag": {
+          "type": "string",
+          "description": "The ETag of the uploaded metadata file",
+          "x-ms-mutability": [
+            "read",
+            "update"
+          ]
+        }
+      },
+      "description": "Request parameters for the complete upload metadata file API"
+    },
+    "CustomErrorResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/Azure.Core.Foundations.Error",
+          "description": "The error object."
+        }
+      },
+      "description": "Error response with 'x-ms-error-code' header.",
+      "required": [
+        "error"
+      ]
+    },
+    "DataStream": {
+      "type": "object",
+      "properties": {
+        "dataStreamId": {
+          "type": "string",
+          "description": "The data stream identifier"
+        },
+        "resourceEndpoint": {
+          "type": "string",
+          "description": "The endpoint uri of the owning resource",
+          "format": "uri",
+          "readOnly": true
+        },
+        "lineage": {
+          "$ref": "#/definitions/DataStreamLineage",
+          "description": "The data stream lineage information"
+        },
+        "tags": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "x-cadl-name": "Record<string>",
+          "description": "The data stream list of tags"
+        },
+        "status": {
+          "$ref": "#/definitions/DataStreamStatus",
+          "description": "The data stream status"
+        },
+        "type": {
+          "$ref": "#/definitions/DataStreamType",
+          "description": "The data stream type"
+        }
+      },
+      "description": "A data-stream resource",
+      "required": [
+        "dataStreamId",
+        "lineage",
+        "tags",
+        "status",
+        "type"
+      ]
+    },
+    "DataStreamClassification": {
+      "type": "object",
+      "properties": {
+        "schemaName": {
+          "type": "string",
+          "description": "Classification schema name.",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "classificationObject": {
+          "type": "string",
+          "description": "Classification object model (JSON as string)",
+          "minLength": 2
+        }
+      },
+      "description": "The data-stream classification.",
+      "required": [
+        "schemaName",
+        "classificationObject"
+      ]
+    },
+    "DataStreamClassificationCreationParameters": {
+      "type": "object",
+      "properties": {
+        "schemaName": {
+          "type": "string",
+          "description": "Classification schema name.",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "classificationObject": {
+          "type": "string",
+          "description": "Classification object model (JSON as string)",
+          "minLength": 2
+        }
+      },
+      "description": "DataStreamClassification resource creation parameters.",
+      "required": [
+        "schemaName",
+        "classificationObject"
+      ]
+    },
+    "DataStreamCreationParameters": {
+      "type": "object",
+      "properties": {
+        "lineage": {
+          "$ref": "#/definitions/DataStreamLineage",
+          "description": "The data stream lineage information"
+        },
+        "tags": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "x-cadl-name": "Record<string>",
+          "description": "The data stream list of tags"
+        }
+      },
+      "description": "DataStream resource creation parameters",
+      "required": [
+        "lineage",
+        "tags"
+      ]
+    },
+    "DataStreamInput": {
+      "type": "object",
+      "properties": {
+        "sourceDataStreamId": {
+          "type": "string",
+          "description": "The source data-stream identifier"
+        },
+        "channels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-cadl-name": "string[]",
+          "description": "Collection of the data stream's channels"
+        }
+      },
+      "description": "Data-stream input definition.",
+      "required": [
+        "sourceDataStreamId"
+      ]
+    },
+    "DataStreamLineage": {
+      "type": "object",
+      "properties": {
+        "producerMetadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "x-cadl-name": "Record<string>",
+          "description": "The data stream's metadata"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataStreamInput"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "DataStreamInput[]",
+          "description": "The data stream's inputs"
+        }
+      },
+      "description": "Data stream lineage information",
+      "required": [
+        "producerMetadata",
+        "inputs"
+      ]
+    },
+    "DataStreamRollingInformation": {
+      "type": "object",
+      "properties": {
+        "strategy": {
+          "$ref": "#/definitions/DataStreamRollingStrategy",
+          "description": "Data stream rolling strategy"
+        },
+        "unit": {
+          "$ref": "#/definitions/DataStreamRollingUnit",
+          "description": "Data stream rolling unit"
+        },
+        "value": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Data stream rolling value",
+          "minimum": 0
+        }
+      },
+      "description": "Data stream rolling information",
+      "required": [
+        "strategy",
+        "unit",
+        "value"
+      ]
+    },
+    "DataStreamRollingStrategy": {
+      "type": "string",
+      "description": "Data stream rolling strategy",
+      "enum": [
+        "Time",
+        "Size"
+      ],
+      "x-ms-enum": {
+        "name": "DataStreamRollingStrategy",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "Time",
+            "value": "Time"
+          },
+          {
+            "name": "Size",
+            "value": "Size"
+          }
+        ]
+      }
+    },
+    "DataStreamRollingUnit": {
+      "type": "string",
+      "description": "Data stream rolling unit",
+      "enum": [
+        "Seconds",
+        "Minutes",
+        "kB",
+        "MB",
+        "GB"
+      ],
+      "x-ms-enum": {
+        "name": "DataStreamRollingUnit",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "Seconds",
+            "value": "Seconds"
+          },
+          {
+            "name": "Minutes",
+            "value": "Minutes"
+          },
+          {
+            "name": "kB",
+            "value": "kB"
+          },
+          {
+            "name": "MB",
+            "value": "MB"
+          },
+          {
+            "name": "GB",
+            "value": "GB"
+          }
+        ]
+      }
+    },
+    "DataStreamShardAccessInformation": {
+      "type": "object",
+      "properties": {
+        "shardFolderUri": {
+          "type": "string",
+          "description": "SAS signed URI for reading the shard folder content from Azure Storage.\nThis URI expires in 24 hours.",
+          "format": "uri"
+        },
+        "manifestFileUri": {
+          "type": "string",
+          "description": "SAS signed URI for reading the shard manifest file from Azure Storage.\nThis URI expires in 24 hours.",
+          "format": "uri"
+        }
+      },
+      "description": "The access information to the data stream shard",
+      "required": [
+        "shardFolderUri",
+        "manifestFileUri"
+      ]
+    },
+    "DataStreamStatus": {
+      "type": "string",
+      "description": "Data stream state",
+      "enum": [
+        "Created",
+        "Completing",
+        "Completed",
+        "Failed",
+        "Failing",
+        "Clearing",
+        "Cleared"
+      ],
+      "x-ms-enum": {
+        "name": "DataStreamStatus",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "Created",
+            "value": "Created"
+          },
+          {
+            "name": "Completing",
+            "value": "Completing"
+          },
+          {
+            "name": "Completed",
+            "value": "Completed"
+          },
+          {
+            "name": "Failed",
+            "value": "Failed"
+          },
+          {
+            "name": "Failing",
+            "value": "Failing"
+          },
+          {
+            "name": "Clearing",
+            "value": "Clearing"
+          },
+          {
+            "name": "Cleared",
+            "value": "Cleared"
+          }
+        ]
+      }
+    },
+    "DataStreamType": {
+      "type": "string",
+      "description": "Data stream type",
+      "enum": [
+        "System",
+        "Raw",
+        "Derived"
+      ],
+      "x-ms-enum": {
+        "name": "DataStreamType",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "System",
+            "value": "System"
+          },
+          {
+            "name": "Raw",
+            "value": "Raw"
+          },
+          {
+            "name": "Derived",
+            "value": "Derived"
+          }
+        ]
+      }
+    },
+    "DataStreamsGraph": {
+      "type": "object",
+      "properties": {
+        "dataStreamByProcessingObjectId": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/DataStream"
+          },
+          "x-cadl-name": "Record<DataStream>",
+          "description": "Dictionary of data stream by processing object id"
+        }
+      },
+      "description": "Graph of matched data streams by processing objects graph",
+      "required": [
+        "dataStreamByProcessingObjectId"
+      ]
+    },
+    "DataStreamsGraphListResponse": {
+      "type": "object",
+      "properties": {
+        "dataStreamsGraphs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataStreamsGraph"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "DataStreamsGraph[]",
+          "description": "List of data streams matched graphs"
+        }
+      },
+      "description": "List of graphs of matched data streams by processing objects graph",
+      "required": [
+        "dataStreamsGraphs"
+      ]
+    },
+    "DefaultLroResponse": {
+      "type": "object",
+      "properties": {
+        "operationId": {
+          "type": "string",
+          "description": "The operation Id.",
+          "minLength": 1,
+          "maxLength": 36
+        },
+        "status": {
+          "$ref": "#/definitions/LongRunningOperationStatus",
+          "description": "The operation status."
+        },
+        "operationType": {
+          "$ref": "#/definitions/Azure.Core.Foundations.Extensions.DefaultLroType",
+          "description": "The operation type."
+        },
+        "error": {
+          "$ref": "#/definitions/Azure.Core.Foundations.Error",
+          "description": "The operation error."
+        }
+      },
+      "required": [
+        "operationId",
+        "status"
+      ]
+    },
+    "DerivedDataStreamFileInformation": {
+      "type": "object",
+      "properties": {
+        "clientFileName": {
+          "type": "string",
+          "description": "The file name as provided by the client",
+          "x-ms-mutability": [
+            "read",
+            "update"
+          ]
+        },
+        "recordingTimestampUtc": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The file recording UTC timestamp as provided by the client",
+          "x-ms-mutability": [
+            "read",
+            "update"
+          ]
+        }
+      },
+      "description": "Information about a file",
+      "required": [
+        "clientFileName"
+      ]
+    },
+    "Discovery": {
+      "type": "object",
+      "properties": {
+        "discoveryId": {
+          "type": "string",
+          "description": "The discovery identifier.",
+          "minLength": 1,
+          "maxLength": 36
+        },
+        "externalPackageId": {
+          "type": "string",
+          "description": "ID of the external package (for example, the disk which contained data) which was used upon the creation of upload"
+        },
+        "manifestUploadUri": {
+          "type": "string",
+          "description": "SAS signed URI for uploading or reading the discovery manifest file on Azure Storage.\nNote, if the discovery status is 'Created' then the URI is signed with 'Write' permissions, otherwise with 'Read' permission.\nThis URI expires in 24 hours.",
+          "format": "uri"
+        },
+        "status": {
+          "$ref": "#/definitions/DiscoveryStatus",
+          "description": "The discovery status."
+        }
+      },
+      "description": "A discovery resource.",
+      "required": [
+        "discoveryId"
+      ]
+    },
+    "DiscoveryCreationParameters": {
+      "type": "object",
+      "properties": {
+        "externalPackageId": {
+          "type": "string",
+          "description": "ID of the external package (for example, the disk which contained data) which was used upon the creation of upload"
+        }
+      },
+      "description": "Discovery resource creation parameters."
+    },
+    "DiscoveryLroResponse": {
+      "type": "object",
+      "properties": {
+        "operationId": {
+          "type": "string",
+          "description": "The operation Id.",
+          "minLength": 1,
+          "maxLength": 36
+        },
+        "status": {
+          "$ref": "#/definitions/LongRunningOperationStatus",
+          "description": "The operation status."
+        },
+        "operationType": {
+          "$ref": "#/definitions/DiscoveryOperationType",
+          "description": "The operation type."
+        },
+        "error": {
+          "$ref": "#/definitions/Azure.Core.Foundations.Error",
+          "description": "The operation error."
+        }
+      },
+      "description": "LRO of DiscoveryOperationType type",
+      "required": [
+        "operationId",
+        "status"
+      ]
+    },
+    "DiscoveryOperationType": {
+      "type": "string",
+      "description": "Known discovery operation types.",
+      "enum": [
+        "CompleteDiscovery",
+        "FinalizeFileList",
+        "AbortDiscovery"
+      ],
+      "x-ms-enum": {
+        "name": "DiscoveryOperationType",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "CompleteDiscovery",
+            "value": "CompleteDiscovery",
+            "description": "The process of completing the discovery"
+          },
+          {
+            "name": "FinalizeFileList",
+            "value": "FinalizeFileList",
+            "description": "The process of finalizing the file list of the discovery"
+          },
+          {
+            "name": "AbortDiscovery",
+            "value": "AbortDiscovery",
+            "description": "The process of cancelling the discovery"
+          }
+        ]
+      }
+    },
+    "DiscoverySpecialFile": {
+      "type": "object",
+      "properties": {
+        "clientFileName": {
+          "type": "string",
+          "description": "Client file name."
+        },
+        "fileUploadUri": {
+          "type": "string",
+          "description": "File name on storage."
+        }
+      },
+      "description": "A discovery special file resource.",
+      "required": [
+        "clientFileName",
+        "fileUploadUri"
+      ]
+    },
+    "DiscoveryStatus": {
+      "type": "string",
+      "description": "Known discovery statuses.",
+      "enum": [
+        "Created",
+        "GeneratingSpecialFilesUploadInfo",
+        "GeneratedSpecialFilesUploadInfo",
+        "Completing",
+        "Completed",
+        "Aborting",
+        "Aborted",
+        "Failed"
+      ],
+      "x-ms-enum": {
+        "name": "DiscoveryStatus",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "Created",
+            "value": "Created",
+            "description": "The discovery process has been initiated"
+          },
+          {
+            "name": "GeneratingSpecialFilesUploadInfo",
+            "value": "GeneratingSpecialFilesUploadInfo",
+            "description": "The system is analyzing the discovery manifest file uploaded by the client and generating the upload information for uploading special files."
+          },
+          {
+            "name": "GeneratedSpecialFilesUploadInfo",
+            "value": "GeneratedSpecialFilesUploadInfo",
+            "description": "The system has analyzed the discovery manifest file and generated the upload information for uploading special files."
+          },
+          {
+            "name": "Completing",
+            "value": "Completing",
+            "description": "The system is processing the special files uploaded by the client"
+          },
+          {
+            "name": "Completed",
+            "value": "Completed",
+            "description": "The system has finished the analysis of special files"
+          },
+          {
+            "name": "Aborting",
+            "value": "Aborting",
+            "description": "The system is cancelling the discovery process"
+          },
+          {
+            "name": "Aborted",
+            "value": "Aborted",
+            "description": "The discovery process has been aborted"
+          },
+          {
+            "name": "Failed",
+            "value": "Failed",
+            "description": "The discovery process has been failed"
+          }
+        ]
+      }
+    },
+    "DiscoveryUpload": {
+      "type": "object",
+      "properties": {
+        "uploadId": {
+          "type": "string",
+          "description": "Upload identifier.",
+          "minLength": 1,
+          "maxLength": 36
+        },
+        "manifestDownloadUri": {
+          "type": "string",
+          "description": "SAS signed URI for downloading the manifest file from Azure Storage.\nThe manifest file contains list of all files in the group.\nThis URI expires in 24 hours.",
+          "format": "uri"
+        },
+        "resourceEndpoint": {
+          "type": "string",
+          "description": "The endpoint uri of the owning resource",
+          "format": "uri",
+          "readOnly": true
+        }
+      },
+      "description": "A discovery upload resource.",
+      "required": [
+        "uploadId",
+        "manifestDownloadUri"
+      ]
+    },
+    "FileUploadInformation": {
+      "type": "object",
+      "properties": {
+        "clientFileName": {
+          "type": "string",
+          "description": "File name specified by the client"
+        },
+        "fileUploadUri": {
+          "type": "string",
+          "description": "SAS signed URI for uploading (write) file to Azure Storage.\nThis URI expires in 24 hours.",
+          "format": "uri"
+        }
+      },
+      "description": "File upload information",
+      "required": [
+        "clientFileName",
+        "fileUploadUri"
+      ]
+    },
+    "FindDataStreamByLineageGraphRequestParameters": {
+      "type": "object",
+      "properties": {
+        "processingObjects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProcessingObject"
+          },
+          "x-cadl-name": "ProcessingObject[]",
+          "description": "The processing objects"
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProcessingObjectEdge"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "ProcessingObjectEdge[]",
+          "description": "The processing objects edges"
+        }
+      },
+      "description": "Processing objects graph",
+      "required": [
+        "processingObjects",
+        "edges"
+      ]
+    },
+    "FindDataStreamByLineageRequestParameters": {
+      "type": "object",
+      "properties": {
+        "lineage": {
+          "$ref": "#/definitions/DataStreamLineage",
+          "description": "The data-stream lineage to search for"
+        }
+      },
+      "description": "Data stream search by lineage query parameters",
+      "required": [
+        "lineage"
+      ]
+    },
+    "FindDataStreamByTagsRequestParameters": {
+      "type": "object",
+      "properties": {
+        "tags": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "x-cadl-name": "Record<string>",
+          "description": "The list of tags to search for"
+        }
+      },
+      "description": "Data stream search by tags parameters",
+      "required": [
+        "tags"
+      ]
+    },
+    "LongRunningOperation": {
+      "type": "object",
+      "properties": {
+        "operationId": {
+          "type": "string",
+          "description": "The operation Id.",
+          "minLength": 1,
+          "maxLength": 36
+        },
+        "status": {
+          "$ref": "#/definitions/LongRunningOperationStatus",
+          "description": "The operation status."
+        },
+        "operationType": {
+          "type": "string",
+          "description": "The operation type."
+        },
+        "error": {
+          "$ref": "#/definitions/Azure.Core.Foundations.Error",
+          "description": "The operation error."
+        }
+      },
+      "description": "A long running operation resource.",
+      "required": [
+        "operationId",
+        "status"
+      ]
+    },
+    "LongRunningOperationStatus": {
+      "type": "string",
+      "description": "The async operation status",
+      "enum": [
+        "Created",
+        "InProgress",
+        "Succeeded",
+        "Failed",
+        "Canceled"
+      ],
+      "x-ms-enum": {
+        "name": "LongRunningOperationStatus",
+        "modelAsString": true
+      }
+    },
+    "Measurement": {
+      "type": "object",
+      "properties": {
+        "measurementId": {
+          "type": "string",
+          "description": "The measurement identifier."
+        },
+        "state": {
+          "$ref": "#/definitions/MeasurementState",
+          "description": "The measurement state"
+        },
+        "executionStatus": {
+          "$ref": "#/definitions/MeasurementStateExecutionStatus",
+          "description": "The measurement current status"
+        },
+        "location": {
+          "type": "string",
+          "description": "The storage account location which contains the measurement"
+        },
+        "ingestTimestampUtc": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The UTC time the measurement was ingested at"
+        },
+        "resourceEndpoint": {
+          "type": "string",
+          "description": "The endpoint uri of the owning resource",
+          "format": "uri",
+          "readOnly": true
+        },
+        "externalPackageId": {
+          "type": "string",
+          "description": " The ID of the external package (for example, the disk which contained data) as specified by the customer upon data ingestion"
+        },
+        "uploadId": {
+          "type": "string",
+          "description": "ID of the upload process which caused the creation of this measurement"
+        },
+        "discoveryId": {
+          "type": "string",
+          "description": "ID of the discovery process which caused the creation of this measurement"
+        },
+        "recordTimestampUtc": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The UTC time the measurement was recorded at"
+        }
+      },
+      "description": "A measurement resource",
+      "required": [
+        "measurementId",
+        "location"
+      ]
+    },
+    "MeasurementClassification": {
+      "type": "object",
+      "properties": {
+        "schemaName": {
+          "type": "string",
+          "description": "Classification schema name.",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "classificationObject": {
+          "type": "string",
+          "description": "Classification object model (JSON as string)",
+          "minLength": 2
+        }
+      },
+      "description": "Measurement classification",
+      "required": [
+        "schemaName",
+        "classificationObject"
+      ]
+    },
+    "MeasurementClassificationCreationParameters": {
+      "type": "object",
+      "properties": {
+        "schemaName": {
+          "type": "string",
+          "description": "Classification schema name.",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "classificationObject": {
+          "type": "string",
+          "description": "Classification object model (JSON as string)",
+          "minLength": 2
+        }
+      },
+      "description": "MeasurementClassification resource creation parameters.",
+      "required": [
+        "schemaName",
+        "classificationObject"
+      ]
+    },
+    "MeasurementListRequestParameters": {
+      "type": "object",
+      "properties": {
+        "measurementIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-cadl-name": "string[]",
+          "description": "The measurement IDs list"
+        }
+      },
+      "description": "A wrapper for the List of measurements IDs",
+      "required": [
+        "measurementIds"
+      ]
+    },
+    "MeasurementMetadataBase": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "x-cadl-name": "Record<string>",
+          "description": "The measurement metadata dictionary"
+        }
+      },
+      "description": "Measurement metadata without resource identifier.",
+      "required": [
+        "metadata"
+      ]
+    },
+    "MeasurementMetadataFileInfoBase": {
+      "type": "object",
+      "properties": {
+        "metadataFileName": {
+          "type": "string",
+          "description": "The measurement's metadata file name"
+        },
+        "metadataFileUri": {
+          "type": "string",
+          "description": "SAS signed URI to a temporary file if intent is 'write' or uri to existing file if intent is 'read' and ETag of the existing file in response header.\nThis URI expires in 24 hours.",
+          "format": "uri"
+        }
+      },
+      "description": "Measurement metadata file information model.",
+      "required": [
+        "metadataFileName",
+        "metadataFileUri"
+      ]
+    },
+    "MeasurementMetadataSchemaFileInfoBase": {
+      "type": "object",
+      "properties": {
+        "schemaFileName": {
+          "type": "string",
+          "description": "Measurement schema file name."
+        },
+        "schemaFileUri": {
+          "type": "string",
+          "description": "SAS signed URI for downloading the measurement metadata schema file from Azure Storage.\nThis URI expires in 24 hours.",
+          "format": "uri"
+        }
+      },
+      "description": "Measurement metadata schema file information model.",
+      "required": [
+        "schemaFileUri"
+      ]
+    },
+    "MeasurementProcessingResultsBase": {
+      "type": "object",
+      "properties": {
+        "validationPassed": {
+          "type": "boolean",
+          "description": "The measurement's validity",
+          "readOnly": true
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MeasurementRuleValidationResult"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "MeasurementRuleValidationResult[]",
+          "description": "The measurement's rule validation results",
+          "readOnly": true
+        }
+      },
+      "description": "The measurement's validation result"
+    },
+    "MeasurementRuleValidationResult": {
+      "type": "object",
+      "properties": {
+        "ruleCategory": {
+          "type": "string",
+          "description": "Measurement validation rule category",
+          "readOnly": true
+        },
+        "ruleName": {
+          "type": "string",
+          "description": "Measurement validation rule name",
+          "readOnly": true
+        },
+        "details": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "x-cadl-name": "Record<string>",
+          "description": "Measurement validation rule metadata",
+          "readOnly": true
+        },
+        "validationPassed": {
+          "type": "boolean",
+          "description": "Measurement validation rule evaluation result",
+          "readOnly": true
+        },
+        "validationError": {
+          "type": "string",
+          "description": "Measurement validation error message",
+          "readOnly": true
+        }
+      },
+      "description": "The result of evaluation of measurement validation rule"
+    },
+    "MeasurementState": {
+      "type": "string",
+      "description": "Represents possible measurement states",
+      "enum": [
+        "New",
+        "Operational"
+      ],
+      "x-ms-enum": {
+        "name": "MeasurementState",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "New",
+            "value": "New"
+          },
+          {
+            "name": "Operational",
+            "value": "Operational"
+          }
+        ]
+      }
+    },
+    "MeasurementStateExecutionStatus": {
+      "type": "string",
+      "description": "The measurement's execution status",
+      "enum": [
+        "Running",
+        "Succeeded",
+        "Failed",
+        "Deleting"
+      ],
+      "x-ms-enum": {
+        "name": "MeasurementStateExecutionStatus",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "Running",
+            "value": "Running"
+          },
+          {
+            "name": "Succeeded",
+            "value": "Succeeded"
+          },
+          {
+            "name": "Failed",
+            "value": "Failed"
+          },
+          {
+            "name": "Deleting",
+            "value": "Deleting"
+          }
+        ]
+      }
+    },
+    "Paged": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "measurementId": {
+                "type": "string",
+                "description": "The measurement identifier."
+              },
+              "state": {
+                "$ref": "#/definitions/MeasurementState",
+                "description": "The measurement state"
+              },
+              "executionStatus": {
+                "$ref": "#/definitions/MeasurementStateExecutionStatus",
+                "description": "The measurement current status"
+              },
+              "location": {
+                "type": "string",
+                "description": "The storage account location which contains the measurement"
+              },
+              "ingestTimestampUtc": {
+                "type": "string",
+                "format": "date-time",
+                "description": "The UTC time the measurement was ingested at"
+              },
+              "resourceEndpoint": {
+                "type": "string",
+                "description": "The endpoint uri of the owning resource",
+                "format": "uri",
+                "readOnly": true
+              },
+              "externalPackageId": {
+                "type": "string",
+                "description": " The ID of the external package (for example, the disk which contained data) as specified by the customer upon data ingestion"
+              },
+              "uploadId": {
+                "type": "string",
+                "description": "ID of the upload process which caused the creation of this measurement"
+              },
+              "discoveryId": {
+                "type": "string",
+                "description": "ID of the discovery process which caused the creation of this measurement"
+              },
+              "recordTimestampUtc": {
+                "type": "string",
+                "format": "date-time",
+                "description": "The UTC time the measurement was recorded at"
+              },
+              "metadata": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "x-cadl-name": "Record<string>",
+                "description": "The measurement metadata dictionary"
+              }
+            },
+            "required": [
+              "measurementId",
+              "location",
+              "metadata"
+            ],
+            "x-cadl-name": "(anonymous model)"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "(anonymous model)[]",
+          "description": "The  items on this page"
+        },
+        "nextLink": {
+          "type": "string",
+          "description": "The link to the next page of items",
+          "format": "uri",
+          "x-cadl-name": "Rest.ResourceLocation<(anonymous model)>"
+        }
+      },
+      "description": "Paged collection of  items",
+      "required": [
+        "value"
+      ]
+    },
+    "PagedClassificationSchema": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ClassificationSchema"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "ClassificationSchema[]",
+          "description": "The ClassificationSchema items on this page"
+        },
+        "nextLink": {
+          "type": "string",
+          "description": "The link to the next page of items",
+          "format": "uri",
+          "x-cadl-name": "Rest.ResourceLocation<ClassificationSchema>"
+        }
+      },
+      "description": "Paged collection of ClassificationSchema items",
+      "required": [
+        "value"
+      ]
+    },
+    "PagedDataStream": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataStream"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "DataStream[]",
+          "description": "The DataStream items on this page"
+        },
+        "nextLink": {
+          "type": "string",
+          "description": "The link to the next page of items",
+          "format": "uri",
+          "x-cadl-name": "Rest.ResourceLocation<DataStream>"
+        }
+      },
+      "description": "Paged collection of DataStream items",
+      "required": [
+        "value"
+      ]
+    },
+    "PagedDataStreamClassification": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataStreamClassification"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "DataStreamClassification[]",
+          "description": "The DataStreamClassification items on this page"
+        },
+        "nextLink": {
+          "type": "string",
+          "description": "The link to the next page of items",
+          "format": "uri",
+          "x-cadl-name": "Rest.ResourceLocation<DataStreamClassification>"
+        }
+      },
+      "description": "Paged collection of DataStreamClassification items",
+      "required": [
+        "value"
+      ]
+    },
+    "PagedDataStreamsGraphListResponse": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataStreamsGraphListResponse"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "DataStreamsGraphListResponse[]",
+          "description": "The DataStreamsGraphListResponse items on this page"
+        },
+        "nextLink": {
+          "type": "string",
+          "description": "The link to the next page of items",
+          "format": "uri",
+          "x-cadl-name": "Rest.ResourceLocation<DataStreamsGraphListResponse>"
+        }
+      },
+      "description": "Paged collection of DataStreamsGraphListResponse items",
+      "required": [
+        "value"
+      ]
+    },
+    "PagedDiscoverySpecialFile": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DiscoverySpecialFile"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "DiscoverySpecialFile[]",
+          "description": "The DiscoverySpecialFile items on this page"
+        },
+        "nextLink": {
+          "type": "string",
+          "description": "The link to the next page of items",
+          "format": "uri",
+          "x-cadl-name": "Rest.ResourceLocation<DiscoverySpecialFile>"
+        }
+      },
+      "description": "Paged collection of DiscoverySpecialFile items",
+      "required": [
+        "value"
+      ]
+    },
+    "PagedDiscoveryUpload": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DiscoveryUpload"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "DiscoveryUpload[]",
+          "description": "The DiscoveryUpload items on this page"
+        },
+        "nextLink": {
+          "type": "string",
+          "description": "The link to the next page of items",
+          "format": "uri",
+          "x-cadl-name": "Rest.ResourceLocation<DiscoveryUpload>"
+        }
+      },
+      "description": "Paged collection of DiscoveryUpload items",
+      "required": [
+        "value"
+      ]
+    },
+    "PagedMeasurement": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Measurement"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "Measurement[]",
+          "description": "The Measurement items on this page"
+        },
+        "nextLink": {
+          "type": "string",
+          "description": "The link to the next page of items",
+          "format": "uri",
+          "x-cadl-name": "Rest.ResourceLocation<Measurement>"
+        }
+      },
+      "description": "Paged collection of Measurement items",
+      "required": [
+        "value"
+      ]
+    },
+    "PagedMeasurementClassification": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MeasurementClassification"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "MeasurementClassification[]",
+          "description": "The MeasurementClassification items on this page"
+        },
+        "nextLink": {
+          "type": "string",
+          "description": "The link to the next page of items",
+          "format": "uri",
+          "x-cadl-name": "Rest.ResourceLocation<MeasurementClassification>"
+        }
+      },
+      "description": "Paged collection of MeasurementClassification items",
+      "required": [
+        "value"
+      ]
+    },
+    "PagedUploadDataFile": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UploadDataFile"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "UploadDataFile[]",
+          "description": "The UploadDataFile items on this page"
+        },
+        "nextLink": {
+          "type": "string",
+          "description": "The link to the next page of items",
+          "format": "uri",
+          "x-cadl-name": "Rest.ResourceLocation<UploadDataFile>"
+        }
+      },
+      "description": "Paged collection of UploadDataFile items",
+      "required": [
+        "value"
+      ]
+    },
+    "PagedUploadResultMeasurement": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UploadResultMeasurement"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "UploadResultMeasurement[]",
+          "description": "The UploadResultMeasurement items on this page"
+        },
+        "nextLink": {
+          "type": "string",
+          "description": "The link to the next page of items",
+          "format": "uri",
+          "x-cadl-name": "Rest.ResourceLocation<UploadResultMeasurement>"
+        }
+      },
+      "description": "Paged collection of UploadResultMeasurement items",
+      "required": [
+        "value"
+      ]
+    },
+    "PagedUploadSpecialFile": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UploadSpecialFile"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "UploadSpecialFile[]",
+          "description": "The UploadSpecialFile items on this page"
+        },
+        "nextLink": {
+          "type": "string",
+          "description": "The link to the next page of items",
+          "format": "uri",
+          "x-cadl-name": "Rest.ResourceLocation<UploadSpecialFile>"
+        }
+      },
+      "description": "Paged collection of UploadSpecialFile items",
+      "required": [
+        "value"
+      ]
+    },
+    "ProcessingObject": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "x-cadl-name": "Record<string>",
+          "description": "The processing object metadata"
+        },
+        "id": {
+          "type": "string",
+          "description": "A request unique ID to identify processing objects in graph"
+        }
+      },
+      "description": "Processing object node information in a processing objects Graph",
+      "required": [
+        "metadata",
+        "id"
+      ]
+    },
+    "ProcessingObjectEdge": {
+      "type": "object",
+      "properties": {
+        "sourceId": {
+          "type": "string",
+          "description": "The source processing object ID"
+        },
+        "targetId": {
+          "type": "string",
+          "description": "The target processing object ID"
+        }
+      },
+      "description": "Processing objects edge",
+      "required": [
+        "sourceId",
+        "targetId"
+      ]
+    },
+    "StorageBase": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Storage type.",
+          "enum": [
+            "shardedStorage",
+            "storage"
+          ],
+          "x-ms-enum": {
+            "name": "string",
+            "modelAsString": true,
+            "values": [
+              {
+                "name": "ShardedStorage",
+                "value": "shardedStorage"
+              },
+              {
+                "name": "Storage",
+                "value": "storage"
+              }
+            ]
+          }
+        },
+        "rollingInformation": {
+          "$ref": "#/definitions/DataStreamRollingInformation",
+          "description": "The data stream rolling information"
+        },
+        "manifestUri": {
+          "type": "string",
+          "description": "SAS signed URI for downloading the data stream storage manifest file from Azure Storage.\nThis URI expires in 24 hours.",
+          "format": "uri",
+          "readOnly": true
+        },
+        "dataFolderUri": {
+          "type": "string",
+          "description": "SAS signed URI for accessing the data stream data stored on the Azure Storage.\nThis URI expires in 24 hours.",
+          "format": "uri",
+          "readOnly": true
+        },
+        "shards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataStreamShardAccessInformation"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "DataStreamShardAccessInformation[]",
+          "description": "The list of shards associated with the data stream",
+          "minItems": 1
+        }
+      },
+      "description": "Common data-stream storage model.",
+      "required": [
+        "type",
+        "shards"
+      ]
+    },
+    "StorageCreationParameters": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Storage type.",
+          "enum": [
+            "shardedStorage",
+            "storage"
+          ],
+          "x-ms-enum": {
+            "name": "string",
+            "modelAsString": true,
+            "values": [
+              {
+                "name": "ShardedStorage",
+                "value": "shardedStorage"
+              },
+              {
+                "name": "Storage",
+                "value": "storage"
+              }
+            ]
+          }
+        },
+        "rollingInformation": {
+          "$ref": "#/definitions/DataStreamRollingInformation",
+          "description": "The data stream rolling information"
+        }
+      },
+      "description": "Storage resource creation parameters",
+      "required": [
+        "type"
+      ]
+    },
+    "Upload": {
+      "type": "object",
+      "properties": {
+        "externalPackageId": {
+          "type": "string",
+          "description": "ID of the external package (for example, the disk which contained data) which was used upon the creation of upload.",
+          "x-ms-mutability": [
+            "read",
+            "create"
+          ]
+        },
+        "discoveryId": {
+          "type": "string",
+          "description": "The discovery identifier.",
+          "minLength": 1,
+          "maxLength": 36,
+          "x-ms-mutability": [
+            "read",
+            "create"
+          ]
+        },
+        "manifestUploadUri": {
+          "type": "string",
+          "description": "SAS signed URI for uploading or reading the upload manifest file on Azure Storage.\nNote, if the upload status is 'Created' then the URI is signed with 'Write' permissions, otherwise with 'Read' permission.\nThis URI expires in 24 hours.",
+          "format": "uri",
+          "readOnly": true
+        },
+        "status": {
+          "$ref": "#/definitions/UploadStatus",
+          "description": "The upload state"
+        },
+        "resourceEndpoint": {
+          "type": "string",
+          "description": "The endpoint uri of the owning resource",
+          "format": "uri",
+          "readOnly": true
+        }
+      },
+      "description": "An upload resource."
+    },
+    "UploadCreationParameters": {
+      "type": "object",
+      "properties": {
+        "externalPackageId": {
+          "type": "string",
+          "description": "ID of the external package (for example, the disk which contained data) which was used upon the creation of upload.",
+          "x-ms-mutability": [
+            "read",
+            "create"
+          ]
+        },
+        "discoveryId": {
+          "type": "string",
+          "description": "The discovery identifier.",
+          "minLength": 1,
+          "maxLength": 36,
+          "x-ms-mutability": [
+            "read",
+            "create"
+          ]
+        }
+      },
+      "description": "Upload resource creation parameters"
+    },
+    "UploadDataFile": {
+      "type": "object",
+      "properties": {
+        "clientFileName": {
+          "type": "string",
+          "description": "File name specified by the client"
+        },
+        "fileUploadUri": {
+          "type": "string",
+          "description": "SAS signed URI for uploading (write) file to Azure Storage.\nThis URI expires in 24 hours.",
+          "format": "uri"
+        }
+      },
+      "description": "Data file resource.",
+      "required": [
+        "clientFileName",
+        "fileUploadUri"
+      ]
+    },
+    "UploadDerivedDataStreamFilesRequest": {
+      "type": "object",
+      "properties": {
+        "files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DerivedDataStreamFileInformation"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "DerivedDataStreamFileInformation[]",
+          "description": "The information of the files that are to be uploaded",
+          "x-ms-mutability": [
+            "read",
+            "update"
+          ]
+        }
+      },
+      "description": "Data stream file upload parameters",
+      "required": [
+        "files"
+      ]
+    },
+    "UploadDerivedDataStreamFilesResponse": {
+      "type": "object",
+      "properties": {
+        "files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FileUploadInformation"
+          },
+          "x-ms-identifiers": [],
+          "x-cadl-name": "FileUploadInformation[]",
+          "description": "Per-file upload instructions"
+        }
+      },
+      "description": "Data stream file upload request parameters",
+      "required": [
+        "files"
+      ]
+    },
+    "UploadLroResponse": {
+      "type": "object",
+      "properties": {
+        "operationId": {
+          "type": "string",
+          "description": "The operation Id.",
+          "minLength": 1,
+          "maxLength": 36
+        },
+        "status": {
+          "$ref": "#/definitions/LongRunningOperationStatus",
+          "description": "The operation status."
+        },
+        "operationType": {
+          "$ref": "#/definitions/UploadOperationType",
+          "description": "The operation type."
+        },
+        "error": {
+          "$ref": "#/definitions/Azure.Core.Foundations.Error",
+          "description": "The operation error."
+        }
+      },
+      "description": "LRO of UploadOperationType type",
+      "required": [
+        "operationId",
+        "status"
+      ]
+    },
+    "UploadOperationType": {
+      "type": "string",
+      "description": "Known upload operation types.",
+      "enum": [
+        "FinalizeFileList",
+        "ShardFiles",
+        "CompleteUpload",
+        "AbortUpload"
+      ],
+      "x-ms-enum": {
+        "name": "UploadOperationType",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "FinalizeFileList",
+            "value": "FinalizeFileList",
+            "description": "The process of finalizing the file list of the upload"
+          },
+          {
+            "name": "ShardFiles",
+            "value": "ShardFiles",
+            "description": "The process of sharding the files for the upload"
+          },
+          {
+            "name": "CompleteUpload",
+            "value": "CompleteUpload",
+            "description": "The process of completing the upload"
+          },
+          {
+            "name": "AbortUpload",
+            "value": "AbortUpload",
+            "description": "The process of cancelling the upload"
+          }
+        ]
+      }
+    },
+    "UploadResultMeasurement": {
+      "type": "object",
+      "properties": {
+        "measurementId": {
+          "type": "string",
+          "description": "Measurement identifier."
+        }
+      },
+      "description": "A measurement resource created as result of the upload.",
+      "required": [
+        "measurementId"
+      ]
+    },
+    "UploadSpecialFile": {
+      "type": "object",
+      "properties": {
+        "clientFileName": {
+          "type": "string",
+          "description": "File name specified by the client"
+        },
+        "fileUploadUri": {
+          "type": "string",
+          "description": "SAS signed URI for uploading (write) file to Azure Storage.\nThis URI expires in 24 hours.",
+          "format": "uri"
+        }
+      },
+      "description": "Special file resource.",
+      "required": [
+        "clientFileName",
+        "fileUploadUri"
+      ]
+    },
+    "UploadStatus": {
+      "type": "string",
+      "description": "Known upload types.",
+      "enum": [
+        "Created",
+        "GeneratingSpecialFilesUploadInfo",
+        "GeneratedSpecialFilesUploadInfo",
+        "GeneratingDataFilesUploadInfo",
+        "GeneratedDataFilesUploadInfo",
+        "Completing",
+        "Completed",
+        "Aborting",
+        "Aborted",
+        "Failed"
+      ],
+      "x-ms-enum": {
+        "name": "UploadStatus",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "Created",
+            "value": "Created",
+            "description": "The upload process has been initiated. The client should upload the upload manifest file using the SAS-signed upload URI provided by the system"
+          },
+          {
+            "name": "GeneratingSpecialFilesUploadInfo",
+            "value": "GeneratingSpecialFilesUploadInfo",
+            "description": "The system is analyzing the upload manifest file uploaded by the client and generating the upload information for uploading special files."
+          },
+          {
+            "name": "GeneratedSpecialFilesUploadInfo",
+            "value": "GeneratedSpecialFilesUploadInfo",
+            "description": "The system has analyzed the upload manifest file and generated the upload information for uploading special files."
+          },
+          {
+            "name": "GeneratingDataFilesUploadInfo",
+            "value": "GeneratingDataFilesUploadInfo",
+            "description": "The system is sharding the files and generating the upload information for uploading data files."
+          },
+          {
+            "name": "GeneratedDataFilesUploadInfo",
+            "value": "GeneratedDataFilesUploadInfo",
+            "description": "The system has sharded the files and generated the upload information for uploading data files. The client should upload the measurement files using the SAS-signed upload URIs provided by the system."
+          },
+          {
+            "name": "Completing",
+            "value": "Completing",
+            "description": "The system is completing the upload process (creating measurements etc.)"
+          },
+          {
+            "name": "Completed",
+            "value": "Completed",
+            "description": "The system completed the upload process"
+          },
+          {
+            "name": "Aborting",
+            "value": "Aborting",
+            "description": "The system is cancelling the upload process"
+          },
+          {
+            "name": "Aborted",
+            "value": "Aborted",
+            "description": "The system cancelled the upload process"
+          },
+          {
+            "name": "Failed",
+            "value": "Failed",
+            "description": "The system marked the upload process as failed"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "Azure.Core.FilterQueryParameter": {
+      "name": "filter",
+      "in": "query",
+      "required": false,
+      "description": "Filter the result list using the given expression.",
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    },
+    "Azure.Core.Foundations.ApiVersionParameter": {
+      "name": "api-version",
+      "in": "query",
+      "required": true,
+      "description": "The API version to use for this operation.",
+      "minLength": 1,
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    },
+    "IntentQueryParam": {
+      "name": "intent",
+      "in": "query",
+      "required": false,
+      "description": "Supported intents to be used as query parameters to obtain storage URI signed with appropriate SAS token.",
+      "type": "string",
+      "enum": [
+        "read",
+        "write"
+      ],
+      "x-ms-enum": {
+        "name": "Intent",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "Read",
+            "value": "read"
+          },
+          {
+            "name": "Write",
+            "value": "write"
+          }
+        ]
+      },
+      "x-ms-parameter-location": "method"
+    },
+    "LongRunningOperationIdHeader": {
+      "name": "operation-id",
+      "in": "header",
+      "required": false,
+      "description": "The long running operation identifier. Operation-Id should be valid UUID string.",
+      "format": "uuid",
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    }
+  }
+}
