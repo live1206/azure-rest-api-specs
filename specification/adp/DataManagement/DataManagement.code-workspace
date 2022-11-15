@@ -1,0 +1,19 @@
+{
+	"folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "../Adp.Shared"
+    },
+    {
+      "path": "../Adp.Internal.Shared"
+    },
+    {
+      "path": "../src"
+    }
+  ],
+  "settings": {
+    "powershell.cwd": "c:\\Users\\igmakhli\\source\\repos\\ADP\\src\\core\\apispecs\\cadl\\specification\\adp\\DataManagement"
+  }
+}

@@ -1,0 +1,5 @@
+# Re-run vsts-npm-auth -config .npmrc if ADO PAT has expired
+# See https://dev.azure.com/msazure/One/_artifacts/feed/One_PublicPackages/connect/npm
+
+registry=https://pkgs.dev.azure.com/msazure/ADP/_packaging/ADP/npm/registry/ 
+always-auth=true

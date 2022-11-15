@@ -1,0 +1,15 @@
+import "@cadl-lang/rest";
+import "@cadl-lang/openapi";
+import "@azure-tools/cadl-autorest";
+import "@azure-tools/cadl-azure-core";
+
+import "../Adp.Internal.Shared/main.cadl";
+
+using Cadl.Http;
+
+@service({
+  title: "Autonomous Development Platform [Internal]",
+  version: "2022-11-30-internal",
+})
+@useAuth(OAuth2Auth<[ImplicitAuthorizationFlow]>)
+namespace Adp;

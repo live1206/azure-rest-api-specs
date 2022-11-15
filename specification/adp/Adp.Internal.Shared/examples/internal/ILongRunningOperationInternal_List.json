@@ -1,0 +1,27 @@
+{
+  "operationId": "ILongRunningOperationInternal_List",
+  "title": "Lists the existing LROs.",
+  "parameters": {
+    "api-version": "2022-11-30-internal"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "value": [
+          {
+            "operationId": "00000000-0000-0000-0000-000000000123",
+            "status": "Created",
+            "operationType": "string",
+            "error": {
+              "code": "string",
+              "message": "string",
+              "target": "string",
+              "details": []
+            }
+          }
+        ],
+        "nextLink": "https://workspace/path-to-collection?continuationToken=123"
+      }
+    }
+  }
+}

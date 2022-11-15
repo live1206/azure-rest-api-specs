@@ -1,0 +1,32 @@
+{
+  "operationId": "IDataStreamClassification_List",
+  "title": "Lists the classifications assigned to the data-stream.",
+  "parameters": {
+    "measurementId": "00000000-0000-0000-0000-000000000003",
+    "dataStreamId": "00000000-0000-0000-0000-000000000005",
+    "api-version": "2022-11-30-preview"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "value": [
+          {
+            "schemaName": "some-schema",
+            "classificationObject": "{'some': 'json'}"
+          }
+        ],
+        "nextLink": "https://microsoft.com/a"
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

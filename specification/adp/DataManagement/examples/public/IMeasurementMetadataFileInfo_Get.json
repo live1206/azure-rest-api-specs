@@ -1,0 +1,27 @@
+{
+  "operationId": "IMeasurementMetadataFileInfo_Get",
+  "title": "Returns the measurement metadata file information.",
+  "parameters": {
+    "api-version": "2022-11-30-preview",
+    "measurementId": "00000000-0000-0000-0000-000000000003",
+    "intent": "write"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "metadataFileName": "metadata.json",
+        "metadataFileUri": "https://some-storage-account/path/metadata.json"
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "name": "@cadl-api-spec/adp-shared",
+  "version": "1.0",
+  "description": "ADP Shared API",
+  "main": "index.js",
+  "cadlMain": "main.cadl",
+  "config": {
+    "verbose": " -Verbose",
+    "OutputFile": "preview/2022-11-30-preview/adp-shared-api.json",
+    "ClientPath": "../../../../../clients/Shared/Clients.Shared.vDraftCompliant",
+    "ClientNamespace": "Microsoft.Azure.Adp.Shared.Clients.vDraftCompliant",
+    "PublishOutputFileName": "../../../../draftcompliant/apispec.core.shared.2022-11-30-draftcompliant.json",
+    "PathToAzureApiReviewRepository": "C:/Users/igmakhli/source/repos/imakhlin/azure-rest-api-specs-pr/specification/adp/data-plane/shared/preview",
+    "AutorestManifestFile": "../src/scripts/autorest.md"
+  },
+  "scripts": {
+    "build": "pwsh ../src/scripts/compile.ps1 -IsPublicApi -InputCadl ./main.cadl -OutputPath ./generated/cadl-autorest/public/Shared -OutputFile %npm_package_config_OutputFile%",
+    "publish": "pwsh ../src/scripts/publish.ps1 %npm_package_config_verbose% -SourcePath ./generated/cadl-autorest/public/Shared/%npm_package_config_OutputFile% -OutputPath %npm_package_config_PublishOutputFileName%",
+    "generateAutorestClient": "pwsh ../src/scripts/generate-autorest-client.ps1 -InputOpenApiSpecFile ./generated/cadl-autorest/public/Shared/%npm_package_config_OutputFile% -OutputPath %npm_package_configClientPath%/generated -Namespace %npm_package_configClientNamespace% -AutorestManifestFile %npm_package_config_AutorestManifestFile%",
+    "validate": "pwsh ../src/scripts/validate-spec.ps1 -OpenApiSpecFile ./generated/cadl-autorest/public/Shared/%npm_package_config_OutputFile% && pwsh ../src/scripts/validate-examples.ps1 -OpenApiSpecFile ./generated/cadl-autorest/public/Shared/%npm_package_config_OutputFile%",
+    "format": "npx cadl format --pretty ./**/*.cadl"
+  },
+  "keywords": [],
+  "author": "igmakhli@microsoft.com",
+  "license": "MIT",
+  "dependencies": {
+    "@azure-tools/cadl-autorest": "latest",
+    "@azure-tools/cadl-azure-core": "latest",
+    "@cadl-lang/openapi": "latest",
+    "@cadl-lang/openapi3": "latest",
+    "@cadl-lang/rest": "latest",
+    "@cadl-lang/versioning": "latest"
+  },
+  "devDependencies": {
+    "@cadl-lang/compiler": "latest",
+    "avocado": "^1.0.0",
+    "prettier": "^2.7.1"
+  }
+}

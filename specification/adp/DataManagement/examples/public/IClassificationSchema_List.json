@@ -1,0 +1,38 @@
+{
+  "operationId": "IClassificationSchema_List",
+  "title": "List classification schemas. Supports paging.",
+  "parameters": {
+    "api-version": "2022-11-30-preview"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "value": [
+          {
+            "name": "classification_schema_1",
+            "schemaDefinition": "{\"description\": \"Classification schema definition 1 (JSON schema as string).\"}"
+          },
+          {
+            "name": "classification_schema_2",
+            "schemaDefinition": "{\"description\": \"Classification schema definition 2 (JSON schema as string).\"}"
+          },
+          {
+            "name": "classification_schema_3",
+            "schemaDefinition": "{\"description\": \"Classification schema definition 3 (JSON schema as string).\"}"
+          }
+        ],
+        "nextLink": "https://workspace/path-to-collection?continuationToken=123"
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

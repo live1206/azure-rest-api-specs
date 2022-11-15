@@ -1,0 +1,15 @@
+{
+  "operationId": "ILongRunningOperationInternal_Complete",
+  "title": "Complete a long running operation.",
+  "parameters": {
+    "operationId": "00000000-0000-0000-0000-000000000123",
+    "api-version": "2022-11-30-internal",
+    "body": {
+      "httpStatusCode": "OK",
+      "resultLocation": "https://workspace-name-hash.workspaces.region.adp.azure.com/path-to-the-resource/resource-id?api-version=2022-11-30-preview"
+    }
+  },
+  "responses": {
+    "204": {}
+  }
+}

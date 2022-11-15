@@ -1,0 +1,27 @@
+{
+  "operationId": "IMeasurementClassification_Get",
+  "title": "Get measurement classification by schema name.",
+  "parameters": {
+    "measurementId": "00000000-0000-0000-0000-000000000003",
+    "schemaName": "unique_schema_name",
+    "api-version": "2022-11-30-preview"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "schemaName": "string",
+        "classificationObject": "string"
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

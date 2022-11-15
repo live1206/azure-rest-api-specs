@@ -1,0 +1,4 @@
+emitters:
+  "@azure-tools/cadl-autorest":
+    output-file: adp-data-management-api.json
+    azure-resource-provider-folder: ../../resource-manager/preview/2022-11-30-preview

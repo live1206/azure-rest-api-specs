@@ -1,0 +1,44 @@
+using Cadl.Http;
+using Cadl.Rest;
+using Azure.Core;
+using Azure.Core.Foundations.Extensions;
+
+namespace Adp;
+
+@client(SharedInternalClients.LongRunningOperationsClient)
+@tag("Long Running Operation [Internal]")
+interface ILongRunningOperationInternal {
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom operation."
+  @doc("Creates a new LRO or replaces an existing one.")
+  create is CustomResourceCreateOrReplace<
+    LongRunningOperation,
+    CustomBodyWrapper<LongRunningOperationCreateParams>
+  >;
+
+  @doc("Deletes an LRO.")
+  delete is ResourceDelete<LongRunningOperation>;
+
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom operations to avoid inlining the models."
+  @doc("Lists the existing LROs.")
+  list is CustomResourceList<LongRunningOperation>;
+
+  @doc("Complete a long running operation.")
+  start is ResourceAction<LongRunningOperation, {}, NoContentResponse>;
+
+  @doc("Complete a long running operation.")
+  complete is ResourceAction<
+    LongRunningOperation,
+    CustomBodyWrapper<CompleteLongRunningOperationRequestParams>,
+    NoContentResponse
+  >;
+
+  @doc("Complete a long running operation.")
+  fail is ResourceAction<
+    LongRunningOperation,
+    CustomBodyWrapper<FailLongRunningOperationRequestParams>,
+    NoContentResponse
+  >;
+
+  @doc("Complete a long running operation.")
+  cancel is ResourceAction<LongRunningOperation, {}, NoContentResponse>;
+}

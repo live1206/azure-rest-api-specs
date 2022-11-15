@@ -1,0 +1,26 @@
+{
+  "operationId": "IMeasurement_ProvideMetadataFileDownloadInformation",
+  "title": "Returns a SAS-signed URI for downloading a metadata file for the measurement.\nThis URI expires in 24 hours.",
+  "parameters": {
+    "measurementId": "00000000-0000-0000-0000-000000000003",
+    "api-version": "2022-11-30-preview"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "resourceEndpoint": "https://some-workspace/some-resource",
+        "fileDownloadUri": "https://microsoft.com/a"
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}
