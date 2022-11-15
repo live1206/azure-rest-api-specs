@@ -1,7 +1,7 @@
 {
   "$schema": "https://openapistorageprod.blob.core.windows.net/sdkautomation/prod/schemas/specificationRepositoryConfiguration.schema.json",
   "pipelineName": "automation - sdk - test",
-    "sdkRepositoryMappings": {
+  "sdkRepositoryMappings": {
     "azure-sdk-for-go": {
       "integrationRepository": "azure-sdk/azure-sdk-for-go",
       "mainRepository": "Azure/azure-sdk-for-go",
@@ -44,44 +44,35 @@
         },
         "azure-sdk-for-go": {
           "mainRepository": "openapi-env-test/azure-sdk-for-go",
-          "mainBranch": "main"
-        },
-        "azure-sdk-for-go-track2": {
-          "integrationRepository": "openapi-env-test/azure-sdk-for-go",
-          "mainRepository": "openapi-env-test/azure-sdk-for-go",
-          "mainBranch": "track2_automation_and_release",
-          "configFilePath": "eng/swagger_to_sdk_config.json"
-        },
-        "azure-sdk-for-python-track2": {
-          "mainRepository": "openapi-env-test/azure-sdk-for-python",
-          "mainBranch": "python-track2-test"
-        },
-        "azure-sdk-for-net-track2": {
-          "mainRepository": "openapi-env-test/azure-sdk-for-net",
-          "mainBranch": "yc/dpgauto",
-          "configFilePath": "eng/swagger_to_sdk_config.json"
         },
         "azure-sdk-for-net": {
           "mainRepository": "openapi-env-test/azure-sdk-for-net"
         },
-        "azure-sdk-for-python": {	
-          "mainRepository": "openapi-env-test/azure-sdk-for-python",	
-          "mainBranch": "dpg-readme"	
+        "azure-sdk-for-python": {
+          "mainRepository": "openapi-env-test/azure-sdk-for-python",
+          "mainBranch": "dw-dpg-test"
         },
         "azure-sdk-for-js": {
           "mainRepository": "openapi-env-test/azure-sdk-for-js",
-          "mainBranch": "js-dpg"
+          "mainBranch": "main"
         },
         "azure-sdk-for-java": {
           "mainRepository": "openapi-env-test/azure-sdk-for-java",
-          "mainBranch": "feature/java-dpg",
+          "mainBranch": "feature/java-cadl",
           "configFilePath": "eng/mgmt/automation/swagger_to_sdk_config.json"
-
         },
         "azure-cli-extensions": {
           "mainRepository": "openapi-env-test/azure-cli-extensions"
         }
       }
     }
+  },
+  "cadlEmitterToSdkRepositoryMapping": {
+    "@azure-tools/cadl-python": "azure-sdk-for-python",
+    "@azure-tools/cadl-java": "azure-sdk-for-java",
+    "@azure-tools/cadl-csharp": "azure-sdk-for-net-track2",
+    "@azure-tools/cadl-typescript": "azure-sdk-for-js",
+    "dw-cadl-typescript": "azure-sdk-for-js",
+    "yyc-cadl-python": "azure-sdk-for-python"
   }
 }

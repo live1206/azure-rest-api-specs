@@ -7,6 +7,14 @@
       - ruowan
       - raych1
       - xiaoxuqi-ms
+
+- rule:
+    paths: "specification/sql/**"
+    reviewers:
+      - raych1
+      - xiaoxuqi-ms
+    branches:
+      - dev-sql-
       
 - rule:
     paths:
