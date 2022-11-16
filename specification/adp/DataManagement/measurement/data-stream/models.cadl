@@ -1,0 +1,281 @@
+using Cadl.Http;
+using Cadl.Rest;
+
+enum DataStreamClients {
+  DataStreamClient,
+  DataStreamStorageClient,
+}
+
+@doc("A data-stream resource")
+@resource("dataStreams")
+@parentResource(Measurement)
+model DataStream {
+  @doc("The data stream identifier")
+  @key
+  dataStreamId: string;
+  ...CommonResourceEndpoint;
+
+  @doc("The data stream lineage information")
+  @visibility("create")
+  lineage: DataStreamLineage;
+
+  @doc("The data stream list of tags")
+  @visibility("create")
+  tags: Record<string>;
+
+  @doc("The data stream status")
+  @visibility("update")
+  status: DataStreamStatus;
+
+  @doc("The data stream type")
+  @visibility("update")
+  type: DataStreamType;
+}
+
+@doc("DataStream resource creation parameters")
+@withVisibility("create")
+@withoutOmittedProperties("dataStreamId")
+model DataStreamCreationParameters {
+  ...DataStream;
+}
+
+@doc("A wrapper for the list of data streams")
+model DataStreamListResponse {
+  @doc("Collection of the data stream's channels")
+  @visibility("read")
+  dataStreams: DataStream[];
+}
+
+@doc("Graph of matched data streams by processing objects graph")
+model DataStreamsGraph {
+  @doc("Dictionary of data stream by processing object id")
+  dataStreamByProcessingObjectId: Record<DataStream>;
+}
+
+@doc("List of graphs of matched data streams by processing objects graph")
+model DataStreamsGraphListResponse {
+  @doc("List of data streams matched graphs")
+  dataStreamsGraphs: DataStreamsGraph[];
+}
+
+@doc("Data stream search by type query parameters")
+model FindDataStreamByTypeRequestParameters {
+  @doc("The data-stream type to search for")
+  type: DataStreamType;
+}
+
+@doc("Data stream search by lineage query parameters")
+model FindDataStreamByLineageRequestParameters {
+  @doc("The data-stream lineage to search for")
+  lineage: DataStreamLineage;
+}
+
+@doc("Data stream search by tags parameters")
+model FindDataStreamByTagsRequestParameters {
+  @doc("The list of tags to search for")
+  tags: Record<string>;
+}
+
+@doc("Data stream file upload parameters")
+model UploadDerivedDataStreamFilesRequest {
+  @doc("The information of the files that are to be uploaded")
+  @visibility("read", "write")
+  files: DerivedDataStreamFileInformation[];
+}
+
+@doc("Data stream file upload request parameters")
+model UploadDerivedDataStreamFilesResponse {
+  @doc("Per-file upload instructions")
+  files: FileUploadInformation[];
+}
+
+@doc("Data stream lineage information")
+model DataStreamLineage {
+  @doc("The data stream's metadata")
+  producerMetadata: Record<string>;
+
+  @doc("The data stream's inputs")
+  inputs: DataStreamInput[];
+}
+
+@doc("Data-stream input definition.")
+model DataStreamInput {
+  @doc("The source data-stream identifier")
+  sourceDataStreamId: string;
+
+  @doc("Collection of the data stream's channels")
+  channels?: string[];
+}
+
+@doc("Processing objects graph")
+model FindDataStreamByLineageGraphRequestParameters {
+  @doc("The processing objects")
+  processingObjects: ProcessingObject[];
+
+  @doc("The processing objects edges")
+  edges: ProcessingObjectEdge[];
+}
+
+@doc("Processing object node information in a processing objects Graph")
+model ProcessingObject {
+  @doc("The processing object metadata")
+  metadata: Record<string>;
+
+  @doc("A request unique ID to identify processing objects in graph")
+  id: string;
+}
+
+@doc("Processing objects edge")
+model ProcessingObjectEdge {
+  @doc("The source processing object ID")
+  sourceId: string;
+
+  @doc("The target processing object ID")
+  targetId: string;
+}
+
+@doc("Data stream rolling information")
+model DataStreamRollingInformation {
+  @doc("Data stream rolling strategy")
+  strategy: DataStreamRollingStrategy;
+
+  @doc("Data stream rolling unit")
+  unit: DataStreamRollingUnit;
+
+  @doc("Data stream rolling value")
+  @minValue(0)
+  value: int32;
+}
+
+@doc("Data stream rolling strategy")
+@knownValues(DataStreamRollingStrategyKV)
+model DataStreamRollingStrategy is string;
+enum DataStreamRollingStrategyKV {
+  Time: "Time",
+  Size: "Size",
+}
+
+@doc("Data stream rolling unit")
+@knownValues(DataStreamRollingUnitKV)
+model DataStreamRollingUnit is string;
+enum DataStreamRollingUnitKV {
+  Seconds: "Seconds",
+  Minutes: "Minutes",
+  kB: "kB",
+  MB: "MB",
+  GB: "GB",
+}
+
+@doc("The access information to the data stream shard")
+model DataStreamShardAccessInformation {
+  @doc("""
+SAS signed URI for reading the shard folder content from Azure Storage.
+This URI expires in 24 hours.
+""")
+  @format("uri")
+  shardFolderUri: string;
+
+  @doc("""
+SAS signed URI for reading the shard manifest file from Azure Storage.
+This URI expires in 24 hours.
+""")
+  @format("uri")
+  manifestFileUri: string;
+}
+
+@doc("Data stream state")
+@knownValues(DataStreamStatusKV)
+model DataStreamStatus is string;
+enum DataStreamStatusKV {
+  Created: "Created",
+  Completing: "Completing",
+  Completed: "Completed",
+  Failed: "Failed",
+  Failing: "Failing",
+  Clearing: "Clearing",
+  Cleared: "Cleared",
+}
+
+@doc("Data stream type")
+@knownValues(DataStreamTypeKV)
+model DataStreamType is string;
+enum DataStreamTypeKV {
+  System: "System",
+  Raw: "Raw",
+  Derived: "Derived",
+}
+
+@doc("Data stream shards list and relevant metadata")
+model DataStreamShardsResponse {
+  @doc("The list of shards associated with the data stream")
+  shards: DataStreamShardAccessInformation[];
+}
+
+@doc("Information about a file")
+model DerivedDataStreamFileInformation {
+  @doc("The file name as provided by the client")
+  @visibility("read", "write")
+  clientFileName: string;
+
+  @doc("The file recording UTC timestamp as provided by the client")
+  @visibility("read", "write")
+  recordingTimestampUtc?: zonedDateTime;
+}
+
+enum StorageTypes {
+  ShardedStorage: "shardedStorage",
+  Storage: "storage",
+}
+
+@doc("Common data-stream storage model.")
+model StorageBase {
+  @doc("Storage type.")
+  @knownValues(StorageTypes)
+  type: string;
+
+  @doc("The data stream rolling information")
+  @visibility("create")
+  rollingInformation?: DataStreamRollingInformation;
+
+  @doc("""
+  SAS signed URI for downloading the data stream storage manifest file from Azure Storage.
+  This URI expires in 24 hours.
+  """)
+  @format("uri")
+  @visibility("read")
+  manifestUri?: string;
+
+  @doc("""
+  SAS signed URI for accessing the data stream data stored on the Azure Storage.
+  This URI expires in 24 hours.
+  """)
+  @format("uri")
+  @visibility("read")
+  dataFolderUri?: string;
+
+  @doc("The list of shards associated with the data stream")
+  @visibility("update")
+  @minItems(1)
+  shards: DataStreamShardAccessInformation[];
+}
+
+@doc("A data-stream not sharded storage resource")
+@resource("storage")
+@parentResource(DataStream)
+model Storage {
+  @doc("""
+  The data stream storage identifier.
+  Not in use as this is a singleton resource.
+  TODO: check with CADL team how to define a singleton child resource without key.
+  """)
+  @key
+  id: string;
+  ...StorageBase;
+}
+
+@doc("Storage resource creation parameters")
+@withoutOmittedProperties("id")
+@withVisibility("create")
+model StorageCreationParameters {
+  ...Storage;
+}

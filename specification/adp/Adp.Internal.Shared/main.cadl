@@ -1,0 +1,6 @@
+import "../Adp.Shared/models.cadl";
+import "../Adp.Shared/azure-core-foundations-extensions.cadl";
+import "./models.cadl";
+import "./operations.cadl";
+
+namespace Adp;

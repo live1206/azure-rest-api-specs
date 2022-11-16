@@ -1,0 +1,6 @@
+import "./models.cadl";
+import "./operations.cadl";
+import "./azure-core-foundations-extensions.cadl";
+import "./classification";
+
+namespace Adp;

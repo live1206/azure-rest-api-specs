@@ -1,0 +1,11 @@
+{
+  "operationId": "ILongRunningOperationInternal_Delete",
+  "title": "Deletes an LRO.",
+  "parameters": {
+    "operationId": "00000000-0000-0000-0000-000000000123",
+    "api-version": "2022-11-30-internal"
+  },
+  "responses": {
+    "204": {}
+  }
+}

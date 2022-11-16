@@ -1,0 +1,3 @@
+import "../../Adp.Shared/main.cadl";
+import "./discovery";
+import "./upload";

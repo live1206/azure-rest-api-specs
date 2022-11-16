@@ -1,0 +1,47 @@
+{
+  "operationId": "IDataStream_Get",
+  "title": "Get data-stream by identifier.",
+  "parameters": {
+    "measurementId": "00000000-0000-0000-0000-000000000003",
+    "dataStreamId": "00000000-0000-0000-0000-000000000005",
+    "api-version": "2022-11-30-preview"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "dataStreamId": "00000000-0000-0000-0000-000000000005",
+        "resourceEndpoint": "https://some-workspace/some-resource",
+        "lineage": {
+          "producerMetadata": {
+            "some-key": "some-value"
+          },
+          "inputs": [
+            {
+              "sourceDataStreamId": "00000000-0000-0000-0000-000000000004",
+              "channels": [
+                "audio"
+              ]
+            }
+          ]
+        },
+        "tags": {
+          "a": "a",
+          "b": "b",
+          "c": "c"
+        },
+        "status": "Created",
+        "type": "System"
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

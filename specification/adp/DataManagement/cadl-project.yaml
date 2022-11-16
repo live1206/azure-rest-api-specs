@@ -1,0 +1,5 @@
+emitters:
+  "@azure-tools/cadl-autorest":
+    output-file: adp-data-management-api.json
+    examples-directory: ./examples
+    azure-resource-provider-folder: specification/adp/data-plane

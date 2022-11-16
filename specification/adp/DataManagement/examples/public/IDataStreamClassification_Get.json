@@ -1,0 +1,28 @@
+{
+  "operationId": "IDataStreamClassification_Get",
+  "title": "Get classification by schema name.",
+  "parameters": {
+    "measurementId": "00000000-0000-0000-0000-000000000003",
+    "dataStreamId": "00000000-0000-0000-0000-000000000005",
+    "schemaName": "some-schema",
+    "api-version": "2022-11-30-preview"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "schemaName": "some-schema",
+        "classificationObject": "{'some': 'json'}"
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

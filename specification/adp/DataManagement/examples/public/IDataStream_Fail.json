@@ -1,0 +1,68 @@
+{
+  "operationId": "IDataStream_Fail",
+  "title": "Marks a data stream as failed",
+  "parameters": {
+    "measurementId": "00000000-0000-0000-0000-000000000003",
+    "dataStreamId": "00000000-0000-0000-0000-000000000005",
+    "api-version": "2022-11-30-preview",
+    "operation-id": "00000000-0000-0000-0000-000000000123"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "dataStreamId": "00000000-0000-0000-0000-000000000005",
+        "resourceEndpoint": "https://some-workspace/some-resource",
+        "lineage": {
+          "producerMetadata": {
+            "some-key": "some-value"
+          },
+          "inputs": [
+            {
+              "sourceDataStreamId": "00000000-0000-0000-0000-000000000004",
+              "channels": [
+                "audio"
+              ]
+            }
+          ]
+        },
+        "tags": {
+          "a": "a",
+          "b": "b",
+          "c": "c"
+        },
+        "status": "Failed",
+        "type": "Raw"
+      }
+    },
+    "202": {
+      "headers": {
+        "location": "https://workspace-name-hash.workspaces.region.adp.azure.com/operations/00000000-0000-0000-0000-000000000123/result?api-version=2022-11-30-preview",
+        "operation-location": "https://workspace-name-hash.workspaces.region.adp.azure.com/operations/00000000-0000-0000-0000-000000000123?api-version=2022-11-30-preview"
+      },
+      "body": {
+        "operationId": "string",
+        "status": "Created",
+        "operationType": "string",
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": [],
+          "innererror": {
+            "code": "kc"
+          }
+        }
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

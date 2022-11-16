@@ -1,0 +1,26 @@
+{
+  "operationId": "IClassificationSchema_Get",
+  "title": "Get classification schema definition by schema name.",
+  "parameters": {
+    "api-version": "2022-11-30-preview",
+    "name": "classification_schema_1"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "name": "classification_schema_1",
+        "schemaDefinition": "{\"description\": \"Classification schema definition (JSON schema as string).\"}"
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

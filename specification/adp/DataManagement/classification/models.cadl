@@ -1,0 +1,40 @@
+import "@cadl-lang/rest";
+import "@cadl-lang/openapi";
+import "@azure-tools/cadl-autorest";
+import "@azure-tools/cadl-azure-core";
+
+using Cadl.Http;
+using Cadl.Rest;
+using Azure.Core;
+
+enum ClassificationSchemaClients {
+  ClassificationSchemaClient,
+}
+
+@doc("Classification schema identifier.")
+model ClassificationSchemaIdentifier {
+  @doc("Classification schema identifier.")
+  @key
+  @minLength(1)
+  @maxLength(256)
+  name: string;
+}
+
+@doc("Classification schema resource model.")
+@resource("classificationSchemas")
+model ClassificationSchema {
+  ...ClassificationSchemaIdentifier;
+
+  @doc("Classification schema definition (JSON schema as string).")
+  @visibility("create")
+  @minLength(2)
+  schemaDefinition: string;
+  ...EtagResponseEnvelope;
+}
+
+@doc("{name} resource creation parameters.", ClassificationSchema)
+@withVisibility("create")
+@withoutOmittedProperties("name")
+model ClassificationSchemaCreationParameters {
+  ...ClassificationSchema;
+}

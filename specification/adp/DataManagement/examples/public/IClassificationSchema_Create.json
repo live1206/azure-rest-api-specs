@@ -1,0 +1,45 @@
+{
+  "operationId": "IClassificationSchema_Create",
+  "title": "Create a classification schema resource using long-running operation (LRO).",
+  "parameters": {
+    "api-version": "2022-11-30-preview",
+    "operationId": "client-operation-id",
+    "name": "unique_schema_name",
+    "schemaDefinition": "{\"description\": \"Classification schema definition (JSON schema as string).\"}"
+  },
+  "responses": {
+    "200": {
+      "body": {
+        "name": "unique_schema_name",
+        "schemaDefinition": "{\"description\": \"Classification schema definition (JSON schema as string).\"}"
+      }
+    },
+    "202": {
+      "headers": {
+        "Location": "https://workspace-name-hash.workspaces.region.adp.azure.com/operations/client-operation-id/result?api-version=2022-11-30-preview",
+        "Operation-Location": "https://workspace-name-hash.workspaces.region.adp.azure.com/operations/client-operation-id?api-version=2022-11-30-preview"
+      },
+      "body": {
+        "operationId": "string",
+        "status": "Created",
+        "operationType": "string",
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    },
+    "default": {
+      "body": {
+        "error": {
+          "code": "string",
+          "message": "string",
+          "target": "string",
+          "details": []
+        }
+      }
+    }
+  }
+}

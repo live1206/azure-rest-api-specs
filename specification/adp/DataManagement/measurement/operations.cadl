@@ -1,0 +1,118 @@
+using Cadl.Http;
+using Cadl.Rest;
+using Azure.Core;
+using Azure.Core.Foundations.Extensions;
+using OpenAPI;
+using Autorest;
+
+namespace Adp;
+
+@client(Clients.MeasurementClient)
+@tag("Measurement")
+interface IMeasurement {
+  @doc("Get measurement by ID.")
+  get is ResourceRead<Measurement>;
+
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom operation."
+  @doc("Deletes the measurement.")
+  @extension("x-ms-long-running-operation", true)
+  @asyncOperationOptions("location")
+  @pollingOperation(LongRunningOperationStatusLocation)
+  delete is CustomLongRunningResourceDelete<Measurement>;
+
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom operation."
+  @doc("Changes measurement state.")
+  @extension("x-ms-long-running-operation", true)
+  @asyncOperationOptions("location")
+  @pollingOperation(LongRunningOperationStatusLocation)
+  changeState is CustomLongRunningResourceActionWithParameters<
+    Measurement,
+    CustomBodyWrapper<ChangeMeasurementStateRequestParameters>
+  >;
+
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom operation."
+  @doc("Lists the measurements in a workspace.")
+  list is CustomResourceList<Measurement & MeasurementMetadataBase>;
+
+  @doc("Lists the measurements in a workspace that are in the given measurement IDs list.")
+  @deprecated("Use list measurements API with filter instead")
+  findByIds is ResourceCollectionAction<
+    Measurement,
+    CustomBodyWrapper<MeasurementListRequestParameters>,
+    Page<Measurement>
+  >;
+
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom operation."
+  @doc("Initiates process of processing the measurement.")
+  @extension("x-ms-long-running-operation", true)
+  @asyncOperationOptions("location")
+  @pollingOperation(LongRunningOperationStatusLocation)
+  process is CustomLongRunningResourceAction<Measurement>;
+}
+
+@client(Clients.MeasurementMetadataClient)
+@tag("Measurement")
+interface IMeasurementMetadata {
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom resource list operation."
+  @doc("Returns the measurement metadata.")
+  @segment("metadata")
+  get is CustomSingletonResourceRead<
+    MeasurementMetadata,
+    {},
+    MeasurementMetadataBase
+  >;
+}
+
+@client(Clients.MeasurementProcessingResultsClient)
+@tag("Measurement")
+interface IMeasurementProcessingResults {
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom resource list operation."
+  @doc("Returns the measurement processing result.")
+  @segment("processingResults")
+  get is CustomSingletonResourceRead<
+    MeasurementProcessingResults,
+    {},
+    MeasurementProcessingResultsBase
+  >;
+}
+
+@client(Clients.MeasurementMetadataFileInfoClient)
+@tag("Measurement")
+interface IMeasurementMetadataFileInfo {
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom operation."
+  @doc("Initiates a process that replaces the measurement's metadata file")
+  @extension("x-ms-long-running-operation", true)
+  @asyncOperationOptions("location")
+  @pollingOperation(LongRunningOperationStatusLocation)
+  complete is CustomLongRunningResourceCollectionAction<
+    MeasurementMetadataFileInfo,
+    CustomBodyWrapper<CompleteUploadMetadataFileRequest>,
+    MeasurementMetadataFileInfoBase
+  >;
+
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom resource list operation."
+  @doc("""
+  Returns the measurement metadata file information.
+  If intent is `write` returns SAS signed URI to a temporary file with `write` permissions.
+  Otherwise returns SAS signed URI to an existing metadata file with `read` permissions and the eTag of that file in response header.
+  """)
+  @segment("metadataFileInfo")
+  get is CustomSingletonResourceRead<
+    MeasurementMetadataFileInfo,
+    IntentQueryParam,
+    MeasurementMetadataFileInfoBase
+  >;
+}
+
+@client(Clients.MeasurementMetadataSchemaFileInfoClient)
+@tag("Measurement")
+interface IMeasurementMetadataSchemaFileInfo {
+  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "ADP data-plane API uses custom resource list operation."
+  @doc("Returns the measurement metadata schema file information and schema validation results.")
+  @segment("metadataSchemaFileInfo")
+  get is CustomSingletonResourceRead<
+    MeasurementMetadataSchemaFileInfo,
+    {},
+    MeasurementMetadataSchemaFileInfoBase
+  >;
+}
