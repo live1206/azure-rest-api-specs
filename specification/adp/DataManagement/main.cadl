@@ -7,6 +7,7 @@ import "@cadl-api-spec/adp-shared";
 import "./ingestion";
 import "./classification";
 import "./measurement";
+import "../Adp.Shared";
 
 using Cadl.Http;
 
