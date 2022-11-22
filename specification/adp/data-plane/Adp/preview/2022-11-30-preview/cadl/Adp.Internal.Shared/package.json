@@ -1,6 +1,6 @@
 {
   "name": "@cadl-api-spec/adp-internal-shared",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "ADP Shared API [Internal]",
   "main": "index.js",
   "config": {
