@@ -6,7 +6,7 @@ emitters:
     "basic-setup-py": true
     "package-name": "azure-sdkreleaseplannertest"
   "@azure-tools/cadl-csharp":
-    "sdk-folder": sdk/sdkreleaseplannertest/Azure.SDKReleasePlannerTest/src
+    "sdk-folder": sdk/sdkreleaseplannertest/Azure.Template.SDKReleasePlannerTest/src
   "@azure-tools/cadl-typescript":
     "sdk-folder": sdk/sdkreleaseplannertest/sdkreleaseplannertest-rest
     generateMetadata: true
