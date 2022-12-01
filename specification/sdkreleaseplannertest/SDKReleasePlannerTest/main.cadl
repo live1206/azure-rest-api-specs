@@ -27,7 +27,7 @@ using OpenAPI;
     ledgerUri: uri,
   }
 )
-namespace Azure.SDKReleasePlannerTest;
+namespace Azure.Security.SDKReleasePlannerTest;
 
 @doc("Define the auth flow")
 model MyFlow {
