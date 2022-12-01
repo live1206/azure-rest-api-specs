@@ -5,7 +5,7 @@ emitters:
     "package-mode": "dataplane"
     "basic-setup-py": true
     "package-name": "azure-sdkreleaseplannertest"
-  "@azure-tools/cadl-csharp": true
+  "@azure-tools/cadl-csharp":
     "sdk-folder": sdk/sdkreleaseplannertest/Azure.SDKReleasePlannerTest/src
   "@azure-tools/cadl-typescript":
     "sdk-folder": sdk/sdkreleaseplannertest/sdkreleaseplannertest-rest
