@@ -2,7 +2,7 @@
 
 > see https://aka.ms/autorest
 
-This is the AutoRest configuration file for agrifood..
+This is the AutoRest configuration file for agrifood.
 
 ## Getting Started
 
