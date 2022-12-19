@@ -1,7 +1,7 @@
 {
   "name": "cadl-try",
   "dependencies": {
-    "@azure-tools/cadl-autorest": "^0.24.0"
+    "@azure-tools/cadl-autorest": "latest"
   },
   "private": true,
   "version": "1.0.0",
