@@ -35,4 +35,4 @@ options:
       description: "A generated SDK for AnomalyDetectorRest."
   "@azure-tools/cadl-java":
     "emitter-output-dir": "{java-sdk-folder}/sdk/{service-directory-name}/azure-ai-anomalydetector"
-    namespace: com.azure.azure-ai-anomalydetector
+    namespace: com.azure.ai.anomalydetector
