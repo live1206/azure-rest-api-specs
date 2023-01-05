@@ -23,6 +23,7 @@ options:
   "@azure-tools/cadl-csharp":
     namespace: Azure.AI.AnomalyDetector
     clear-output-folder: true
+    model-namespace: false
     "emitter-output-dir": "{csharp-sdk-folder}/sdk/{service-directory-name}/{namespace}/src"
   "@azure-tools/cadl-typescript":
     "emitter-output-dir": "{js-sdk-folder}/sdk/{service-directory-name}/ai-anomaly-detector-rest"
