@@ -16,7 +16,6 @@ enum FillNAMethod {
   "Fixed",
 }
 
-@fixed
 enum MultivariateBatchDetectionStatus {
   Created: "CREATED",
   Running: "RUNNING",
@@ -28,17 +27,16 @@ enum MultivariateBatchDetectionStatus {
 enum DataSchema {
   @doc("OneTable means that your input data are all in one CSV file, which contains one 'timestamp' column and several variable columns. The default DataSchema is OneTable.")
   "OneTable",
+
   @doc("MultiTable means that your input data are separated in multiple CSV files, in each file containing one 'timestamp' column and one 'variable' column, and the CSV file name should indicate the name of the variable. The default DataSchema is OneTable.")
   "MultiTable",
 }
 
-@fixed
 enum AlignMode {
   "Inner",
   "Outer",
 }
 
-@fixed
 enum ModelStatus {
   Created: "CREATED",
   Running: "RUNNING",
@@ -68,6 +66,7 @@ model MultivariateBatchDetectionResultSummary {
 
   @doc("Error message when detection is failed.")
   errors?: ErrorResponse[];
+
   @doc("Variable Status.")
   variableStates?: VariableState[];
 
@@ -81,7 +80,6 @@ will need another API to get detection results.
 @doc("ErrorResponse contains code and message that shows the error information.")
 @error
 model ErrorResponse {
-
   @doc("The error code.")
   code: string;
 
@@ -94,6 +92,7 @@ model VariableState {
   @doc("Variable name in variable states.")
   variable?: string;
 
+  #suppress "@azure-tools/cadl-azure-core/casing-style" "Expected"
   @doc("Proportion of missing values that need to be filled by fillNAMethod.")
   @minValue(0.0)
   @maxValue(1.0)
@@ -146,6 +145,7 @@ be date-time of ISO 8601 format.
 model AnomalyState {
   @doc("The timestamp for this anomaly.")
   timestamp: zonedDateTime;
+
   @doc("The detailed value of this anomalous timestamp.")
   value?: AnomalyValue;
 
@@ -173,6 +173,7 @@ well.
   @minValue(0.0)
   @maxValue(2.0)
   score: float32;
+
   @doc("Interpretation of this anomalous timestamp.")
   interpretation?: AnomalyInterpretation[];
 }
@@ -187,6 +188,7 @@ This score shows the percentage contributing to the anomalous timestamp. A
 number between 0 and 1.
 """)
   contributionScore?: float32;
+
   @doc("Correlation changes among the anomalous variables")
   correlationChanges?: CorrelationChanges;
 }
@@ -262,6 +264,7 @@ time-range. Either Inner or Outer.
 """)
   alignMode?: AlignMode;
 
+  #suppress "@azure-tools/cadl-azure-core/casing-style" "Expected"
   @doc("""
 An optional field, indicating how missing values will be filled. One of
 Previous, Subsequent, Linear, Zero, Fixed.
@@ -276,6 +279,7 @@ Previous, Subsequent, Linear, Zero, Fixed.
 model DiagnosticsInfo {
   @doc("Model status.")
   modelState?: ModelState;
+
   @doc("Variable Status.")
   variableStates?: VariableState[];
 }
@@ -371,11 +375,11 @@ model VariableValues {
   values: float32[];
 }
 
-
 @doc("Results of last detection.")
 model MultivariateLastDetectionResult {
   @doc("Variable Status.")
   variableStates?: VariableState[];
+
   @doc("Anomaly status and information.")
   results?: AnomalyState[];
 }
@@ -383,8 +387,9 @@ model MultivariateLastDetectionResult {
 @doc("Error response")
 @error
 model ResponseError {
+  #suppress "@azure-tools/cadl-azure-core/casing-style" "Expected"
   @header
   @doc("Error code.")
-  "x-ms-error-code"?: string,
-  ...ErrorResponse
+  "x-ms-error-code"?: string;
+  ...ErrorResponse;
 }

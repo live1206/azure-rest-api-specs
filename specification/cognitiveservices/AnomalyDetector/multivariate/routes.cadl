@@ -14,13 +14,13 @@ namespace AnomalyDetector.Multivariate;
 For asynchronous inference, get multivariate anomaly detection result based on
 resultId returned by the BatchDetectAnomaly api.
 """)
-// To improve CADL implementation apply: https://github.com/Azure/azure-rest-api-specs/issues/21527
-op GetMultivariateBatchDetectionResult(
+op // To improve CADL implementation apply: https://github.com/Azure/azure-rest-api-specs/issues/21527
+GetMultivariateBatchDetectionResult(
   @format("uuid")
   @doc("ID of a batch detection result.")
-  @path resultId: string,
+  @path
+  resultId: string
 ): MultivariateDetectionResult | ResponseError;
-
 
 @post
 @route("/multivariate/models")
@@ -34,47 +34,50 @@ two columns, timestamp and variable. Another type of input is an URI pointed to
 a CSV file in Azure blob storage, which contains all the variables and a
 timestamp column.
 """)
-// To improve CADL implementation apply: https://github.com/Azure/azure-rest-api-specs/issues/21527
-op TrainMultivariateModel(
+op // To improve CADL implementation apply: https://github.com/Azure/azure-rest-api-specs/issues/21527
+TrainMultivariateModel(
   @doc("Model information.")
-  @body modelInfo: ModelInfo,
+  @body
+  modelInfo: ModelInfo
 ): {
-  @statusCode statusCode: 201,
+  @statusCode statusCode: 201;
+
+  #suppress "@azure-tools/cadl-azure-core/casing-style" "Expected"
   @doc("Location and ID of the model.")
-  @header Location: string,
-  @body result: AnomalyDetectionModel
-  } | ResponseError;
+  @header
+  Location: string;
+  @body result: AnomalyDetectionModel;
+} | ResponseError;
 
 @get
 @route("/multivariate/models")
 @summary("List Multivariate Models")
 @doc("List models of a resource.")
-// To improve CADL implementation apply: https://github.com/Azure/azure-rest-api-specs/issues/21527
-op ListMultivariateModels(
+op // To improve CADL implementation apply: https://github.com/Azure/azure-rest-api-specs/issues/21527
+ListMultivariateModels(
   @doc("Skip indicates how many models will be skipped.")
   @query
-  skip?: int32 = 0;
+  skip?: int32 = 0,
 
   @doc("Top indicates how many models will be fetched.")
   @query
-  top?: int32;
+  top?: int32
 ): ModelList | ResponseError;
-
 
 @summary("Delete Multivariate Model")
 @doc("Delete an existing multivariate model according to the modelId")
 @delete
 @route("/multivariate/models/{modelId}")
-// To improve CADL implementation apply: https://github.com/Azure/azure-rest-api-specs/issues/21527
-op DeleteMultivariateModel(
+op // To improve CADL implementation apply: https://github.com/Azure/azure-rest-api-specs/issues/21527
+DeleteMultivariateModel(
   @doc("Model identifier.")
   @path
-  modelId: string,
+  modelId: string
 ): {
   @doc("Delete model successfully.")
   @statusCode
-  statusCode: 204
-  } | ResponseError;
+  statusCode: 204;
+} | ResponseError;
 
 @summary("Get Multivariate Model")
 @doc("""
@@ -83,11 +86,11 @@ and variables used in the model.
 """)
 @get
 @route("/multivariate/models/{modelId}")
-// To improve CADL implementation apply: https://github.com/Azure/azure-rest-api-specs/issues/21527
-op GetMultivariateModel(
+op // To improve CADL implementation apply: https://github.com/Azure/azure-rest-api-specs/issues/21527
+GetMultivariateModel(
   @doc("Model identifier.")
   @path
-  modelId: string,
+  modelId: string
 ): AnomalyDetectionModel | ResponseError;
 
 @route("/multivariate/models/{modelId}:detect-batch")
@@ -100,20 +103,29 @@ query the detection result.The request should be a source link to indicate an
 externally accessible Azure storage Uri, either pointed to an Azure blob
 storage folder, or pointed to a CSV file in Azure blob storage.
 """)
-// To improve CADL implementation apply: https://github.com/Azure/azure-rest-api-specs/issues/21527
-op DetectMultivariateBatchAnomaly(
+op // To improve CADL implementation apply: https://github.com/Azure/azure-rest-api-specs/issues/21527
+DetectMultivariateBatchAnomaly(
   @doc("Model identifier.")
   @path
   modelId: string,
+
+  #suppress "@azure-tools/cadl-azure-core/casing-style" "Expected"
   @doc("Request of multivariate anomaly detection.")
-  @body options: MultivariateBatchDetectionOptions,
+  @body
+  options: MultivariateBatchDetectionOptions
 ): {
-  @statusCode statusCode: 202,
+  @statusCode statusCode: 202;
+
+  #suppress "@azure-tools/cadl-azure-core/casing-style" "Expected"
   @doc("Id of the detection result.")
-  @header "Operation-Id": string,
+  @header
+  "Operation-Id": string;
+
+  #suppress "@azure-tools/cadl-azure-core/casing-style" "Expected"
   @doc("Location of the detection result.")
-  @header "Operation-Location": string,
-  @body result: MultivariateDetectionResult,
+  @header
+  "Operation-Location": string;
+  @body result: MultivariateDetectionResult;
 } | ResponseError;
 
 @route("/multivariate/models/{modelId}:detect-last")
@@ -124,11 +136,13 @@ and inference data, and the inference data should be put into request body in a
 JSON format. The request will complete synchronously and return the detection
 immediately in the response body.
 """)
-// To improve CADL implementation apply: https://github.com/Azure/azure-rest-api-specs/issues/21527
-op DetectMultivariateLastAnomaly(
+op // To improve CADL implementation apply: https://github.com/Azure/azure-rest-api-specs/issues/21527
+DetectMultivariateLastAnomaly(
   @doc("Model identifier.")
   @path
   modelId: string,
+
   @doc("Request of last detection.")
-  @body options: MultivariateLastDetectionOptions,
+  @body
+  options: MultivariateLastDetectionOptions
 ): MultivariateLastDetectionResult | ResponseError;

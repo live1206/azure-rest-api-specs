@@ -30,7 +30,6 @@ enum AnomalyDetectorErrorCodes {
   "InvalidImputeFixedValue",
 }
 
-@fixed
 enum TimeGranularity {
   Yearly: "yearly",
   Monthly: "monthly",
@@ -172,9 +171,10 @@ sever the anomaly is. For normal points, the \"severity\" is always 0.
 @doc("Error information returned by the API.")
 @error
 model AnomalyDetectorError {
+  #suppress "@azure-tools/cadl-azure-core/casing-style" "Expected"
   @header
   @doc("Error code.")
-  "x-ms-error-code"?: string,
+  "x-ms-error-code"?: string;
 
   @doc("The error code.")
   code?: AnomalyDetectorErrorCodes;

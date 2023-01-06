@@ -8,7 +8,9 @@ using Cadl.Http;
 using Cadl.Versioning;
 
 @versioned(APIVersion)
-@service({title: "Anomaly Detector"})
+@service({
+  title: "Anomaly Detector",
+})
 @useAuth(ApiKeyAuth<ApiKeyLocation.header, "Ocp-Apim-Subscription-Key">)
 @server(
   "{Endpoint}/anomalydetector/{ApiVersion}",
@@ -19,7 +21,7 @@ Supported Cognitive Services endpoints (protocol and hostname, for example:
 https://westus2.api.cognitive.microsoft.com).
 """)
     Endpoint: string,
-    
+
     @doc("Api Version")
     @path
     ApiVersion: APIVersion,
