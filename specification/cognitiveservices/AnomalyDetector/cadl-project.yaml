@@ -16,6 +16,7 @@ options:
   "@azure-tools/cadl-autorest":
     "output-file": "openapi.json"
     "examples-directory": ./examples
+    azure-resource-provider-folder: ../../../../data-plane
   "@azure-tools/cadl-python":
     "package-mode": "dataplane"
     "package-name": "azure-ai-anomalydetector"

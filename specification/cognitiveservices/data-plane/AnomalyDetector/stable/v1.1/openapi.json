@@ -550,7 +550,7 @@
       ],
       "x-ms-enum": {
         "name": "AlignMode",
-        "modelAsString": false
+        "modelAsString": true
       }
     },
     "Multivariate.AlignPolicy": {
@@ -923,7 +923,7 @@
       ],
       "x-ms-enum": {
         "name": "ModelStatus",
-        "modelAsString": false,
+        "modelAsString": true,
         "values": [
           {
             "name": "Created",
@@ -1021,7 +1021,7 @@
       ],
       "x-ms-enum": {
         "name": "MultivariateBatchDetectionStatus",
-        "modelAsString": false,
+        "modelAsString": true,
         "values": [
           {
             "name": "Created",
@@ -1291,7 +1291,7 @@
       ],
       "x-ms-enum": {
         "name": "TimeGranularity",
-        "modelAsString": false,
+        "modelAsString": true,
         "values": [
           {
             "name": "Yearly",
