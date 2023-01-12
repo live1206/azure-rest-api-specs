@@ -9,7 +9,7 @@ license-header: MICROSOFT_MIT_NO_VERSION
 namespace: azure.mgmt.agrifood
 package-name: azure-mgmt-agrifood
 package-version: 1.0.0b1
-clear-output-folder: true
+clear-output-folder: truex
 ```
 
 ``` yaml $(python)
