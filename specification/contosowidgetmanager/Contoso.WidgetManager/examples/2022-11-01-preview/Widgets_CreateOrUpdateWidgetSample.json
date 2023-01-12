@@ -5,7 +5,7 @@
     "widgetName": "name1",
     "api-version": "2022-11-01-preview",
     "body": {
-      "manufacturerId": "manufacturer id1",
+      "manufacturerId": "manufactusrer id1",
       "sharedModel": {
         "tag": "tag1",
         "createdDate": "2023-01-09T02:12:25.689Z"
