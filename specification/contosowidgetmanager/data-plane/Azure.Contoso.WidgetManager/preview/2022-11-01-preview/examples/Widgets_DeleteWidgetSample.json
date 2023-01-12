@@ -1,6 +1,6 @@
 {
   "operationId": "Widgets_DeleteWidget",
-  "title": "Delete widget by widget name using long-running operation.",
+  "title": "Delete widget by widget name ussing long-running operation.",
   "parameters": {
     "api-version": "2022-11-01-preview",
     "widgetName": "searchbox"
