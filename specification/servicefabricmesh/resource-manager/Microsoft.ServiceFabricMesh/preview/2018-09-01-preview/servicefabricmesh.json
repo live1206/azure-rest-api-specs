@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "SeaBreezeManagementClient",
-    "description": "APIs to deploy and manage resources to SeaBreeze.",
+    "description": "APIs To deploy and manage resources to SeaBreeze.",
     "version": "2018-09-01-preview"
   },
   "host": "management.azure.com",
