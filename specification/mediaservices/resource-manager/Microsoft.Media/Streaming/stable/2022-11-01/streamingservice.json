@@ -33,7 +33,7 @@
           "LiveEvents"
         ],
         "summary": "List live events",
-        "description": "Lists all the live events in the account.",
+        "description": "Lists all the live events in the account.111",
         "operationId": "LiveEvents_List",
         "parameters": [
           {
