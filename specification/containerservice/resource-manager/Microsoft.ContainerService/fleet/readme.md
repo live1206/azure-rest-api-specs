@@ -104,9 +104,3 @@ See configuration in [readme.python.md](./readme.python.md)
 ## Java
 
 See configuration in [readme.java.md](./readme.java.md)
-
-## Suppression
-
-``` yaml
-directive:
-```
