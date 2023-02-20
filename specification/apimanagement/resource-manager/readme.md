@@ -640,6 +640,7 @@ swagger-to-sdk:
   - repo: azure-sdk-for-go
   - repo: azure-sdk-for-python-track2
   - repo: azure-sdk-for-js
+  - repo: azure-sdk-for-js-docker
   - repo: azure-sdk-for-node
     autorest_options:
       use: "@microsoft.azure/autorest.python@~3.0"
