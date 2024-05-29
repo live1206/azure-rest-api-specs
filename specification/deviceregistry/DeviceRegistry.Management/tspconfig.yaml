@@ -17,6 +17,11 @@ options:
     namespace: "com.azure.resourcemanager.deviceregistry"
     service-name: "Device Registry"
     examples-directory: "examples"
+  "@azure-tools/typespec-csharp":
+    save-inputs: false
+    clear-output-folder: true
+    namespace: Azure.DeviceRegistry
+    model-namespace: false
 linter:
   extends:
     - "@azure-tools/typespec-azure-rulesets/resource-manager"
