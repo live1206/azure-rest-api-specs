@@ -3,7 +3,6 @@
   "info": {
     "title": "ScVmm",
     "version": "2023-10-07",
-    "description": "The Microsoft.ScVmm Rest API spec.",
     "x-typespec-generated": [
       {
         "emitter": "@azure-tools/typespec-autorest"
@@ -237,7 +236,7 @@
             "description": "The resource properties to be updated.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/VirtualMachineInstanceUpdate"
+              "$ref": "#/definitions/VirtualMachineInstance"
             }
           }
         ],
@@ -3631,40 +3630,6 @@
         }
       }
     },
-    "HardwareProfileUpdate": {
-      "type": "object",
-      "description": "Defines the resource update properties.",
-      "properties": {
-        "memoryMB": {
-          "type": "integer",
-          "format": "int32",
-          "description": "MemoryMB is the size of a virtual machine's memory, in MB."
-        },
-        "cpuCount": {
-          "type": "integer",
-          "format": "int32",
-          "description": "Gets or sets the number of vCPUs for the vm."
-        },
-        "limitCpuForMigration": {
-          "$ref": "#/definitions/LimitCpuForMigration",
-          "description": "Gets or sets a value indicating whether to enable processor compatibility mode for live migration of VMs."
-        },
-        "dynamicMemoryEnabled": {
-          "$ref": "#/definitions/DynamicMemoryEnabled",
-          "description": "Gets or sets a value indicating whether to enable dynamic memory or not."
-        },
-        "dynamicMemoryMaxMB": {
-          "type": "integer",
-          "format": "int32",
-          "description": "Gets or sets the max dynamic memory for the vm."
-        },
-        "dynamicMemoryMinMB": {
-          "type": "integer",
-          "format": "int32",
-          "description": "Gets or sets the min dynamic memory for the vm."
-        }
-      }
-    },
     "HttpProxyConfiguration": {
       "type": "object",
       "description": "HTTP Proxy configuration for the VM.",
@@ -3792,21 +3757,6 @@
           "description": "Gets or sets the bios guid for the vm.",
           "x-ms-mutability": [
             "read",
-            "create"
-          ]
-        }
-      }
-    },
-    "InfrastructureProfileUpdate": {
-      "type": "object",
-      "description": "Specifies the vmmServer infrastructure specific update settings for the virtual machine instance.",
-      "properties": {
-        "checkpointType": {
-          "type": "string",
-          "description": "Type of checkpoint supported for the vm.",
-          "x-ms-mutability": [
-            "read",
-            "update",
             "create"
           ]
         }
@@ -4082,48 +4032,6 @@
         }
       }
     },
-    "NetworkInterfaceUpdate": {
-      "type": "object",
-      "description": "Network Interface Update model",
-      "properties": {
-        "name": {
-          "type": "string",
-          "description": "Gets or sets the name of the network interface."
-        },
-        "macAddress": {
-          "type": "string",
-          "description": "Gets or sets the nic MAC address."
-        },
-        "virtualNetworkId": {
-          "type": "string",
-          "format": "arm-id",
-          "description": "Gets or sets the ARM Id of the Microsoft.ScVmm/virtualNetwork resource to connect the nic.",
-          "x-ms-arm-id-details": {
-            "allowedResources": [
-              {
-                "type": "Microsoft.ScVmm/virtualNetwork"
-              }
-            ]
-          }
-        },
-        "ipv4AddressType": {
-          "$ref": "#/definitions/AllocationMethod",
-          "description": "Gets or sets the ipv4 address type."
-        },
-        "ipv6AddressType": {
-          "$ref": "#/definitions/AllocationMethod",
-          "description": "Gets or sets the ipv6 address type."
-        },
-        "macAddressType": {
-          "$ref": "#/definitions/AllocationMethod",
-          "description": "Gets or sets the mac address type."
-        },
-        "nicId": {
-          "type": "string",
-          "description": "Gets or sets the nic id."
-        }
-      }
-    },
     "NetworkProfile": {
       "type": "object",
       "description": "Defines the resource properties.",
@@ -4133,23 +4041,6 @@
           "description": "Gets or sets the list of network interfaces associated with the virtual machine.",
           "items": {
             "$ref": "#/definitions/NetworkInterface"
-          },
-          "x-ms-identifiers": [
-            "name",
-            "nicId"
-          ]
-        }
-      }
-    },
-    "NetworkProfileUpdate": {
-      "type": "object",
-      "description": "Defines the resource update properties.",
-      "properties": {
-        "networkInterfaces": {
-          "type": "array",
-          "description": "Gets or sets the list of network interfaces associated with the virtual machine.",
-          "items": {
-            "$ref": "#/definitions/NetworkInterfaceUpdate"
           },
           "x-ms-identifiers": [
             "name",
@@ -4362,23 +4253,6 @@
         }
       }
     },
-    "StorageProfileUpdate": {
-      "type": "object",
-      "description": "Defines the resource update properties.",
-      "properties": {
-        "disks": {
-          "type": "array",
-          "description": "Gets or sets the list of virtual disks associated with the virtual machine.",
-          "items": {
-            "$ref": "#/definitions/VirtualDiskUpdate"
-          },
-          "x-ms-identifiers": [
-            "diskId",
-            "name"
-          ]
-        }
-      }
-    },
     "StorageQosPolicy": {
       "type": "object",
       "description": "The StorageQoSPolicy definition.",
@@ -4505,48 +4379,6 @@
         }
       }
     },
-    "VirtualDiskUpdate": {
-      "type": "object",
-      "description": "Virtual Disk Update model",
-      "properties": {
-        "name": {
-          "type": "string",
-          "description": "Gets or sets the name of the disk."
-        },
-        "diskId": {
-          "type": "string",
-          "description": "Gets or sets the disk id."
-        },
-        "diskSizeGB": {
-          "type": "integer",
-          "format": "int32",
-          "description": "Gets or sets the disk total size."
-        },
-        "bus": {
-          "type": "integer",
-          "format": "int32",
-          "description": "Gets or sets the disk bus."
-        },
-        "lun": {
-          "type": "integer",
-          "format": "int32",
-          "description": "Gets or sets the disk lun."
-        },
-        "busType": {
-          "type": "string",
-          "description": "Gets or sets the disk bus type."
-        },
-        "vhdType": {
-          "type": "string",
-          "description": "Gets or sets the disk vhd type."
-        },
-        "storageQoSPolicy": {
-          "$ref": "#/definitions/StorageQosPolicyDetails",
-          "description": "The QoS policy for the disk.",
-          "x-ms-client-name": "storageQosPolicy"
-        }
-      }
-    },
     "VirtualMachineCreateCheckpoint": {
       "type": "object",
       "description": "Defines the create checkpoint action properties.",
@@ -4668,46 +4500,6 @@
           "$ref": "#/definitions/ResourceProvisioningState",
           "description": "Provisioning state of the resource.",
           "readOnly": true
-        }
-      }
-    },
-    "VirtualMachineInstanceUpdate": {
-      "type": "object",
-      "description": "The type used for update operations of the VirtualMachineInstance.",
-      "properties": {
-        "properties": {
-          "$ref": "#/definitions/VirtualMachineInstanceUpdateProperties",
-          "description": "The update properties of the VirtualMachineInstance.",
-          "x-ms-client-flatten": true
-        }
-      }
-    },
-    "VirtualMachineInstanceUpdateProperties": {
-      "type": "object",
-      "description": "Virtual Machine Instance Properties Update model",
-      "properties": {
-        "availabilitySets": {
-          "type": "array",
-          "description": "Availability Sets in vm.",
-          "items": {
-            "$ref": "#/definitions/AvailabilitySetListItem"
-          }
-        },
-        "hardwareProfile": {
-          "$ref": "#/definitions/HardwareProfileUpdate",
-          "description": "Hardware properties."
-        },
-        "networkProfile": {
-          "$ref": "#/definitions/NetworkProfileUpdate",
-          "description": "Network properties."
-        },
-        "storageProfile": {
-          "$ref": "#/definitions/StorageProfileUpdate",
-          "description": "Storage properties."
-        },
-        "infrastructureProfile": {
-          "$ref": "#/definitions/InfrastructureProfileUpdate",
-          "description": "Gets the infrastructure profile."
         }
       }
     },

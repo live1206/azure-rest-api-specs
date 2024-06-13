@@ -15,6 +15,10 @@ options:
     package-dir: "azure-mgmt-scvmm"
     package-name: "{package-dir}"
     flavor: "azure"
+  "@azure-tools/typespec-csharp":
+    package-dir: "Azure.ResourceManager.ScVmm"
+    namespace: "{package-dir}"
+    flavor: "azure"
 linter:
   disable:
   extends:
