@@ -7,3 +7,7 @@ using Azure.ClientGenerator.Core;
   "AppComplianceAutomationMgmt",
   "python"
 );
+
+namespace Microsoft.AppComplianceAutomation {
+  @@access(Operations.list, Access.internal, "csharp");
+}
