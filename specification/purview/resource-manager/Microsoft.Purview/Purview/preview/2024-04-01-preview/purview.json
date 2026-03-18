@@ -3,6 +3,7 @@
   "info": {
     "title": "PurviewManagementClient",
     "version": "2024-04-01-preview",
+    "description": "Creates a Microsoft.Purview management client.",
     "x-typespec-generated": [
       {
         "emitter": "@azure-tools/typespec-autorest"
@@ -1725,21 +1726,6 @@
           "description": "The account properties",
           "x-ms-client-flatten": true
         },
-        "tags": {
-          "type": "object",
-          "description": "Resource tags.",
-          "additionalProperties": {
-            "type": "string"
-          }
-        },
-        "location": {
-          "type": "string",
-          "description": "The geo-location where the resource lives",
-          "x-ms-mutability": [
-            "read",
-            "create"
-          ]
-        },
         "identity": {
           "$ref": "#/definitions/Identity",
           "description": "The Managed Identity of the resource"
@@ -1751,7 +1737,7 @@
       },
       "allOf": [
         {
-          "$ref": "../../../../../../common-types/resource-management/v3/types.json#/definitions/Resource"
+          "$ref": "../../../../../../common-types/resource-management/v3/types.json#/definitions/TrackedResource"
         }
       ]
     },
@@ -3550,27 +3536,6 @@
           }
         ]
       }
-    },
-    "PurviewAccountModel": {
-      "type": "object",
-      "description": "Account resource.",
-      "properties": {
-        "properties": {
-          "$ref": "#/definitions/AccountProperties",
-          "description": "The resource-specific properties for this resource."
-        },
-        "identity": {
-          "$ref": "#/definitions/Identity"
-        },
-        "sku": {
-          "$ref": "#/definitions/AccountSku"
-        }
-      },
-      "allOf": [
-        {
-          "$ref": "../../../../../../common-types/resource-management/v3/types.json#/definitions/TrackedResource"
-        }
-      ]
     },
     "QuotaName": {
       "type": "object",

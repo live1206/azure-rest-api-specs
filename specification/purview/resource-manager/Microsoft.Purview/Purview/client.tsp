@@ -2,23 +2,6 @@ import "@azure-tools/typespec-client-generator-core";
 import "./main.tsp";
 
 using Azure.ClientGenerator.Core;
-using Azure.ResourceManager;
-
-// TrackedResource wrapper for C# backward compatibility (old SDK used TrackedResourceData base)
-namespace Microsoft.Purview {
-  @doc("Account resource.")
-  model PurviewAccountModel
-    is Azure.ResourceManager.TrackedResource<AccountProperties> {
-    ...Azure.ResourceManager.ResourceNameParameter<
-      Resource = Account,
-      KeyName = "accountName",
-      SegmentName = "accounts",
-      NamePattern = "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
-    >;
-    identity?: Identity;
-    sku?: AccountSku;
-  }
-}
 
 @@clientName(Microsoft.Purview, "PurviewManagementClient", "javascript,python");
 @@clientName(Microsoft.Purview.AccountSkuName, "Name", "java");
@@ -168,9 +151,18 @@ namespace Microsoft.Purview {
   "csharp"
 );
 
-// Replace Account with TrackedResource-based model for C# (ensures TrackedResourceData base)
-@@alternateType(Microsoft.Purview.Account, Microsoft.Purview.PurviewAccountModel, "csharp");
-@@clientName(Microsoft.Purview.PurviewAccountModel, "PurviewAccount", "csharp");
+// Use hierarchyBuilding to make Account inherit from TrackedResourceData in C#
+// (Account uses Legacy.TrackedResourceWithOptionalLocation which generates ResourceData base,
+//  but old SDK used TrackedResourceData)
+#suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "Required for backward compatibility"
+@@Azure.ClientGenerator.Core.Legacy.hierarchyBuilding(
+  Microsoft.Purview.Account,
+  Azure.ResourceManager.Foundations.TrackedResource,
+  "csharp"
+);
+
+// Resource model renames for backward compatibility with old SDK naming
+@@clientName(Microsoft.Purview.Account, "PurviewAccount", "csharp");
 @@clientName(Microsoft.Purview.KafkaConfiguration, "PurviewKafkaConfiguration", "csharp");
 @@clientName(Microsoft.Purview.PrivateEndpointConnection,
   "PurviewPrivateEndpointConnection",
@@ -195,20 +187,13 @@ namespace Microsoft.Purview {
 
 // Identity type override to use ARM common type instead of custom Identity model
 @@alternateType(
-  Microsoft.Purview.PurviewAccountModel.identity,
+  Microsoft.Purview.Account.identity,
   Azure.ResourceManager.CommonTypes.ManagedServiceIdentity,
   "csharp"
 );
 @@alternateType(
   Microsoft.Purview.AccountUpdateParameters.identity,
   Azure.ResourceManager.CommonTypes.ManagedServiceIdentity,
-  "csharp"
-);
-
-// Flatten PurviewAccountModel.properties for C#
-#suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "Required for backward compatibility"
-@@Azure.ClientGenerator.Core.Legacy.flattenProperty(
-  Microsoft.Purview.PurviewAccountModel.properties,
   "csharp"
 );
 
