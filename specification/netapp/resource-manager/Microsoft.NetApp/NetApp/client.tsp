@@ -376,6 +376,18 @@ union NetAppRelationshipStatusDef {
   "csharp"
 );
 @@clientName(BackupPolicyProperties.enabled, "IsEnabled", "csharp");
+@@clientName(VolumeBackups.policyEnabled, "IsPolicyEnabled", "csharp");
+@@clientName(RestoreStatus.healthy, "IsHealthy", "csharp");
+@@clientName(BackupStatus.healthy, "IsHealthy", "csharp");
+@@clientName(ReplicationStatus.healthy, "IsHealthy", "csharp");
+@@clientName(ResourceNameAvailabilityRequest.`type`,
+  "ResourceType",
+  "csharp"
+);
+@@clientName(QuotaAvailabilityRequest.`type`,
+  "AvailabilityResourceType",
+  "csharp"
+);
 @@clientName(ExportPolicyRule.kerberos5ReadOnly,
   "IsKerberos5ReadOnly",
   "csharp"
