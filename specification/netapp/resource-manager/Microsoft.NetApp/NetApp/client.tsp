@@ -719,3 +719,4 @@ union NetAppRelationshipStatusDef {
 @@usage(RansomwareReport, Usage.input, "csharp");
 @@usage(RegionInfoResource, Usage.input, "csharp");
 @@usage(Snapshot, Usage.input, "csharp");
+@@usage(QuotaItem, Usage.input, "csharp");

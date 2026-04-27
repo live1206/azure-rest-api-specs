@@ -51,8 +51,22 @@ using Microsoft.NetApp;
 #suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "For backward compatibility"
 @@flattenProperty(BackupPatch.properties, "!javascript");
 
-@@clientLocation(SubscriptionQuotaItems.get, "NetAppResourceQuotaLimits");
-@@clientLocation(SubscriptionQuotaItems.list, "NetAppResourceQuotaLimits");
+@@clientLocation(SubscriptionQuotaItems.get,
+  "NetAppResourceQuotaLimits",
+  "!csharp"
+);
+@@clientLocation(SubscriptionQuotaItems.list,
+  "NetAppResourceQuotaLimits",
+  "!csharp"
+);
+@@clientLocation(SubscriptionQuotaItems.get,
+  "NetAppSubscriptionQuotaItems",
+  "csharp"
+);
+@@clientLocation(SubscriptionQuotaItems.list,
+  "NetAppSubscriptionQuotaItems",
+  "csharp"
+);
 #suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "For backward compatibility"
 @@flattenProperty(QuotaItem.properties, "!javascript");
 
