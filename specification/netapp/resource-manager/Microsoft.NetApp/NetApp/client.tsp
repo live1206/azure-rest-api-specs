@@ -576,7 +576,10 @@ union NetAppRelationshipStatusDef {
   armResourceIdentifier,
   "csharp"
 );
-@@alternateType(BackupProperties.backupPolicyResourceId, string, "csharp");
+@@clientName(BackupProperties.backupPolicyResourceId,
+  "BackupPolicyArmResourceId",
+  "csharp"
+);
 @@alternateType(VolumeSnapshotProperties.snapshotPolicyId,
   armResourceIdentifier,
   "csharp"
