@@ -525,6 +525,7 @@ using Azure.ClientGenerator.Core;
 @@usage(Configuration, Usage.input, "csharp");
 @@usage(AdministratorMicrosoftEntra, Usage.input, "csharp");
 @@usage(BackupsLongTermRetentionOperation, Usage.input, "csharp");
+@@usage(LtrBackupOperationResponseProperties, Usage.input, "csharp");
 @@usage(TuningOptions, Usage.input, "csharp");
 @@usage(PrivateLinkResource, Usage.input, "csharp");
 
