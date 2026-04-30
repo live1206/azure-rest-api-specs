@@ -2169,7 +2169,6 @@ model MigrationSubstateDetails {
 
   #suppress "@azure-tools/typespec-azure-resource-manager/arm-no-record" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   #suppress "@azure-tools/typespec-azure-core/documentation-required" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  @visibility(Lifecycle.Read)
   dbDetails?: Record<DatabaseMigrationState>;
   #suppress "@azure-tools/typespec-azure-core/documentation-required" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   validationDetails?: ValidationDetails;
@@ -2286,14 +2285,12 @@ model ValidationDetails {
   /**
    * Details of server level validations.
    */
-  @visibility(Lifecycle.Read)
   @identifiers(#[])
   serverLevelValidationDetails?: ValidationSummaryItem[];
 
   /**
    * Details of server level validations.
    */
-  @visibility(Lifecycle.Read)
   @identifiers(#["databaseName"])
   dbLevelValidationDetails?: DbLevelValidationStatus[];
 }
@@ -2315,7 +2312,6 @@ model ValidationSummaryItem {
   /**
    * Validation messages.
    */
-  @visibility(Lifecycle.Read)
   @identifiers(#[])
   messages?: ValidationMessage[];
 }
@@ -2359,7 +2355,6 @@ model DbLevelValidationStatus {
   /**
    * Summary of database level validations.
    */
-  @visibility(Lifecycle.Read)
   @identifiers(#[])
   summary?: ValidationSummaryItem[];
 }
@@ -3728,13 +3723,11 @@ model ObjectRecommendationDetails {
   /**
    * Index columns.
    */
-  @visibility(Lifecycle.Read)
   indexColumns?: string[];
 
   /**
    * Index included columns.
    */
-  @visibility(Lifecycle.Read)
   includedColumns?: string[];
 }
 
