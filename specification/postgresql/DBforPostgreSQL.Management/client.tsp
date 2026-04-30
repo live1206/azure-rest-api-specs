@@ -368,6 +368,10 @@ using Azure.ClientGenerator.Core;
   Azure.Core.armResourceIdentifier,
   "csharp"
 );
+@@alternateType(MigrationPropertiesForPatch.secretParameters,
+  MigrationSecretParameters,
+  "csharp"
+);
 
 // AzureLocation type mappings
 @@alternateType(VirtualNetworkSubnetUsageModel.location,
