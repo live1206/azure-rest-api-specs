@@ -342,6 +342,10 @@ using Azure.ClientGenerator.Core;
 );
 @@alternateType(UserAssignedIdentity.principalId, Azure.Core.uuid, "csharp");
 @@alternateType(UserAssignedIdentity.tenantId, Azure.Core.uuid, "csharp");
+@@alternateType(UserIdentity,
+  Azure.ResourceManager.CommonTypes.UserAssignedIdentity,
+  "csharp"
+);
 
 // Uri type mappings
 @@alternateType(DataEncryption.primaryKeyURI, TypeSpec.url, "csharp");
@@ -581,9 +585,6 @@ using Azure.ClientGenerator.Core;
 @@usage(MigrationSecretParametersForPatch, Usage.input, "csharp");
 @@access(AdminCredentialsForPatch, Access.public, "csharp");
 @@usage(AdminCredentialsForPatch, Usage.input, "csharp");
-
-// Make UserIdentity public (it's used in public ModelFactory method)
-@@access(UserIdentity, Access.public, "csharp");
 
 // Preserve backward-compatible version enum member names
 @@clientName(PostgresMajorVersion.`16`, "Sixteen", "csharp");
