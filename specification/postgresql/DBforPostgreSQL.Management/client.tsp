@@ -570,6 +570,7 @@ using Azure.ClientGenerator.Core;
 
 // Restore public constructors and property setters for additional models
 @@usage(AdvancedThreatProtectionSettingsModel, Usage.input, "csharp");
+@@usage(AdvancedThreatProtectionSettingsProperties, Usage.input, "csharp");
 @@usage(PrivateEndpointConnection, Usage.input, "csharp");
 @@usage(ServerForPatch, Usage.input, "csharp");
 @@usage(DataEncryption, Usage.input, "csharp");
