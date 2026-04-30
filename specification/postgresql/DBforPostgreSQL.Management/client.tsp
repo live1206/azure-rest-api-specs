@@ -544,6 +544,10 @@ using Azure.ClientGenerator.Core;
 @@clientName(NameAvailabilityModel.type, "ResourceType", "csharp");
 @@clientName(CapturedLogProperties.type, "LogFileType", "csharp");
 @@clientName(ValidationSummaryItem.type, "ValidationSummaryItemType", "csharp");
+@@clientName(Azure.ResourceManager.CommonTypes.PrivateEndpointConnectionProperties.privateLinkServiceConnectionState,
+  "ConnectionState",
+  "csharp"
+);
 
 // Rename resource types to have proper service prefix
 @@clientName(PrivateEndpointConnection,
