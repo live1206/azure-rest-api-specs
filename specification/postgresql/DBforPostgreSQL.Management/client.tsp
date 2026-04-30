@@ -515,6 +515,12 @@ using Azure.ClientGenerator.Core;
 
 // Restore public constructors and property setters for models treated as output-only
 @@usage(ObjectRecommendation, Usage.input, "csharp");
+@@visibility(ObjectRecommendation.properties,
+  Lifecycle.Read,
+  Lifecycle.Create,
+  Lifecycle.Update
+);
+@@usage(ObjectRecommendationProperties, Usage.input, "csharp");
 @@usage(ObjectRecommendationPropertiesAnalyzedWorkload, Usage.input, "csharp");
 @@usage(ObjectRecommendationPropertiesImplementationDetails,
   Usage.input,
