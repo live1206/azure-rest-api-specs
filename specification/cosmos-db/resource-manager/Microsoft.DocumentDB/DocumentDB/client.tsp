@@ -474,6 +474,7 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
 @@clientName(AutoReplicate, "CassandraAutoReplicateForm", "csharp");
 @@clientName(BackupInformation, "CosmosDBBackupInformation", "csharp");
 @@clientName(BackupPolicy, "CosmosDBAccountBackupPolicy", "csharp");
+@@clientName(BackupPolicy.type, "BackupPolicyType", "csharp");
 @@clientName(BackupResource, "CassandraClusterBackupResourceInfo", "csharp");
 @@clientName(BackupSchedule, "CassandraClusterBackupSchedule", "csharp");
 @@clientName(BackupState, "CassandraClusterBackupState", "csharp");
@@ -1483,6 +1484,10 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
   Azure.Core.azureLocation[],
   "csharp"
 );
+@@alternateType(DatabaseAccountUpdateParameters.location,
+  Azure.Core.azureLocation,
+  "csharp"
+);
 @@alternateType(RestorableLocationResource.locationName,
   Azure.Core.azureLocation,
   "csharp"
@@ -1501,7 +1506,7 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
 );
 @@alternateType(Location.locationName, Azure.Core.azureLocation, "csharp");
 @@alternateType(DatabaseAccountUpdateProperties.locations,
-  Azure.Core.azureLocation,
+  Azure.Core.azureLocation[],
   "csharp"
 );
 @@alternateType(DatabaseAccountCreateUpdateProperties.locations,
@@ -1535,6 +1540,10 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
 );
 @@alternateType(PartitionUsage.partitionId, Azure.Core.uuid, "csharp");
 @@alternateType(PartitionMetric.partitionId, Azure.Core.uuid, "csharp");
+@@alternateType(ComponentsM9L909SchemasCassandraclusterpublicstatusPropertiesDatacentersItemsPropertiesNodesItems.hostID,
+  Azure.Core.uuid,
+  "csharp"
+);
 @@alternateType(SqlRoleAssignmentResource.principalId,
   Azure.Core.uuid,
   "csharp"
@@ -1594,6 +1603,7 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
   Azure.ClientGenerator.Core.Usage.input,
   "csharp"
 );
+@@usage(Location, Azure.ClientGenerator.Core.Usage.input, "csharp");
 @@usage(SqlTriggerGetResults, Azure.ClientGenerator.Core.Usage.input, "csharp");
 @@usage(SqlUserDefinedFunctionGetResults,
   Azure.ClientGenerator.Core.Usage.input,
@@ -2189,5 +2199,21 @@ model GremlinGraphCreateOrUpdateContent
 }
 @@alternateType(GremlinGraphCreateUpdateParameters,
   GremlinGraphCreateOrUpdateContent,
+  "csharp"
+);
+
+/**
+ * The offer type for the Cosmos DB database account.
+ */
+union CosmosDBAccountOfferType {
+  string,
+
+  /**
+   * Standard.
+   */
+  "Standard",
+}
+@@alternateType(DatabaseAccountCreateUpdateProperties.databaseAccountOfferType,
+  CosmosDBAccountOfferType,
   "csharp"
 );
