@@ -467,7 +467,6 @@ union NetAppRelationshipStatusDef {
 
 // C# property name casing fixes
 @@clientName(AccountProperties.nfsV4IDDomain, "NfsV4IdDomain", "csharp");
-@@clientName(AccountPropertiesPatch.nfsV4IDDomain, "NfsV4IdDomain", "csharp");
 @@clientName(QuotaReport, "NetAppVolumeQuotaReport", "csharp");
 @@clientName(QuotaReportFilterRequest, "QuotaReportFilterContent", "csharp");
 @@clientName(NetAppProvisioningStateDef, "NetAppProvisioningState", "csharp");
