@@ -9,6 +9,7 @@ import "./CapacityPool.tsp";
 
 using Rest;
 using Azure.ResourceManager;
+using Azure.Core;
 using Http;
 using Versioning;
 using Azure.ClientGenerator.Core;
@@ -1420,8 +1421,7 @@ model BreakFileLocksRequest {
   /**
    * To clear file locks on a volume for a particular client
    */
-  @pattern("^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$")
-  clientIp?: string;
+  clientIp?: ipV4Address;
 
   /**
    * Break File locks could be a disruptive operation for application as locks on the volume will be broken, if want to process, set to true.

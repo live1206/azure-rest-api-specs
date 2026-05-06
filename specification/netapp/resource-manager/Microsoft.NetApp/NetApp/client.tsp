@@ -191,6 +191,7 @@ union NetAppRelationshipStatusDef {
   "NetAppVolumeBreakFileLocksContent",
   "csharp"
 );
+@@clientName(BreakFileLocksRequest.clientIp, "ClientIP", "csharp");
 @@clientName(BreakReplicationRequest,
   "NetAppVolumeBreakReplicationContent",
   "csharp"
