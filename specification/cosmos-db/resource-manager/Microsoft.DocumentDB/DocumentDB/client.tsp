@@ -741,6 +741,7 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
   "IsFreeTierEnabled",
   "csharp"
 );
+@@clientName(DatabaseAccountUpdateProperties.ipRules, "IPRules", "csharp");
 @@clientName(DataCenterResource, "CassandraDataCenter", "csharp");
 @@clientName(DataCenterResourceProperties,
   "CassandraDataCenterProperties",
@@ -1349,11 +1350,6 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
   "RoleDefinitionId",
   "csharp"
 );
-
-@@alternateType(SqlRoleAssignmentResource.roleDefinitionId,
-  Azure.Core.armResourceIdentifier,
-  "csharp"
-);
 @@clientName(Microsoft.DocumentDB.ManagedServiceIdentity,
   "CosmosDBManagedServiceIdentity",
   "csharp"
@@ -1439,8 +1435,16 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
   Azure.Core.armResourceIdentifier,
   "csharp"
 );
+@@alternateType(SqlRoleAssignmentResource.roleDefinitionId,
+  Azure.Core.armResourceIdentifier,
+  "csharp"
+);
 @@alternateType(MetricDefinition.resourceUri,
   Azure.Core.armResourceIdentifier,
+  "csharp"
+);
+@@alternateType(DatabaseAccountUpdateProperties.networkAclBypassResourceIds,
+  Azure.Core.armResourceIdentifier[],
   "csharp"
 );
 @@alternateType(ClusterResourceProperties.privateLinkResourceId,
@@ -1496,6 +1500,10 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
   "csharp"
 );
 @@alternateType(Location.locationName, Azure.Core.azureLocation, "csharp");
+@@alternateType(DatabaseAccountUpdateProperties.locations,
+  Azure.Core.azureLocation,
+  "csharp"
+);
 @@alternateType(DatabaseAccountCreateUpdateProperties.locations,
   Azure.Core.azureLocation,
   "csharp"
@@ -1508,6 +1516,7 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
   Azure.Core.azureLocation,
   "csharp"
 );
+@@alternateType(DatabaseAccountUpdateProperties.keyVaultKeyUri, url, "csharp");
 @@alternateType(DataCenterResourceProperties.managedDiskCustomerKeyUri,
   url,
   "csharp"
@@ -1994,6 +2003,12 @@ model RestorableGremlinResourceData
 // and identity (not exposed on these content models in the legacy SDK).
 // The wrapper model name is the desired C# class name; this also obviates
 // the previous @@clientName(*, "...", "csharp") renames for the same models.
+//
+// NOTE: The MPG generator emits the flattened Resource/Options accessors on
+// each wrapper as get-only, even when the inner Properties model fields are
+// annotated with `@@visibility(Lifecycle.Read, Lifecycle.Create, Lifecycle.Update)`.
+// Setters on the legacy SDK shape are therefore restored via SDK-side custom
+// partial classes (see `src/Custom/Models/*CreateOrUpdateContent.cs`).
 
 #suppress "@azure-tools/typespec-azure-core/composition-over-inheritance" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
 model ThroughputSettingsUpdateData
