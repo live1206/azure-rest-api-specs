@@ -133,7 +133,7 @@ op mongoDBResourcesCreateUpdateMongoRoleDefinitionCustomized(
 
 @@override(MongoRoleDefinitionGetResultsOperationGroup.createUpdateMongoRoleDefinition,
   mongoDBResourcesCreateUpdateMongoRoleDefinitionCustomized,
-  "go,java"
+  "go,java,python"
 );
 
 #suppress "@azure-tools/typespec-azure-core/casing-style" "override"
@@ -165,7 +165,7 @@ op mongoUserDefinitionCreateUpdateMongoUserDefinitionCustomized(
 
 @@override(MongoUserDefinitionGetResultsOperationGroup.createUpdateMongoUserDefinition,
   mongoUserDefinitionCreateUpdateMongoUserDefinitionCustomized,
-  "go,java"
+  "go,java,python"
 );
 
 #suppress "@azure-tools/typespec-azure-resource-manager/no-response-body" "override"
@@ -193,7 +193,7 @@ op mongoDBResourcesDeleteMongoRoleDefinitionCustomized(
 
 @@override(MongoRoleDefinitionGetResultsOperationGroup.deleteMongoRoleDefinition,
   mongoDBResourcesDeleteMongoRoleDefinitionCustomized,
-  "go,java"
+  "go,java,python"
 );
 
 #suppress "@azure-tools/typespec-azure-resource-manager/no-response-body" "override"
@@ -221,7 +221,7 @@ op mongoDBResourcesDeleteMongoUserDefinitionCustomized(
 
 @@override(MongoUserDefinitionGetResultsOperationGroup.deleteMongoUserDefinition,
   mongoDBResourcesDeleteMongoUserDefinitionCustomized,
-  "go,java"
+  "go,java,python"
 );
 
 #suppress "@azure-tools/typespec-azure-resource-manager/no-response-body" "override"
@@ -249,7 +249,7 @@ op mongoDBResourcesGetMongoRoleDefinitionCustomized(
 
 @@override(MongoRoleDefinitionGetResultsOperationGroup.getMongoRoleDefinition,
   mongoDBResourcesGetMongoRoleDefinitionCustomized,
-  "go,java"
+  "go,java,python"
 );
 
 #suppress "@azure-tools/typespec-azure-resource-manager/no-response-body" "override"
@@ -277,7 +277,7 @@ op mongoDBResourcesGetMongoUserDefinitionCustomized(
 
 @@override(MongoUserDefinitionGetResultsOperationGroup.getMongoUserDefinition,
   mongoDBResourcesGetMongoUserDefinitionCustomized,
-  "go,java"
+  "go,java,python"
 );
 
 #suppress "@azure-tools/typespec-azure-resource-manager/no-response-body" "override"
@@ -310,7 +310,7 @@ op sqlResourcesCreateUpdateSqlRoleAssignmentCustomized(
 
 @@override(SqlRoleAssignmentGetResultsOperationGroup.createUpdateSqlRoleAssignment,
   sqlResourcesCreateUpdateSqlRoleAssignmentCustomized,
-  "go,java"
+  "go,java,python"
 );
 
 #suppress "@azure-tools/typespec-azure-resource-manager/no-response-body" "override"
@@ -343,7 +343,7 @@ op sqlResourcesCreateUpdateSqlRoleDefinitionCustomized(
 
 @@override(SqlRoleDefinitionGetResultsOperationGroup.createUpdateSqlRoleDefinition,
   sqlResourcesCreateUpdateSqlRoleDefinitionCustomized,
-  "go,java"
+  "go,java,python"
 );
 
 #suppress "@azure-tools/typespec-azure-resource-manager/no-response-body" "override"
@@ -371,7 +371,7 @@ op sqlResourcesDeleteSqlRoleAssignmentCustomized(
 
 @@override(SqlRoleAssignmentGetResultsOperationGroup.deleteSqlRoleAssignment,
   sqlResourcesDeleteSqlRoleAssignmentCustomized,
-  "go,java"
+  "go,java,python"
 );
 
 #suppress "@azure-tools/typespec-azure-resource-manager/no-response-body" "override"
@@ -399,7 +399,7 @@ op sqlResourcesDeleteSqlRoleDefinitionCustomized(
 
 @@override(SqlRoleDefinitionGetResultsOperationGroup.deleteSqlRoleDefinition,
   sqlResourcesDeleteSqlRoleDefinitionCustomized,
-  "go,java"
+  "go,java,python"
 );
 
 #suppress "@azure-tools/typespec-azure-resource-manager/no-response-body" "override"
@@ -427,7 +427,7 @@ op sqlResourcesGetSqlRoleAssignmentCustomized(
 
 @@override(SqlRoleAssignmentGetResultsOperationGroup.getSqlRoleAssignment,
   sqlResourcesGetSqlRoleAssignmentCustomized,
-  "go,java"
+  "go,java,python"
 );
 
 #suppress "@azure-tools/typespec-azure-resource-manager/no-response-body" "override"
@@ -455,7 +455,7 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
 
 @@override(SqlRoleDefinitionGetResultsOperationGroup.getSqlRoleDefinition,
   sqlResourcesGetSqlRoleDefinitionCustomized,
-  "go,java"
+  "go,java,python"
 );
 
 // C# client name customizations for backward compatibility.
@@ -1981,3 +1981,12 @@ model RestorableTable extends Azure.ResourceManager.CommonTypes.Resource {
   ...OmitProperties<RestorableTableGetResult, "id" | "name" | "type">;
 }
 @@alternateType(RestorableTableGetResult, RestorableTable, "csharp");
+
+@@clientName(ManagedServiceIdentityUserAssignedIdentities,
+  "ManagedServiceIdentityUserAssignedIdentity",
+  "python"
+);
+@@clientName(ComponentsM9L909SchemasCassandraclusterpublicstatusPropertiesDatacentersItemsPropertiesNodesItems,
+  "CassandraClusterDataCenterNodeItem",
+  "python"
+);
