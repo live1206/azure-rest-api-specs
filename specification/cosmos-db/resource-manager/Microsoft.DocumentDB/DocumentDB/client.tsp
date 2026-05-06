@@ -1236,56 +1236,15 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
   "CosmosDBAccountRegenerateKeyContent",
   "csharp"
 );
-@@clientName(ThroughputSettingsUpdateParameters,
-  "ThroughputSettingsUpdateData",
-  "csharp"
-);
-@@clientName(SqlDatabaseCreateUpdateParameters,
-  "CosmosDBSqlDatabaseCreateOrUpdateContent",
-  "csharp"
-);
-@@clientName(SqlContainerCreateUpdateParameters,
-  "CosmosDBSqlContainerCreateOrUpdateContent",
-  "csharp"
-);
-@@clientName(SqlStoredProcedureCreateUpdateParameters,
-  "CosmosDBSqlStoredProcedureCreateOrUpdateContent",
-  "csharp"
-);
-@@clientName(SqlUserDefinedFunctionCreateUpdateParameters,
-  "CosmosDBSqlUserDefinedFunctionCreateOrUpdateContent",
-  "csharp"
-);
+// Renaming for the 13 *CreateUpdateParameters / ThroughputSettingsUpdateParameters
+// models is performed via the @@alternateType wrapper models near the bottom
+// of this file (see "TrackedResource wrappers for *CreateOrUpdateContent"
+// section). The wrapper models carry the desired C# class name AND change
+// the inheritance to TrackedResource, matching the previously shipped SDK
+// surface. Keep the ClientEncryptionKey rename here because that model is
+// not flattened from ARMResourceProperties so it does not need the wrapper.
 @@clientName(ClientEncryptionKeyCreateUpdateParameters,
   "CosmosDBSqlClientEncryptionKeyCreateOrUpdateContent",
-  "csharp"
-);
-@@clientName(SqlTriggerCreateUpdateParameters,
-  "CosmosDBSqlTriggerCreateOrUpdateContent",
-  "csharp"
-);
-@@clientName(MongoDBDatabaseCreateUpdateParameters,
-  "MongoDBDatabaseCreateOrUpdateContent",
-  "csharp"
-);
-@@clientName(MongoDBCollectionCreateUpdateParameters,
-  "MongoDBCollectionCreateOrUpdateContent",
-  "csharp"
-);
-@@clientName(TableCreateUpdateParameters,
-  "CosmosDBTableCreateOrUpdateContent",
-  "csharp"
-);
-@@clientName(CassandraKeyspaceCreateUpdateParameters,
-  "CassandraKeyspaceCreateOrUpdateContent",
-  "csharp"
-);
-@@clientName(GremlinDatabaseCreateUpdateParameters,
-  "GremlinDatabaseCreateOrUpdateContent",
-  "csharp"
-);
-@@clientName(GremlinGraphCreateUpdateParameters,
-  "GremlinGraphCreateOrUpdateContent",
   "csharp"
 );
 @@clientName(SqlRoleAssignmentCreateUpdateParameters,
@@ -1375,10 +1334,8 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
   "CosmosDBAccountCreateOrUpdateContent",
   "csharp"
 );
-@@clientName(CassandraTableCreateUpdateParameters,
-  "CassandraTableCreateOrUpdateContent",
-  "csharp"
-);
+// CassandraTableCreateUpdateParameters rename is handled by the @@alternateType
+// wrapper model near the bottom of this file.
 @@clientName(CassandraViewResource, "CassandraViewResourceInfo", "csharp");
 @@clientName(CassandraRoleDefinitionResourceProperties.id,
   "RoleDefinitionId",
@@ -2000,7 +1957,10 @@ model RestorableSqlResourceData
 #suppress "@azure-tools/typespec-azure-core/composition-over-inheritance" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
 model RestorableMongoDBResourceData
   extends Azure.ResourceManager.CommonTypes.Resource {
-  ...OmitProperties<RestorableMongodbResourcesGetResult, "id" | "name" | "type">;
+  ...OmitProperties<
+    RestorableMongodbResourcesGetResult,
+    "id" | "name" | "type"
+  >;
 }
 @@alternateType(RestorableMongodbResourcesGetResult,
   RestorableMongoDBResourceData,
@@ -2013,9 +1973,206 @@ model RestorableMongoDBResourceData
 #suppress "@azure-tools/typespec-azure-core/composition-over-inheritance" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
 model RestorableGremlinResourceData
   extends Azure.ResourceManager.CommonTypes.Resource {
-  ...OmitProperties<RestorableGremlinResourcesGetResult, "id" | "name" | "type">;
+  ...OmitProperties<
+    RestorableGremlinResourcesGetResult,
+    "id" | "name" | "type"
+  >;
 }
 @@alternateType(RestorableGremlinResourcesGetResult,
   RestorableGremlinResourceData,
+  "csharp"
+);
+
+// TrackedResource wrappers for *CreateOrUpdateContent / ThroughputSettingsUpdateData.
+//
+// These spec models extend ARMResourceProperties (id/name/type/location/tags/identity).
+// The previously shipped SDK exposed them as TrackedResourceData subclasses
+// (Tags + Location, no Identity), so we wrap each with a custom model that
+// extends Azure.ResourceManager.CommonTypes.TrackedResource and substitute
+// via @@alternateType. OmitProperties drops id/name/type (provided by the
+// CommonTypes resource base), location/tags (provided by TrackedResource),
+// and identity (not exposed on these content models in the legacy SDK).
+// The wrapper model name is the desired C# class name; this also obviates
+// the previous @@clientName(*, "...", "csharp") renames for the same models.
+
+#suppress "@azure-tools/typespec-azure-core/composition-over-inheritance" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+model ThroughputSettingsUpdateData
+  extends Azure.ResourceManager.CommonTypes.TrackedResource {
+  ...OmitProperties<
+    ThroughputSettingsUpdateParameters,
+    "id" | "name" | "type" | "tags" | "location" | "identity"
+  >;
+}
+@@alternateType(ThroughputSettingsUpdateParameters,
+  ThroughputSettingsUpdateData,
+  "csharp"
+);
+
+#suppress "@azure-tools/typespec-azure-core/composition-over-inheritance" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+model CosmosDBSqlDatabaseCreateOrUpdateContent
+  extends Azure.ResourceManager.CommonTypes.TrackedResource {
+  ...OmitProperties<
+    SqlDatabaseCreateUpdateParameters,
+    "id" | "name" | "type" | "tags" | "location" | "identity"
+  >;
+}
+@@alternateType(SqlDatabaseCreateUpdateParameters,
+  CosmosDBSqlDatabaseCreateOrUpdateContent,
+  "csharp"
+);
+
+#suppress "@azure-tools/typespec-azure-core/composition-over-inheritance" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+model CosmosDBSqlContainerCreateOrUpdateContent
+  extends Azure.ResourceManager.CommonTypes.TrackedResource {
+  ...OmitProperties<
+    SqlContainerCreateUpdateParameters,
+    "id" | "name" | "type" | "tags" | "location" | "identity"
+  >;
+}
+@@alternateType(SqlContainerCreateUpdateParameters,
+  CosmosDBSqlContainerCreateOrUpdateContent,
+  "csharp"
+);
+
+#suppress "@azure-tools/typespec-azure-core/composition-over-inheritance" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+model CosmosDBSqlStoredProcedureCreateOrUpdateContent
+  extends Azure.ResourceManager.CommonTypes.TrackedResource {
+  ...OmitProperties<
+    SqlStoredProcedureCreateUpdateParameters,
+    "id" | "name" | "type" | "tags" | "location" | "identity"
+  >;
+}
+@@alternateType(SqlStoredProcedureCreateUpdateParameters,
+  CosmosDBSqlStoredProcedureCreateOrUpdateContent,
+  "csharp"
+);
+
+#suppress "@azure-tools/typespec-azure-core/composition-over-inheritance" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+model CosmosDBSqlUserDefinedFunctionCreateOrUpdateContent
+  extends Azure.ResourceManager.CommonTypes.TrackedResource {
+  ...OmitProperties<
+    SqlUserDefinedFunctionCreateUpdateParameters,
+    "id" | "name" | "type" | "tags" | "location" | "identity"
+  >;
+}
+@@alternateType(SqlUserDefinedFunctionCreateUpdateParameters,
+  CosmosDBSqlUserDefinedFunctionCreateOrUpdateContent,
+  "csharp"
+);
+
+#suppress "@azure-tools/typespec-azure-core/composition-over-inheritance" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+model CosmosDBSqlTriggerCreateOrUpdateContent
+  extends Azure.ResourceManager.CommonTypes.TrackedResource {
+  ...OmitProperties<
+    SqlTriggerCreateUpdateParameters,
+    "id" | "name" | "type" | "tags" | "location" | "identity"
+  >;
+}
+@@alternateType(SqlTriggerCreateUpdateParameters,
+  CosmosDBSqlTriggerCreateOrUpdateContent,
+  "csharp"
+);
+
+#suppress "@azure-tools/typespec-azure-core/composition-over-inheritance" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+model MongoDBDatabaseCreateOrUpdateContent
+  extends Azure.ResourceManager.CommonTypes.TrackedResource {
+  ...OmitProperties<
+    MongoDBDatabaseCreateUpdateParameters,
+    "id" | "name" | "type" | "tags" | "location" | "identity"
+  >;
+}
+@@alternateType(MongoDBDatabaseCreateUpdateParameters,
+  MongoDBDatabaseCreateOrUpdateContent,
+  "csharp"
+);
+
+#suppress "@azure-tools/typespec-azure-core/composition-over-inheritance" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+model MongoDBCollectionCreateOrUpdateContent
+  extends Azure.ResourceManager.CommonTypes.TrackedResource {
+  ...OmitProperties<
+    MongoDBCollectionCreateUpdateParameters,
+    "id" | "name" | "type" | "tags" | "location" | "identity"
+  >;
+}
+@@alternateType(MongoDBCollectionCreateUpdateParameters,
+  MongoDBCollectionCreateOrUpdateContent,
+  "csharp"
+);
+
+#suppress "@azure-tools/typespec-azure-core/composition-over-inheritance" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+model CosmosDBTableCreateOrUpdateContent
+  extends Azure.ResourceManager.CommonTypes.TrackedResource {
+  ...OmitProperties<
+    TableCreateUpdateParameters,
+    "id" | "name" | "type" | "tags" | "location" | "identity"
+  >;
+}
+@@alternateType(TableCreateUpdateParameters,
+  CosmosDBTableCreateOrUpdateContent,
+  "csharp"
+);
+
+#suppress "@azure-tools/typespec-azure-core/composition-over-inheritance" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+model CassandraKeyspaceCreateOrUpdateContent
+  extends Azure.ResourceManager.CommonTypes.TrackedResource {
+  ...OmitProperties<
+    CassandraKeyspaceCreateUpdateParameters,
+    "id" | "name" | "type" | "tags" | "location" | "identity"
+  >;
+}
+@@alternateType(CassandraKeyspaceCreateUpdateParameters,
+  CassandraKeyspaceCreateOrUpdateContent,
+  "csharp"
+);
+
+#suppress "@azure-tools/typespec-azure-core/composition-over-inheritance" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+model CassandraTableCreateOrUpdateContent
+  extends Azure.ResourceManager.CommonTypes.TrackedResource {
+  ...OmitProperties<
+    CassandraTableCreateUpdateParameters,
+    "id" | "name" | "type" | "tags" | "location" | "identity"
+  >;
+}
+@@alternateType(CassandraTableCreateUpdateParameters,
+  CassandraTableCreateOrUpdateContent,
+  "csharp"
+);
+
+#suppress "@azure-tools/typespec-azure-core/composition-over-inheritance" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+model CassandraViewCreateOrUpdateContent
+  extends Azure.ResourceManager.CommonTypes.TrackedResource {
+  ...OmitProperties<
+    CassandraViewCreateUpdateParameters,
+    "id" | "name" | "type" | "tags" | "location" | "identity"
+  >;
+}
+@@alternateType(CassandraViewCreateUpdateParameters,
+  CassandraViewCreateOrUpdateContent,
+  "csharp"
+);
+
+#suppress "@azure-tools/typespec-azure-core/composition-over-inheritance" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+model GremlinDatabaseCreateOrUpdateContent
+  extends Azure.ResourceManager.CommonTypes.TrackedResource {
+  ...OmitProperties<
+    GremlinDatabaseCreateUpdateParameters,
+    "id" | "name" | "type" | "tags" | "location" | "identity"
+  >;
+}
+@@alternateType(GremlinDatabaseCreateUpdateParameters,
+  GremlinDatabaseCreateOrUpdateContent,
+  "csharp"
+);
+
+#suppress "@azure-tools/typespec-azure-core/composition-over-inheritance" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+model GremlinGraphCreateOrUpdateContent
+  extends Azure.ResourceManager.CommonTypes.TrackedResource {
+  ...OmitProperties<
+    GremlinGraphCreateUpdateParameters,
+    "id" | "name" | "type" | "tags" | "location" | "identity"
+  >;
+}
+@@alternateType(GremlinGraphCreateUpdateParameters,
+  GremlinGraphCreateOrUpdateContent,
   "csharp"
 );
