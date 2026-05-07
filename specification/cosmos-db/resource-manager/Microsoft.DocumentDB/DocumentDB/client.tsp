@@ -1354,6 +1354,14 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
   "CosmosDBManagedServiceIdentity",
   "csharp"
 );
+@@clientName(DatabaseAccountsOperationGroup.checkNameExists,
+  "CheckNameExistsDatabaseAccount",
+  "csharp"
+);
+@@clientName(RestorableDatabaseAccountsOperationGroup.list,
+  "GetRestorableCosmosDBAccounts",
+  "csharp"
+);
 
 @@alternateType(GremlinDatabaseGetResults.identity,
   Azure.ResourceManager.CommonTypes.ManagedServiceIdentity,
@@ -1483,14 +1491,7 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
   Azure.Core.azureLocation[],
   "csharp"
 );
-@@alternateType(DatabaseAccountUpdateParameters.location,
-  Azure.Core.azureLocation,
-  "csharp"
-);
-@@alternateType(RestorableLocationResource.locationName,
-  Azure.Core.azureLocation,
-  "csharp"
-);
+@@alternateType(DatabaseAccountUpdateParameters.location, Azure.Core.azureLocation, "csharp");
 @@alternateType(RestorableLocationResource.locationName,
   Azure.Core.azureLocation,
   "csharp"
@@ -1520,6 +1521,7 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
   Azure.Core.azureLocation,
   "csharp"
 );
+@@alternateType(LocationGetResult.name, Azure.Core.azureLocation, "csharp");
 @@alternateType(DatabaseAccountUpdateProperties.keyVaultKeyUri, url, "csharp");
 @@alternateType(DataCenterResourceProperties.managedDiskCustomerKeyUri,
   url,
@@ -1749,6 +1751,12 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
   "csharp"
 );
 @@usage(PrivateLinkResource,
+  Azure.ClientGenerator.Core.Usage.input | Azure.ClientGenerator.Core.Usage.output,
+  "csharp"
+);
+
+@@access(ThroughputSettingsGetResults, Access.public, "csharp");
+@@usage(ThroughputSettingsGetResults,
   Azure.ClientGenerator.Core.Usage.input | Azure.ClientGenerator.Core.Usage.output,
   "csharp"
 );
@@ -2231,6 +2239,10 @@ union CosmosDBAccountOfferType {
   "Standard",
 }
 @@alternateType(DatabaseAccountCreateUpdateProperties.databaseAccountOfferType,
+  CosmosDBAccountOfferType,
+  "csharp"
+);
+@@alternateType(DatabaseAccountGetProperties.databaseAccountOfferType,
   CosmosDBAccountOfferType,
   "csharp"
 );
