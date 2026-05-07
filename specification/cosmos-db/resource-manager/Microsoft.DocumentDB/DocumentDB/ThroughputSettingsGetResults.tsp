@@ -72,6 +72,9 @@ alias ThroughputSettingsGetResultsOperationGroupOps = Azure.ResourceManager.Lega
     @key
     default: "default";
   }
+,
+  Azure.ResourceManager.CommonTypes.ErrorResponse,
+  "CosmosDBSqlDatabaseThroughputSetting"
 >;
 
 @armResourceOperations(#{ omitTags: true })
@@ -179,6 +182,9 @@ alias SqlResourcesThroughputSettingsGetResultsOperationGroupOps = Azure.Resource
     @key
     default: "default";
   }
+,
+  Azure.ResourceManager.CommonTypes.ErrorResponse,
+  "CosmosDBSqlContainerThroughputSetting"
 >;
 #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
 #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
@@ -277,6 +283,9 @@ alias MongoDBResourceOps = Azure.ResourceManager.Legacy.LegacyOperations<
     @key
     default: "default";
   }
+,
+  Azure.ResourceManager.CommonTypes.ErrorResponse,
+  "MongoDBDatabaseThroughputSetting"
 >;
 #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
 @armResourceOperations(#{ omitTags: true })
@@ -388,6 +397,9 @@ alias MongoDBResourcesThroughputSettingsGetResultsOperationGroupOps = Azure.Reso
     @key
     default: "default";
   }
+,
+  Azure.ResourceManager.CommonTypes.ErrorResponse,
+  "MongoDBCollectionThroughputSetting"
 >;
 #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
 @armResourceOperations(#{ omitTags: true })
@@ -493,6 +505,9 @@ alias TableResourceOps = Azure.ResourceManager.Legacy.LegacyOperations<
     @key
     default: "default";
   }
+,
+  Azure.ResourceManager.CommonTypes.ErrorResponse,
+  "CosmosTableThroughputSetting"
 >;
 
 @armResourceOperations(#{ omitTags: true })
@@ -568,6 +583,9 @@ alias CassandraResourceOps = Azure.ResourceManager.Legacy.LegacyOperations<
     @key
     default: "default";
   }
+,
+  Azure.ResourceManager.CommonTypes.ErrorResponse,
+  "CassandraKeyspaceThroughputSetting"
 >;
 
 @armResourceOperations(#{ omitTags: true })
@@ -649,6 +667,9 @@ alias CassandraResourcesThroughputSettingsGetResultsOperationGroupOps = Azure.Re
     @key
     default: "default";
   }
+,
+  Azure.ResourceManager.CommonTypes.ErrorResponse,
+  "CassandraTableThroughputSetting"
 >;
 
 #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
@@ -731,6 +752,9 @@ alias ViewCassandraResourcesThroughputSettingsGetResultsOperationGroupOps = Azur
     @key
     default: "default";
   }
+,
+  Azure.ResourceManager.CommonTypes.ErrorResponse,
+  "CassandraViewThroughputSetting"
 >;
 #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
 @armResourceOperations(#{ omitTags: true })
@@ -806,6 +830,9 @@ alias GremlinResourceOps = Azure.ResourceManager.Legacy.LegacyOperations<
     @key
     default: "default";
   }
+,
+  Azure.ResourceManager.CommonTypes.ErrorResponse,
+  "GremlinDatabaseThroughputSetting"
 >;
 
 @armResourceOperations(#{ omitTags: true })
@@ -887,6 +914,9 @@ alias GremlinResourcesThroughputSettingsGetResultsOperationGroupOps = Azure.Reso
     @key
     default: "default";
   }
+,
+  Azure.ResourceManager.CommonTypes.ErrorResponse,
+  "GremlinGraphThroughputSetting"
 >;
 #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
 #suppress "@azure-tools/typespec-azure-resource-manager/no-resource-delete-operation" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"

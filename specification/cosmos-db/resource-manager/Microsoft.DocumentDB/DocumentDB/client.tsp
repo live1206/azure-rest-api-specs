@@ -725,6 +725,7 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
   "IsFreeTierEnabled",
   "csharp"
 );
+@@clientName(DatabaseAccountGetProperties.ipRules, "IPRules", "csharp");
 @@clientName(DatabaseAccountCreateUpdateProperties.enableAnalyticalStorage,
   "IsAnalyticalStorageEnabled",
   "csharp"
@@ -1530,6 +1531,7 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
   url,
   "csharp"
 );
+@@alternateType(DatabaseAccountGetProperties.keyVaultKeyUri, url, "csharp");
 @@alternateType(ExtendedResourceProperties._etag,
   Azure.Core.EtagProperty.etag,
   "csharp"
@@ -1540,6 +1542,10 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
 );
 @@alternateType(PartitionUsage.partitionId, Azure.Core.uuid, "csharp");
 @@alternateType(PartitionMetric.partitionId, Azure.Core.uuid, "csharp");
+@@alternateType(DatabaseAccountGetProperties.instanceId,
+  Azure.Core.uuid,
+  "csharp"
+);
 @@alternateType(ComponentsM9L909SchemasCassandraclusterpublicstatusPropertiesDatacentersItemsPropertiesNodesItems.hostID,
   Azure.Core.uuid,
   "csharp"
