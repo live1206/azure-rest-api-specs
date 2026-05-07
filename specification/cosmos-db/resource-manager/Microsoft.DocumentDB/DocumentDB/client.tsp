@@ -1333,10 +1333,8 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
   "MongoDBUserDefinitionCreateOrUpdateContent",
   "csharp"
 );
-@@clientName(DatabaseAccountCreateUpdateParameters,
-  "CosmosDBAccountCreateOrUpdateContent",
-  "csharp"
-);
+// DatabaseAccountCreateUpdateParameters rename is handled by the @@alternateType
+// wrapper model near the bottom of this file.
 // CassandraTableCreateUpdateParameters rename is handled by the @@alternateType
 // wrapper model near the bottom of this file.
 @@clientName(CassandraViewResource, "CassandraViewResourceInfo", "csharp");
@@ -2025,6 +2023,19 @@ model RestorableGremlinResourceData
 // annotated with `@@visibility(Lifecycle.Read, Lifecycle.Create, Lifecycle.Update)`.
 // Setters on the legacy SDK shape are therefore restored via SDK-side custom
 // partial classes (see `src/Custom/Models/*CreateOrUpdateContent.cs`).
+
+#suppress "@azure-tools/typespec-azure-core/composition-over-inheritance" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+model CosmosDBAccountCreateOrUpdateContent
+  extends Azure.ResourceManager.CommonTypes.TrackedResource {
+  ...OmitProperties<
+    DatabaseAccountCreateUpdateParameters,
+    "id" | "name" | "type" | "tags" | "location" | "identity"
+  >;
+}
+@@alternateType(DatabaseAccountCreateUpdateParameters,
+  CosmosDBAccountCreateOrUpdateContent,
+  "csharp"
+);
 
 #suppress "@azure-tools/typespec-azure-core/composition-over-inheritance" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
 model ThroughputSettingsUpdateData
