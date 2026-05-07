@@ -513,61 +513,61 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
   "csharp"
 );
 @@clientName(DatabaseAccounts.collectionListMetrics,
-  "GetCollectionMetrics",
+  "GetMetricsCollections",
   "csharp"
 );
 @@clientName(DatabaseAccounts.collectionListUsages,
-  "GetCollectionUsages",
+  "GetUsagesCollections",
   "csharp"
 );
 @@clientName(DatabaseAccounts.collectionPartitionListMetrics,
-  "GetCollectionPartitionMetrics",
+  "GetMetricsCollectionPartitions",
   "csharp"
 );
 @@clientName(DatabaseAccounts.collectionPartitionListUsages,
-  "GetCollectionPartitionUsages",
+  "GetUsagesCollectionPartitions",
   "csharp"
 );
 @@clientName(DatabaseAccounts.collectionPartitionRegionListMetrics,
-  "GetCollectionPartitionRegionMetrics",
+  "GetMetricsCollectionPartitionRegions",
   "csharp"
 );
 @@clientName(DatabaseAccounts.collectionRegionListMetrics,
-  "GetCollectionRegionMetrics",
+  "GetMetricsCollectionRegions",
   "csharp"
 );
 @@clientName(DatabaseAccounts.databaseAccountRegionListMetrics,
-  "GetDatabaseAccountRegionMetrics",
+  "GetMetricsDatabaseAccountRegions",
   "csharp"
 );
 @@clientName(DatabaseAccounts.databaseListMetrics,
-  "GetDatabaseMetrics",
+  "GetMetricsDatabases",
   "csharp"
 );
 @@clientName(DatabaseAccounts.databaseListUsages,
-  "GetDatabaseUsages",
+  "GetUsagesDatabases",
   "csharp"
 );
-@@clientName(DatabaseAccounts.listMetrics, "GetAccountMetrics", "csharp");
-@@clientName(DatabaseAccounts.listUsages, "GetAccountUsages", "csharp");
+@@clientName(DatabaseAccounts.listMetrics, "GetMetrics", "csharp");
+@@clientName(DatabaseAccounts.listUsages, "GetUsages", "csharp");
 @@clientName(DatabaseAccounts.partitionKeyRangeIdListMetrics,
-  "GetPartitionKeyRangeIdMetrics",
+  "GetMetricsPartitionKeyRangeIds",
   "csharp"
 );
 @@clientName(DatabaseAccounts.partitionKeyRangeIdRegionListMetrics,
-  "GetPartitionKeyRangeIdRegionMetrics",
+  "GetMetricsPartitionKeyRangeIdRegions",
   "csharp"
 );
 @@clientName(DatabaseAccounts.percentileListMetrics,
-  "GetPercentileMetrics",
+  "GetMetricsPercentiles",
   "csharp"
 );
 @@clientName(DatabaseAccounts.percentileSourceTargetListMetrics,
-  "GetPercentileSourceTargetMetrics",
+  "GetMetricsPercentileSourceTargets",
   "csharp"
 );
 @@clientName(DatabaseAccounts.percentileTargetListMetrics,
-  "GetPercentileTargetMetrics",
+  "GetMetricsPercentileTargets",
   "csharp"
 );
 @@clientName(DatabaseRestoreResource, "DatabaseRestoreResourceInfo", "csharp");
@@ -1491,7 +1491,10 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
   Azure.Core.azureLocation[],
   "csharp"
 );
-@@alternateType(DatabaseAccountUpdateParameters.location, Azure.Core.azureLocation, "csharp");
+@@alternateType(DatabaseAccountUpdateParameters.location,
+  Azure.Core.azureLocation,
+  "csharp"
+);
 @@alternateType(RestorableLocationResource.locationName,
   Azure.Core.azureLocation,
   "csharp"
@@ -1510,6 +1513,10 @@ op sqlResourcesGetSqlRoleDefinitionCustomized(
   "csharp"
 );
 @@alternateType(DatabaseAccountCreateUpdateProperties.locations,
+  Azure.Core.azureLocation,
+  "csharp"
+);
+@@alternateType(ContinuousBackupRestoreLocation.location,
   Azure.Core.azureLocation,
   "csharp"
 );
@@ -2244,5 +2251,10 @@ union CosmosDBAccountOfferType {
 );
 @@alternateType(DatabaseAccountGetProperties.databaseAccountOfferType,
   CosmosDBAccountOfferType,
+  "csharp"
+);
+
+#suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "Required for backward compatibility - listConnectionStrings should expose Pageable<DatabaseAccountConnectionString>"
+@@Azure.ClientGenerator.Core.Legacy.markAsPageable(DatabaseAccounts.listConnectionStrings,
   "csharp"
 );
