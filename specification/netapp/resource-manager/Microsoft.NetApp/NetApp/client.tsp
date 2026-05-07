@@ -636,6 +636,10 @@ union NetAppRelationshipStatusDef {
 @@alternateType(NetAppAccount.etag, Azure.Core.eTag, "csharp");
 @@alternateType(BackupPolicy.etag, Azure.Core.eTag, "csharp");
 @@alternateType(SnapshotPolicy.etag, Azure.Core.eTag, "csharp");
+@@alternateType(Volume.etag, Azure.Core.eTag, "csharp");
+
+// Capacity pool throughput: int32 -> float32 to preserve the GA SDK surface
+@@alternateType(PoolProperties.customThroughputMibps, float32, "csharp");
 
 // Snapshot location: string → azureLocation
 @@alternateType(Snapshot.location, azureLocation, "csharp");
