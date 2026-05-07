@@ -537,6 +537,11 @@ union NetAppRelationshipStatusDef {
   Azure.Core.ipV4Address,
   "csharp"
 );
+@@clientName(NicInfo.ipAddress, "IPAddress", "csharp");
+@@clientName(PeerClusterForVolumeMigrationRequest.peerIpAddresses,
+  "PeerIPAddresses",
+  "csharp"
+);
 
 // C# property type overrides for VolumeProperties
 @@alternateType(VolumeProperties.fileSystemId, uuid, "csharp");
@@ -679,6 +684,7 @@ union NetAppRelationshipStatusDef {
 // Make types public for C# SDK backward compatibility
 @@access(VolumePropertiesExportPolicy, Access.public, "csharp");
 @@access(VolumeBackupRelationshipStatus, Access.public, "csharp");
+@@access(VolumeReplicationRelationshipStatus, Access.public, "csharp");
 @@access(VolumeRestoreRelationshipStatus, Access.public, "csharp");
 
 // --- @@hierarchyBuilding: restore base types for backward compat ---
@@ -722,3 +728,6 @@ union NetAppRelationshipStatusDef {
 @@usage(RegionInfoResource, Usage.input, "csharp");
 @@usage(Snapshot, Usage.input, "csharp");
 @@usage(QuotaItem, Usage.input, "csharp");
+@@usage(VolumeBackupRelationshipStatus, Usage.output, "csharp");
+@@usage(VolumeReplicationRelationshipStatus, Usage.output, "csharp");
+@@usage(VolumeRestoreRelationshipStatus, Usage.output, "csharp");
