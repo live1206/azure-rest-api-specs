@@ -599,6 +599,7 @@ union NetAppRelationshipStatusDef {
   Azure.Core.ipV4Address,
   "csharp"
 );
+@@clientName(MountTargetProperties.ipAddress, "IPAddress", "csharp");
 @@clientName(NicInfo.ipAddress, "IPAddress", "csharp");
 @@clientName(PeerClusterForVolumeMigrationRequest.peerIpAddresses,
   "PeerIPAddresses",
