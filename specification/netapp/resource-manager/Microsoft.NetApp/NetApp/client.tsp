@@ -332,6 +332,64 @@ union NetAppRelationshipStatusDef {
   "NetAppVolumeBackupConfiguration",
   "csharp"
 );
+@@clientName(FileSystemUser, "NetAppFileSystemUser", "csharp");
+@@clientName(NfsUser, "NetAppNfsUser", "csharp");
+@@clientName(BucketServerProperties,
+  "NetAppBucketServerProperties",
+  "csharp"
+);
+@@clientName(BucketServerPatchProperties,
+  "NetAppBucketServerPatchProperties",
+  "csharp"
+);
+@@clientName(BucketPermissions, "NetAppBucketPermission", "csharp");
+@@clientName(BucketPatchPermissions,
+  "NetAppBucketPatchPermission",
+  "csharp"
+);
+@@clientName(OnCertificateConflictAction,
+  "NetAppOnCertificateConflictAction",
+  "csharp"
+);
+@@clientName(BucketCredentialsExpiry,
+  "NetAppBucketCredentialsExpiry",
+  "csharp"
+);
+@@clientName(BucketGenerateCredentials,
+  "NetAppBucketGenerateCredentials",
+  "csharp"
+);
+@@clientName(BucketGenerateCredentials.keyPairExpiry,
+  "KeyPairExpiresOn",
+  "csharp"
+);
+@@clientName(AzureKeyVaultDetails, "NetAppKeyVaultDetails", "csharp");
+@@clientName(BucketProperties.akvDetails, "KeyVaultDetails", "csharp");
+@@clientName(BucketPatchProperties.akvDetails,
+  "KeyVaultDetails",
+  "csharp"
+);
+@@clientName(CertificateAkvDetails,
+  "CertificateKeyVaultDetails",
+  "csharp"
+);
+@@clientName(CredentialsAkvDetails,
+  "CredentialsKeyVaultDetails",
+  "csharp"
+);
+@@clientName(AzureKeyVaultDetails.certificateAkvDetails,
+  "CertificateKeyVaultDetails",
+  "csharp"
+);
+@@clientName(AzureKeyVaultDetails.credentialsAkvDetails,
+  "CredentialsKeyVaultDetails",
+  "csharp"
+);
+@@clientName(CredentialsStatus, "NetAppCredentialsStatus", "csharp");
+@@clientName(Buckets.generateAkvCredentials,
+  "GenerateKeyVaultCredentials",
+  "csharp"
+);
 @@clientName(ExportPolicyRule, "NetAppVolumeExportPolicyRule", "csharp");
 @@clientName(ExportPolicyRule.unixReadOnly, "IsUnixReadOnly", "csharp");
 @@clientName(ExportPolicyRule.unixReadWrite, "IsUnixReadWrite", "csharp");
