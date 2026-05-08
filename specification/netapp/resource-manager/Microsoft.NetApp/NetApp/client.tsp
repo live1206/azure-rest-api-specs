@@ -332,6 +332,10 @@ union NetAppRelationshipStatusDef {
   "NetAppVolumeBackupConfiguration",
   "csharp"
 );
+@@clientName(SecretPasswordKeyVaultProperties,
+  "NetAppSecretPasswordKeyVaultPatchProperties",
+  "csharp"
+);
 @@clientName(FileSystemUser, "NetAppFileSystemUser", "csharp");
 @@clientName(NfsUser, "NetAppNfsUser", "csharp");
 @@clientName(BucketServerProperties,
