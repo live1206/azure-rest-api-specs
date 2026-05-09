@@ -212,24 +212,15 @@ union NetAppRelationshipStatusDef {
 @@clientName(MonthlySchedule, "SnapshotPolicyMonthlySchedule", "csharp");
 @@clientName(WeeklySchedule, "SnapshotPolicyWeeklySchedule", "csharp");
 @@clientName(CacheLifeCycleState, "NetAppCacheLifeCycleState", "csharp");
-@@clientName(CacheProvisioningState,
-  "NetAppCacheProvisioningState",
-  "csharp"
-);
-@@clientName(CifsChangeNotifyState,
-  "NetAppCifsChangeNotifyState",
-  "csharp"
-);
+@@clientName(CacheProvisioningState, "NetAppCacheProvisioningState", "csharp");
+@@clientName(CifsChangeNotifyState, "NetAppCifsChangeNotifyState", "csharp");
 @@clientName(EnableWriteBackState, "NetAppEnableWriteBackState", "csharp");
 @@clientName(EncryptionState, "NetAppEncryptionState", "csharp");
 @@clientName(ExternalReplicationSetupStatus,
   "NetAppExternalReplicationSetupStatus",
   "csharp"
 );
-@@clientName(GlobalFileLockingState,
-  "NetAppGlobalFileLockingState",
-  "csharp"
-);
+@@clientName(GlobalFileLockingState, "NetAppGlobalFileLockingState", "csharp");
 @@clientName(KerberosState, "NetAppKerberosState", "csharp");
 @@clientName(LdapState, "NetAppLdapState", "csharp");
 @@clientName(LdapServerType, "NetAppLdapServerType", "csharp");
@@ -257,6 +248,10 @@ union NetAppRelationshipStatusDef {
   "csharp"
 );
 @@clientName(BreakFileLocksRequest.clientIp, "ClientIP", "csharp");
+@@alternateType(BreakFileLocksRequest.clientIp,
+  Azure.Core.ipV4Address,
+  "csharp"
+);
 @@clientName(BreakReplicationRequest,
   "NetAppVolumeBreakReplicationContent",
   "csharp"
@@ -404,19 +399,13 @@ union NetAppRelationshipStatusDef {
 );
 @@clientName(FileSystemUser, "NetAppFileSystemUser", "csharp");
 @@clientName(NfsUser, "NetAppNfsUser", "csharp");
-@@clientName(BucketServerProperties,
-  "NetAppBucketServerProperties",
-  "csharp"
-);
+@@clientName(BucketServerProperties, "NetAppBucketServerProperties", "csharp");
 @@clientName(BucketServerPatchProperties,
   "NetAppBucketServerPatchProperties",
   "csharp"
 );
 @@clientName(BucketPermissions, "NetAppBucketPermission", "csharp");
-@@clientName(BucketPatchPermissions,
-  "NetAppBucketPatchPermission",
-  "csharp"
-);
+@@clientName(BucketPatchPermissions, "NetAppBucketPatchPermission", "csharp");
 @@clientName(OnCertificateConflictAction,
   "NetAppOnCertificateConflictAction",
   "csharp"
@@ -435,18 +424,9 @@ union NetAppRelationshipStatusDef {
 );
 @@clientName(AzureKeyVaultDetails, "NetAppKeyVaultDetails", "csharp");
 @@clientName(BucketProperties.akvDetails, "KeyVaultDetails", "csharp");
-@@clientName(BucketPatchProperties.akvDetails,
-  "KeyVaultDetails",
-  "csharp"
-);
-@@clientName(CertificateAkvDetails,
-  "CertificateKeyVaultDetails",
-  "csharp"
-);
-@@clientName(CredentialsAkvDetails,
-  "CredentialsKeyVaultDetails",
-  "csharp"
-);
+@@clientName(BucketPatchProperties.akvDetails, "KeyVaultDetails", "csharp");
+@@clientName(CertificateAkvDetails, "CertificateKeyVaultDetails", "csharp");
+@@clientName(CredentialsAkvDetails, "CredentialsKeyVaultDetails", "csharp");
 @@clientName(AzureKeyVaultDetails.certificateAkvDetails,
   "CertificateKeyVaultDetails",
   "csharp"
@@ -503,11 +483,8 @@ union NetAppRelationshipStatusDef {
 @@clientName(RestoreStatus.healthy, "IsHealthy", "csharp");
 @@clientName(BackupStatus.healthy, "IsHealthy", "csharp");
 @@clientName(ReplicationStatus.healthy, "IsHealthy", "csharp");
-@@clientName(ResourceNameAvailabilityRequest.`type`,
-  "ResourceType",
-  "csharp"
-);
-@@clientName(QuotaAvailabilityRequest.`type`,
+@@clientName(ResourceNameAvailabilityRequest.type, "ResourceType", "csharp");
+@@clientName(QuotaAvailabilityRequest.type,
   "AvailabilityResourceType",
   "csharp"
 );
@@ -688,7 +665,10 @@ union NetAppRelationshipStatusDef {
 @@alternateType(VolumeProperties.fileSystemId, uuid, "csharp");
 @@alternateType(VolumeProperties.networkSiblingSetId, uuid, "csharp");
 // dataStoreResourceId: string[] -> ResourceIdentifier[] (old SDK exposed Azure.Core.ResourceIdentifier)
-@@alternateType(VolumeProperties.dataStoreResourceId, armResourceIdentifier[], "csharp");
+@@alternateType(VolumeProperties.dataStoreResourceId,
+  armResourceIdentifier[],
+  "csharp"
+);
 
 // C# ETag and Guid property type overrides
 @@alternateType(PoolProperties.poolId, uuid, "csharp");

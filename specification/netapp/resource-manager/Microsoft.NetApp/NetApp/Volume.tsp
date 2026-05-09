@@ -1421,7 +1421,8 @@ model BreakFileLocksRequest {
   /**
    * To clear file locks on a volume for a particular client
    */
-  clientIp?: ipV4Address;
+  @pattern("^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$")
+  clientIp?: string;
 
   /**
    * Break File locks could be a disruptive operation for application as locks on the volume will be broken, if want to process, set to true.
