@@ -729,16 +729,16 @@ union NetAppRelationshipStatusDef {
 // VolumeGroupDetails.location: string → azureLocation (old API had AzureLocation?)
 @@alternateType(VolumeGroupDetails.location, azureLocation, "csharp");
 @@alternateType(VolumeGroup.location, azureLocation, "csharp");
-@@alternateType(BackupStatus.relationshipStatus,
-  NetAppRelationshipStatusDef,
+@@clientName(BackupStatus.relationshipStatus,
+  "VolumeBackupRelationshipStatus",
   "csharp"
 );
 @@alternateType(ReplicationStatus.relationshipStatus,
   NetAppRelationshipStatusDef,
   "csharp"
 );
-@@alternateType(RestoreStatus.relationshipStatus,
-  NetAppRelationshipStatusDef,
+@@clientName(RestoreStatus.relationshipStatus,
+  "VolumeRestoreRelationshipStatus",
   "csharp"
 );
 // Also fix ReplicationObject.relationshipStatus
