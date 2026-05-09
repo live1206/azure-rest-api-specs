@@ -737,8 +737,12 @@ union NetAppRelationshipStatusDef {
   NetAppRelationshipStatusDef,
   "csharp"
 );
+@@alternateType(RestoreStatus.relationshipStatus,
+  NetAppRelationshipStatusDef,
+  "csharp"
+);
 @@clientName(RestoreStatus.relationshipStatus,
-  "VolumeRestoreRelationshipStatus",
+  "RelationshipStatus",
   "csharp"
 );
 // Also fix ReplicationObject.relationshipStatus
