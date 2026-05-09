@@ -196,10 +196,46 @@ union NetAppRelationshipStatusDef {
 @@clientName(ActiveDirectory, "NetAppAccountActiveDirectory", "csharp");
 @@clientName(AccountEncryption, "NetAppAccountEncryption", "csharp");
 @@clientName(Replication, "NetAppVolumeReplication", "csharp");
+@@clientName(CacheProperties, "NetAppCacheProperties", "csharp");
+@@clientName(CacheMountTargetProperties,
+  "NetAppCacheMountTargetProperties",
+  "csharp"
+);
+@@clientName(PeeringPassphrases, "NetAppPeeringPassphrases", "csharp");
+@@clientName(SmbSettings, "NetAppSmbSettings", "csharp");
+@@clientName(OriginClusterInformation,
+  "NetAppOriginClusterInformation",
+  "csharp"
+);
 @@clientName(DailySchedule, "SnapshotPolicyDailySchedule", "csharp");
 @@clientName(HourlySchedule, "SnapshotPolicyHourlySchedule", "csharp");
 @@clientName(MonthlySchedule, "SnapshotPolicyMonthlySchedule", "csharp");
 @@clientName(WeeklySchedule, "SnapshotPolicyWeeklySchedule", "csharp");
+@@clientName(CacheLifeCycleState, "NetAppCacheLifeCycleState", "csharp");
+@@clientName(CacheProvisioningState,
+  "NetAppCacheProvisioningState",
+  "csharp"
+);
+@@clientName(CifsChangeNotifyState,
+  "NetAppCifsChangeNotifyState",
+  "csharp"
+);
+@@clientName(EnableWriteBackState, "NetAppEnableWriteBackState", "csharp");
+@@clientName(EncryptionState, "NetAppEncryptionState", "csharp");
+@@clientName(ExternalReplicationSetupStatus,
+  "NetAppExternalReplicationSetupStatus",
+  "csharp"
+);
+@@clientName(GlobalFileLockingState,
+  "NetAppGlobalFileLockingState",
+  "csharp"
+);
+@@clientName(KerberosState, "NetAppKerberosState", "csharp");
+@@clientName(LdapState, "NetAppLdapState", "csharp");
+@@clientName(LdapServerType, "NetAppLdapServerType", "csharp");
+@@clientName(ProtocolTypes, "NetAppProtocolType", "csharp");
+@@clientName(SmbEncryptionState, "NetAppSmbEncryptionState", "csharp");
+@@clientName(VolumeLanguage, "NetAppVolumeLanguage", "csharp");
 @@clientName(ActiveDirectoryStatus,
   "NetAppAccountActiveDirectoryStatus",
   "csharp"
@@ -574,6 +610,11 @@ union NetAppRelationshipStatusDef {
 @@clientName(EndpointType.src, "Source", "csharp");
 @@clientName(EndpointType.dst, "Destination", "csharp");
 @@clientName(ServiceLevel.StandardZRS, "StandardZrs", "csharp");
+@@clientName(ProtocolTypes.NFSv3, "Nfsv3", "csharp");
+@@clientName(ProtocolTypes.NFSv4, "Nfsv4", "csharp");
+@@clientName(ProtocolTypes.SMB, "Smb", "csharp");
+@@clientName(LdapServerType.OpenLDAP, "OpenLdap", "csharp");
+@@clientName(VolumeLanguage.utf8mb4, "Utf8Mb4", "csharp");
 @@clientName(ElasticProtocolType.NFSv3, "Nfsv3", "csharp");
 @@clientName(ElasticProtocolType.NFSv4, "Nfsv4", "csharp");
 
@@ -633,8 +674,11 @@ union NetAppRelationshipStatusDef {
   Azure.Core.ipV4Address,
   "csharp"
 );
+@@alternateType(CacheMountTargetProperties.ipAddress, string, "csharp");
 @@clientName(MountTargetProperties.ipAddress, "IPAddress", "csharp");
+@@clientName(CacheMountTargetProperties.ipAddress, "IPAddress", "csharp");
 @@clientName(NicInfo.ipAddress, "IPAddress", "csharp");
+@@clientName(BucketServerProperties.ipAddress, "IPAddress", "csharp");
 @@clientName(PeerClusterForVolumeMigrationRequest.peerIpAddresses,
   "PeerIPAddresses",
   "csharp"
@@ -735,6 +779,14 @@ union NetAppRelationshipStatusDef {
 @@alternateType(VolumeGroup.id, armResourceIdentifier, "csharp");
 @@alternateType(VolumeGroup.location, azureLocation, "csharp");
 @@alternateType(NetAppProvisioningState, NetAppProvisioningStateDef, "csharp");
+@@alternateType(BucketProperties.provisioningState,
+  NetAppVolumeQuotaRuleProvisioningStateDef,
+  "csharp"
+);
+@@alternateType(BucketPatchProperties.provisioningState,
+  NetAppVolumeQuotaRuleProvisioningStateDef,
+  "csharp"
+);
 @@alternateType(VolumeQuotaRulesProperties.provisioningState,
   NetAppVolumeQuotaRuleProvisioningStateDef,
   "csharp"
@@ -751,6 +803,7 @@ union NetAppRelationshipStatusDef {
 @@alternateType(BackupPolicy.etag, Azure.Core.eTag, "csharp");
 @@alternateType(SnapshotPolicy.etag, Azure.Core.eTag, "csharp");
 @@alternateType(Volume.etag, Azure.Core.eTag, "csharp");
+@@alternateType(Cache.etag, Azure.Core.eTag, "csharp");
 
 // Capacity pool throughput: int32 -> float32 to preserve the GA SDK surface
 @@alternateType(PoolProperties.customThroughputMibps, float32, "csharp");
@@ -784,7 +837,7 @@ union NetAppRelationshipStatusDef {
 );
 // Also fix ReplicationObject.relationshipStatus
 @@alternateType(ReplicationObject.relationshipStatus,
-  NetAppRelationshipStatusDef,
+  VolumeReplicationRelationshipStatus,
   "csharp"
 );
 
