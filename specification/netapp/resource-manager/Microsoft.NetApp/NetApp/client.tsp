@@ -135,6 +135,35 @@ enum NetAppProvisioningStateDef {
   Provisioning: "Provisioning",
 }
 
+/** Compatibility alias for NetApp volume quota rule provisioning state values. */
+union NetAppVolumeQuotaRuleProvisioningStateDef {
+  string,
+
+  /** The request has been accepted. */
+  Accepted: "Accepted",
+
+  /** The resource is being created. */
+  Creating: "Creating",
+
+  /** The resource is being patched. */
+  Patching: "Patching",
+
+  /** The resource is being deleted. */
+  Deleting: "Deleting",
+
+  /** The resource is being moved. */
+  Moving: "Moving",
+
+  /** The operation failed. */
+  Failed: "Failed",
+
+  /** The operation succeeded. */
+  Succeeded: "Succeeded",
+
+  /** The resource is being updated. */
+  Updating: "Updating",
+}
+
 // --- C# backward-compat union (unified relationship status) ---
 
 // --- Fix status model RelationshipStatus type to use unified NetAppRelationshipStatus ---
@@ -534,6 +563,10 @@ union NetAppRelationshipStatusDef {
 @@clientName(QuotaReport, "NetAppVolumeQuotaReport", "csharp");
 @@clientName(QuotaReportFilterRequest, "QuotaReportFilterContent", "csharp");
 @@clientName(NetAppProvisioningStateDef, "NetAppProvisioningState", "csharp");
+@@clientName(NetAppVolumeQuotaRuleProvisioningStateDef,
+  "NetAppVolumeQuotaRuleProvisioningState",
+  "csharp"
+);
 
 // C# enum-member casing fixes (formerly exposed with these spellings)
 @@clientName(ApplicationType.`SAP-HANA`, "SapHana", "csharp");
@@ -702,6 +735,14 @@ union NetAppRelationshipStatusDef {
 @@alternateType(VolumeGroup.id, armResourceIdentifier, "csharp");
 @@alternateType(VolumeGroup.location, azureLocation, "csharp");
 @@alternateType(NetAppProvisioningState, NetAppProvisioningStateDef, "csharp");
+@@alternateType(VolumeQuotaRulesProperties.provisioningState,
+  NetAppVolumeQuotaRuleProvisioningStateDef,
+  "csharp"
+);
+@@clientName(VolumeQuotaRulesProperties.provisioningState,
+  "VolumeQuotaRuleProvisioningState",
+  "csharp"
+);
 
 // --- Fix property type mismatches via @@alternateType ---
 // ETag: string → Azure.Core.eTag
@@ -799,3 +840,4 @@ union NetAppRelationshipStatusDef {
 @@usage(VolumeBackupRelationshipStatus, Usage.input, "csharp");
 @@usage(VolumeReplicationRelationshipStatus, Usage.input, "csharp");
 @@usage(VolumeRestoreRelationshipStatus, Usage.input, "csharp");
+@@usage(NetAppVolumeQuotaRuleProvisioningStateDef, Usage.input, "csharp");
