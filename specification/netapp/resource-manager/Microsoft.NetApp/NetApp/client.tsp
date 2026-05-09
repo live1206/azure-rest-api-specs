@@ -796,6 +796,6 @@ union NetAppRelationshipStatusDef {
 @@usage(RegionInfoResource, Usage.input, "csharp");
 @@usage(Snapshot, Usage.input, "csharp");
 @@usage(QuotaItem, Usage.input, "csharp");
-@@usage(VolumeBackupRelationshipStatus, Usage.output, "csharp");
-@@usage(VolumeReplicationRelationshipStatus, Usage.output, "csharp");
-@@usage(VolumeRestoreRelationshipStatus, Usage.output, "csharp");
+@@usage(VolumeBackupRelationshipStatus, Usage.input, "csharp");
+@@usage(VolumeReplicationRelationshipStatus, Usage.input, "csharp");
+@@usage(VolumeRestoreRelationshipStatus, Usage.input, "csharp");
