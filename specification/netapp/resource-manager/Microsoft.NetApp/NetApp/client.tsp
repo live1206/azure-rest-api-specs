@@ -805,8 +805,12 @@ union NetAppRelationshipStatusDef {
 @@alternateType(Volume.etag, Azure.Core.eTag, "csharp");
 @@alternateType(Cache.etag, Azure.Core.eTag, "csharp");
 
-// Capacity pool throughput: int32 -> float32 to preserve the GA SDK surface
-@@alternateType(PoolProperties.customThroughputMibps, float32, "csharp");
+// Capacity pool throughput: generate the original int?-typed property name and keep
+// the GA float?-typed CustomThroughputMibps as a compatibility alias in SDK custom code.
+@@clientName(PoolProperties.customThroughputMibps,
+  "CustomThroughputMibpsInt",
+  "csharp"
+);
 
 // Snapshot location: string → azureLocation
 @@alternateType(Snapshot.location, azureLocation, "csharp");
