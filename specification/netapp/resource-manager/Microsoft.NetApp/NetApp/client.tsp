@@ -328,6 +328,7 @@ union NetAppRelationshipStatusDef {
   "csharp"
 );
 @@clientName(VolumeGroupVolumeProperties, "NetAppVolumeGroupVolume", "csharp");
+@@clientName(VolumeGroupVolumeProperties.type, "ResourceType", "csharp");
 @@clientName(VolumeBackupProperties,
   "NetAppVolumeBackupConfiguration",
   "csharp"
@@ -678,6 +679,10 @@ union NetAppRelationshipStatusDef {
 @@alternateType(VolumeProperties.subnetId, armResourceIdentifier, "csharp");
 @@alternateType(VolumeGroupVolumeProperties.id,
   armResourceIdentifier,
+  "csharp"
+);
+@@alternateType(VolumeGroupVolumeProperties.type,
+  Azure.Core.armResourceType,
   "csharp"
 );
 @@alternateType(PoolChangeRequest.newPoolResourceId,
