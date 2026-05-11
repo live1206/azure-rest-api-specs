@@ -9,7 +9,6 @@ import "./CapacityPool.tsp";
 
 using Rest;
 using Azure.ResourceManager;
-using Azure.Core;
 using Http;
 using Versioning;
 using Azure.ClientGenerator.Core;
