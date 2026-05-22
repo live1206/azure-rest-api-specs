@@ -344,8 +344,6 @@ namespace Microsoft.EventGrid {
     "EventGridPrivateEndpointConnection",
     "csharp"
   );
-  // PrivateLinkResource clientName - generates EventGridPrivateLinkResourceData (shared data class)
-  @@clientName(PrivateLinkResource, "EventGridPrivateLinkResource", "csharp");
   // Rename PrivateLinkServiceConnectionState back to ConnectionState for backward compat
   @@clientName(
     PrivateEndpointConnectionProperties.privateLinkServiceConnectionState,
@@ -628,17 +626,69 @@ namespace Microsoft.EventGrid {
   @@usage(DomainTopic, Usage.input, "csharp");
   @@usage(EventType, Usage.input, "csharp");
   @@usage(ExtensionTopic, Usage.input, "csharp");
-  @@usage(NetworkSecurityPerimeterConfiguration, Usage.input, "csharp");
-  @@usage(
-    NetworkSecurityPerimeterConfigurationProperties,
-    Usage.input,
-    "csharp"
-  );
   @@usage(PartnerConfiguration, Usage.input, "csharp");
   @@usage(PartnerDetails, Usage.input, "csharp");
   @@usage(TopicTypeAdditionalEnforcedPermission, Usage.input, "csharp");
   @@usage(TopicTypeInfo, Usage.input, "csharp");
   @@usage(VerifiedPartner, Usage.input, "csharp");
+
+  // Per-parent expansion for the dynamic-parent NetworkSecurityPerimeterConfiguration
+  // resource. The ARM route uses {resourceType} as a path segment so the same NSP
+  // resource is exposed under topics/ and domains/ parents. @@clientOption on the
+  // canonical Read operation tells the MPG generator to expand NSP into one C#
+  // resource class per enum value (DomainNetworkSecurityPerimeterConfiguration*,
+  // TopicNetworkSecurityPerimeterConfiguration*). Without this opt-in the generator
+  // crashes in BuildLroHandling because the single-resource code path doesn't
+  // register a data-type key for the reconcile LRO. Scoped to "csharp" only.
+  #suppress "@azure-tools/typespec-client-generator-core/client-option" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+  #suppress "@azure-tools/typespec-client-generator-core/client-option-requires-scope" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+  @@clientOption(
+    NetworkSecurityPerimeterConfigurations.get,
+    "resource-name",
+    #{
+      topics: "TopicNetworkSecurityPerimeterConfiguration",
+      domains: "DomainNetworkSecurityPerimeterConfiguration",
+    },
+    "csharp"
+  );
+
+  // The reconcile LRO returns the resource itself; with dynamic-parent expansion the
+  // MPG generator (1.0.0-alpha.20260520.5) still misses the per-parent data-type key
+  // in BuildLroHandling, causing a hard crash during code generation. Suppress from
+  // C# only; SDK custom code will provide the Reconcile/ReconcileAsync API to
+  // preserve back-compat with the prior baseline.
+  @@scope(NetworkSecurityPerimeterConfigurations.reconcile, "!csharp");
+
+  // Per-parent expansion for the dynamic-parent PrivateLinkResource. Same as PEC, but
+  // because PLR's parentType is declared `string` with @alternateType (instead of the
+  // PrivateEndpointConnectionsParentType enum directly) the generator does not auto
+  // expand it. Without expansion, MockableEventGridResourceGroupResource gets a PLR
+  // Get/GetByResource method whose signature collides with PEC's identical-signature
+  // methods (different return type only) and the build fails with CS0111.
+  #suppress "@azure-tools/typespec-client-generator-core/client-option" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+  #suppress "@azure-tools/typespec-client-generator-core/client-option-requires-scope" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+  @@clientOption(
+    PrivateLinkResources.get,
+    "resource-name",
+    #{
+      topics: "TopicEventGridPrivateLinkResource",
+      domains: "DomainEventGridPrivateLinkResource",
+      partnerNamespaces: "PartnerNamespaceEventGridPrivateLinkResource",
+      namespaces: "NamespaceEventGridPrivateLinkResource",
+    },
+    "csharp"
+  );
+
+  // Even after per-parent expansion, the list-by-parent operation still lands on
+  // MockableEventGridResourceGroupResource as GetByResource and collides with the
+  // identically-named PrivateEndpointConnections.listByResource method (same
+  // parameter types, only return type differs -> CS0111). Rename PLR's to
+  // GetPrivateLinkResourcesByResource on C# only to disambiguate.
+  @@clientName(
+    PrivateLinkResources.listByResource,
+    "GetPrivateLinkResourcesByResource",
+    "csharp"
+  );
 
   // Azure.ClientGenerator.Core.Legacy.markAsPageable
   #suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
@@ -700,5 +750,32 @@ namespace Azure.ResourceManager.Models {
 @@alternateType(
   Microsoft.EventGrid.NetworkSecurityPerimeterProfileAccessRuleProperties.subscriptions,
   Azure.ResourceManager.Models.WritableSubResource[],
+  "csharp"
+);
+
+// Wrapper that re-derives EventGridPrivateLinkResourceData from
+// Azure.ResourceManager.Models.ResourceData in the generated C# SDK. The
+// upstream PrivateLinkResource is declared with @customAzureResource (dynamic
+// parent type), so the MPG generator does not infer an ARM base class for it
+// and @@Legacy.hierarchyBuilding crashes the InheritableSystemObjectModelVisitor.
+// Extending Azure.ResourceManager.CommonTypes.Resource on a csharp-only wrapper
+// is the supported pattern (see mpg-api-diff §4.13) and restores the 1.1.0
+// EventGridPrivateLinkResourceData : ResourceData public surface without
+// touching the wire shape exposed to other languages.
+namespace Microsoft.EventGrid {
+  /**
+   * C#-only wrapper that re-derives the generated EventGridPrivateLinkResourceData
+   * class from Azure.ResourceManager.Models.ResourceData.
+   */
+  #suppress "@azure-tools/typespec-azure-core/composition-over-inheritance" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+  model EventGridPrivateLinkResource
+    extends Azure.ResourceManager.CommonTypes.Resource {
+    ...OmitProperties<PrivateLinkResource, "id" | "name" | "type">;
+  }
+}
+
+@@alternateType(
+  Microsoft.EventGrid.PrivateLinkResource,
+  Microsoft.EventGrid.EventGridPrivateLinkResource,
   "csharp"
 );
