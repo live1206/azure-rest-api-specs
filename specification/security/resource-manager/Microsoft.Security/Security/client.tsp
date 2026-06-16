@@ -513,7 +513,7 @@ op privateLinkResourcesGetCustomization(
 );
 @@clientName(
   GovernanceAPI.GovernanceRule,
-  "SecurityConnectorGovernanceRule",
+  "GovernanceRule",
   "csharp"
 );
 @@clientName(SettingsAPI.Setting, "SecuritySetting", "csharp");
@@ -823,6 +823,16 @@ op privateLinkResourcesGetCustomization(
   "csharp"
 );
 @@clientName(
+  SecuritySolutionsAPI.AllowedConnectionsResource,
+  "SecurityCenterAllowedConnection",
+  "csharp"
+);
+@@clientName(
+  SecuritySolutionsAPI.TopologyResource,
+  "SecurityTopologyResource",
+  "csharp"
+);
+@@clientName(
   SecuritySolutionsAPI.ExternalSecuritySolutions.listByHomeRegion,
   "GetExternalSecuritySolutionsByHomeRegion",
   "csharp"
@@ -1106,10 +1116,6 @@ op privateLinkResourcesGetCustomization(
 // These provider action list operations would add extra methods beyond the
 // legacy-compatible C# surface.
 @@scope(
-  SecuritySolutionsAPI.DiscoveredSecuritySolutionsOperationGroup.list,
-  "!csharp"
-);
-@@scope(
   SecuritySolutionsAPI.ExternalSecuritySolutionsOperationGroup.list,
   "!csharp"
 );
@@ -1121,15 +1127,28 @@ op privateLinkResourcesGetCustomization(
   SecuritySolutionsAPI.JitNetworkAccessPoliciesOperationGroup.listByResourceGroup,
   "!csharp"
 );
-@@scope(SecuritySolutionsAPI.SecuritySolutionsOperationGroup.list, "!csharp");
-@@scope(SecuritySolutionsAPI.AllowedConnectionsOperationGroup.list, "!csharp");
-@@scope(SecuritySolutionsAPI.TopologyOperationGroup.list, "!csharp");
 
 // MDE onboarding is modeled as a singleton resource in the C# SDK, so avoid generating a list API.
 @@scope(MdeOnboardingAPI.MdeOnboardings.list, "!csharp");
 
 // Operation status was not exposed by the previous C# generator and is excluded for compatibility.
 @@scope(OperationsAPI.OperationStatusesOperationGroup.get, "!csharp");
+
+// These SecuritySolutions 2020-01-01 endpoints were exposed by the GA C# SDK as
+// model-returning extension methods, not ARM resource/data/collection types.
+@@scope(SecuritySolutionsAPI.AllowedConnectionsResources.get, "!csharp");
+@@scope(
+  SecuritySolutionsAPI.AllowedConnectionsResources.listByHomeRegion,
+  "!csharp"
+);
+@@scope(SecuritySolutionsAPI.DiscoveredSecuritySolutions.get, "!csharp");
+@@scope(
+  SecuritySolutionsAPI.DiscoveredSecuritySolutions.listByHomeRegion,
+  "!csharp"
+);
+@@scope(SecuritySolutionsAPI.SecuritySolutions.get, "!csharp");
+@@scope(SecuritySolutionsAPI.TopologyResources.get, "!csharp");
+@@scope(SecuritySolutionsAPI.TopologyResources.listByHomeRegion, "!csharp");
 
 // C# legacy resource hierarchy customizations.
 #suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "Change the base type back to TrackedResourceData for backward compatibility"
