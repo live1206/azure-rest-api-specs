@@ -116,7 +116,7 @@ op privateLinksGetCustomization(
 
   #suppress "@azure-tools/typespec-azure-core/documentation-required" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   @query
-  privateLinkName: `private-link-parameters`,
+  privateLinkName: string,
 ): ArmResponse<PrivateLinksAPI.PrivateLinkResource> | ErrorResponse;
 
 @@Azure.ClientGenerator.Core.override(
@@ -135,7 +135,7 @@ op privateLinksCreateCustomization(
 
   #suppress "@azure-tools/typespec-azure-core/documentation-required" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   @query
-  privateLinkName: `private-link-parameters`,
+  privateLinkName: string,
 
   resource: PrivateLinksAPI.PrivateLinkResource,
 ):
@@ -167,7 +167,7 @@ op privateLinksUpdateCustomization(
 
   #suppress "@azure-tools/typespec-azure-core/documentation-required" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   @query
-  privateLinkName: `private-link-parameters`,
+  privateLinkName: string,
 
   properties: PrivateLinksAPI.PrivateLinkUpdate,
 ): ArmResponse<PrivateLinksAPI.PrivateLinkResource> | ErrorResponse;
@@ -193,7 +193,7 @@ op privateLinksDeleteCustomization(
 
   #suppress "@azure-tools/typespec-azure-core/documentation-required" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   @query
-  privateLinkName: `private-link-parameters`,
+  privateLinkName: string,
 ):
   | ArmDeleteAcceptedLroResponse<LroHeaders = ArmAsyncOperationHeader &
       Azure.Core.Foundations.RetryAfterHeader>
@@ -217,7 +217,7 @@ op privateLinksHeadCustomization(
 
   #suppress "@azure-tools/typespec-azure-core/documentation-required" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   @query
-  privateLinkName: `private-link-parameters`,
+  privateLinkName: string,
 ): OkResponse | ErrorResponse;
 
 @@Azure.ClientGenerator.Core.override(
@@ -236,7 +236,7 @@ op privateEndpointConnectionsListCustomization(
 
   #suppress "@azure-tools/typespec-azure-core/documentation-required" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   @query
-  privateLinkName: `private-link-parameters`,
+  privateLinkName: string,
 ):
   | ArmResponse<ResourceListResult<PrivateLinksAPI.PrivateEndpointConnection>>
   | ErrorResponse;
@@ -257,7 +257,7 @@ op privateEndpointConnectionsGetCustomization(
 
   #suppress "@azure-tools/typespec-azure-core/documentation-required" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   @query
-  privateLinkName: `private-link-parameters`,
+  privateLinkName: string,
 
   privateEndpointConnectionName: string,
 ): ArmResponse<Azure.ResourceManager.PrivateEndpointConnection> | ErrorResponse;
@@ -278,7 +278,7 @@ op privateEndpointConnectionsCreateOrUpdateCustomization(
 
   #suppress "@azure-tools/typespec-azure-core/documentation-required" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   @query
-  privateLinkName: `private-link-parameters`,
+  privateLinkName: string,
 
   #suppress "@azure-tools/typespec-azure-core/documentation-required" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   privateEndpointConnectionName: string,
@@ -314,7 +314,7 @@ op privateEndpointConnectionsDeleteCustomization(
 
   #suppress "@azure-tools/typespec-azure-core/documentation-required" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   @query
-  privateLinkName: `private-link-parameters`,
+  privateLinkName: string,
 
   #suppress "@azure-tools/typespec-azure-core/documentation-required" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   privateEndpointConnectionName: string,
@@ -340,7 +340,7 @@ op privateLinkResourcesListCustomization(
 
   #suppress "@azure-tools/typespec-azure-core/documentation-required" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   @query
-  privateLinkName: `private-link-parameters`,
+  privateLinkName: string,
 ): ArmResponse<ResourceListResult<PrivateLinkGroupResource>> | ErrorResponse;
 
 @@Azure.ClientGenerator.Core.override(
