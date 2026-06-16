@@ -1334,12 +1334,12 @@ model CSharpSecurityAssessmentStatusResult
   "csharp"
 );
 @@alternateType(
-  privateLinkGroupResourcesListCustomization::parameters.privateLinkName,
+  privateLinkResourcesListCustomization::parameters.privateLinkName,
   string,
   "csharp"
 );
 @@alternateType(
-  privateLinkGroupResourcesGetCustomization::parameters.privateLinkName,
+  privateLinkResourcesGetCustomization::parameters.privateLinkName,
   string,
   "csharp"
 );
