@@ -1266,6 +1266,19 @@ model CSharpSecurityAssessmentStatusResult
 }
 
 // C# usage customizations and type mappings.
+// Define the ARM SubResource model so C# can use the shared
+// Azure.ResourceManager.Resources.Models.SubResource type for compatibility.
+namespace Azure.ResourceManager.Models {
+  model SubResource {
+    id?: Azure.Core.armResourceIdentifier;
+  }
+}
+
+@@alternateType(
+  SecureScoreAPI.SecureScoreControlDefinitionItemProperties.assessmentDefinitions,
+  Azure.ResourceManager.Models.SubResource[],
+  "csharp"
+);
 @@alternateType(
   SecuritySolutionsAPI.JitNetworkAccessPortRule.maxRequestAccessDuration,
   duration,
