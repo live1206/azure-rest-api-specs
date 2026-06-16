@@ -30,6 +30,7 @@ import "./SqlVulnerabilityAssessmentsAPI/main.tsp";
 import "./StandardsAPI/main.tsp";
 import "./SubAssessmentsAPI/main.tsp";
 import "./TasksAPI/main.tsp";
+import "./csharp-compat.tsp";
 import "@azure-tools/typespec-client-generator-core";
 import "@typespec/versioning";
 
@@ -52,14 +53,6 @@ using LegacySettingsAPI;
 using SqlVulnerabilityAssessmentsAPI;
 using AlertsAPI;
 using ApiCollectionsAPI;
-
-// Define the ARM SubResource model so C# can use the shared
-// Azure.ResourceManager.Resources.Models.SubResource type for compatibility.
-namespace Azure.ResourceManager.Models {
-  model SubResource {
-    id?: Azure.Core.armResourceIdentifier;
-  }
-}
 
 @client({
   name: "SecurityManagementClient",
