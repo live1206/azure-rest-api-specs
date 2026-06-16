@@ -1288,61 +1288,7 @@ model CSharpSecurityAssessmentStatusResult
 }
 
 // C# usage customizations and type mappings.
-@@alternateType(
-  privateLinksGetCustomization::parameters.privateLinkName,
-  string,
-  "csharp"
-);
-@@alternateType(
-  privateLinksCreateCustomization::parameters.privateLinkName,
-  string,
-  "csharp"
-);
-@@alternateType(
-  privateLinksUpdateCustomization::parameters.privateLinkName,
-  string,
-  "csharp"
-);
-@@alternateType(
-  privateLinksDeleteCustomization::parameters.privateLinkName,
-  string,
-  "csharp"
-);
-@@alternateType(
-  privateLinksHeadCustomization::parameters.privateLinkName,
-  string,
-  "csharp"
-);
-@@alternateType(
-  privateEndpointConnectionsListCustomization::parameters.privateLinkName,
-  string,
-  "csharp"
-);
-@@alternateType(
-  privateEndpointConnectionsGetCustomization::parameters.privateLinkName,
-  string,
-  "csharp"
-);
-@@alternateType(
-  privateEndpointConnectionsCreateOrUpdateCustomization::parameters.privateLinkName,
-  string,
-  "csharp"
-);
-@@alternateType(
-  privateEndpointConnectionsDeleteCustomization::parameters.privateLinkName,
-  string,
-  "csharp"
-);
-@@alternateType(
-  privateLinkResourcesListCustomization::parameters.privateLinkName,
-  string,
-  "csharp"
-);
-@@alternateType(
-  privateLinkResourcesGetCustomization::parameters.privateLinkName,
-  string,
-  "csharp"
-);
+@@alternateType(`private-link-parameters`, string, "csharp");
 @@alternateType(
   SecuritySolutionsAPI.JitNetworkAccessPortRule.maxRequestAccessDuration,
   duration,
