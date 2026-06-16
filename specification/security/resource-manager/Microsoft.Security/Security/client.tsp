@@ -1288,7 +1288,6 @@ model CSharpSecurityAssessmentStatusResult
 }
 
 // C# usage customizations and type mappings.
-@@alternateType(`private-link-parameters`, string, "csharp");
 @@alternateType(
   SecuritySolutionsAPI.JitNetworkAccessPortRule.maxRequestAccessDuration,
   duration,
