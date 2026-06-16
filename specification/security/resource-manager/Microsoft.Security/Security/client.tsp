@@ -53,6 +53,14 @@ using SqlVulnerabilityAssessmentsAPI;
 using AlertsAPI;
 using ApiCollectionsAPI;
 
+// Define the ARM SubResource model so C# can use the shared
+// Azure.ResourceManager.Resources.Models.SubResource type for compatibility.
+namespace Azure.ResourceManager.Models {
+  model SubResource {
+    id?: Azure.Core.armResourceIdentifier;
+  }
+}
+
 @client({
   name: "SecurityManagementClient",
   service: [
@@ -1637,11 +1645,3 @@ model JitNetworkAccessPolicyCreate {
   JitNetworkAccessPolicyCreate,
   "javascript"
 );
-
-// Define the ARM SubResource model so C# can use the shared
-// Azure.ResourceManager.Resources.Models.SubResource type for compatibility.
-namespace Azure.ResourceManager.Models {
-  model SubResource {
-    id?: Azure.Core.armResourceIdentifier;
-  }
-}
