@@ -77,7 +77,7 @@ using Microsoft.BillingBenefits;
 );
 @@clientName(PurchaseRequest, "BillingBenefitsPurchaseContent", "csharp");
 @@clientName(SavingsPlanValidResponseProperty,
-  "SavingsPlanValidateResult",
+  "SavingsPlanValidationDetail",
   "csharp"
 );
 @@clientName(SavingsPlanOrderAliasModel,
